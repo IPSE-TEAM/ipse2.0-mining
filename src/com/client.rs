@@ -9,9 +9,21 @@ use url::Url;
 use log::info;
 use std::convert::TryInto;
 
+use codec::{
+    Decode,
+    Encode,
+};
+
+use std::{
+    collections::BTreeMap,
+    fmt::Debug,
+    marker::PhantomData,
+};
+
 pub use substrate_subxt::{
     system::System,
     ExtrinsicSuccess,
+    PairSigner,
     Call,
     Error as SubError,
     Client as SubClient,
@@ -22,11 +34,17 @@ use sp_core::{storage::StorageKey, twox_128};
 use sp_keyring::AccountKeyring;
 use sp_runtime::traits::{Header};
 use sub_runtime::poc::{Difficulty, MiningInfo};
-use crate::com::runtimes::{PocRuntime, Timestamp};
-
+use crate::com::runtimes::{PocRuntime};
+use  crate::com::timestamp::Timestamp;
+use crate::com::timestamp::NowStoreExt;
+use crate::com::runtimes::LastMiningTsStoreExt;
+use crate::com::runtimes::TargetInfoStoreExt;
+use crate::com::runtimes::DlInfoStoreExt;
+use crate::com::runtimes::MiningCallExt;
+use crate::com::runtimes::MiningEventExt;
 type Runtime = PocRuntime;
 type AccountId = <Runtime as System>::AccountId;
-type Moment = <Runtime as Timestamp>::Moment;
+// type Moment = <Runtime as Timestamp>::Moment;
 
 pub const MAX_MINING_TIME: u64 = 9000;
 
@@ -34,6 +52,7 @@ pub const POC_MODULE: &str = "PoC";
 pub const TS_MODULE: &str = "Timestamp";
 
 pub const MINING: &str = "mining";
+
 
 /// A client for communicating with Pool/Proxy/Wallet.
 #[derive(Clone)]
@@ -207,34 +226,34 @@ impl Client {
         let xt_result =
         async_std::task::block_on(async move {
             info!("starting submit_nonce to substrate!!!");
-            let signer = AccountKeyring::Alice.pair();
-            let xt = self.inner.xt(signer, None).await?;
-            let xt_result = xt
-                .watch()
-                .submit(Self::mining(
+            let signer = PairSigner::new(AccountKeyring::Alice.pair());
+
+            let xt_result = self.inner.
+                mining_and_watch(
+                    &signer,
                     submission_data.account_id,
                     submission_data.height,
                     submission_data.gen_sig,
                     submission_data.nonce,
                     submission_data.deadline
-                )).await?;
+
+                ).await?;
+
             Ok(xt_result)
         });
 
         match xt_result {
             Ok(success) => {
-                match success
-                    .find_event::<(AccountId, bool)>(
-                        POC_MODULE, "VerifyDeadline",
-                    ) {
-                    Some(Ok((_id, verify_result))) => {
-                        info!("verify result: {}", verify_result);
-                        return future::ok(SubmitNonceResponse{verify_result})
-                    }
-                    Some(Err(err)) => return future::err(err.into()),
-                    None => return future::err(FetchError::Substrate(SubError::Other("Failed to find PoC::VerifyDeadline".to_string()))),
+                if let Some(event) = success.mining().ok() {
+
+                    info!("verify_result: {:?}", event);
+                    return future::ok(SubmitNonceResponse{verify_result: event.unwrap().is_ok});
+                }
+                else{
+                    return future::err(FetchError::Substrate(SubError::Other("Failed to find PoC::VerifyDeadline".to_string())));
                 }
             }
+
             Err(err) => future::err(err),
         }
 
@@ -245,7 +264,7 @@ impl Client {
         let mut storage_key = twox_128(POC_MODULE.as_ref()).to_vec();
         storage_key.extend(twox_128(b"DlInfo").to_vec());
         let dl_key = StorageKey(storage_key);
-        let dl_opt: Option<Vec<MiningInfo<AccountId>>> = self.inner.fetch(dl_key, None).await.unwrap();
+        let dl_opt: Option<Vec<MiningInfo<AccountId>>> = self.inner.dl_info(None).await.unwrap();
         if let Some(dls) = dl_opt {
             if let Some(dl) = dls.last(){
                 Some(dl.clone())
@@ -258,7 +277,7 @@ impl Client {
         let mut storage_key = twox_128(POC_MODULE.as_ref()).to_vec();
         storage_key.extend(twox_128(b"TargetInfo").to_vec());
         let targets_key = StorageKey(storage_key);
-        let targets_opt: Option<Vec<Difficulty>> = self.inner.fetch(targets_key, None).await.unwrap();
+        let targets_opt: Option<Vec<Difficulty>> = self.inner.target_info(None).await.unwrap();
         if let Some(targets) = targets_opt {
             let target = targets.last().unwrap();
             Some(target.clone())
@@ -272,7 +291,7 @@ impl Client {
         let mut storage_key = twox_128(POC_MODULE.as_ref()).to_vec();
         storage_key.extend(twox_128(b"LastMiningTs").to_vec());
         let ts_key = StorageKey(storage_key);
-        let ts_opt: Option<u64> = self.inner.fetch(ts_key, None).await.unwrap();
+        let ts_opt: Option<u64> = self.inner.last_mining_ts(None).await.unwrap();
         ts_opt.unwrap()
     }
 
@@ -282,18 +301,8 @@ impl Client {
         storage_key.extend(twox_128(b"Now").to_vec());
         let ts_key = StorageKey(storage_key);
 
-        let ts_opt: Option<u64> = self.inner.fetch(ts_key, None).await.unwrap();
+        let ts_opt: Option<u64> = self.inner.now(None).await.unwrap();
         ts_opt.unwrap()
-    }
-
-    fn mining(account_id: u64, height: u64, sig: [u8; 32], nonce: u64, deadline: u64) -> Call<MiningArgs>{
-        Call::new(POC_MODULE, MINING, MiningArgs{
-            account_id,
-            height,
-            sig,
-            nonce,
-            deadline,
-        })
     }
 
     /// Get current block height from Substrate.

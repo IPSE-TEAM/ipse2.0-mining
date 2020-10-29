@@ -7,6 +7,8 @@ extern crate cfg_if;
 extern crate clap;
 #[macro_use]
 extern crate log;
+#[macro_use]
+extern crate substrate_subxt_proc_macro;
 
 mod com;
 mod config;
