@@ -246,9 +246,9 @@ impl Client {
             Ok(success) => {
                 if let Some(event) = success.mining().ok() {
                     info!("verify_result: {:?}", event);
-                    if let Some(event_1) = event.ok() {
+                    if event.is_some() {
 
-                        return future::ok(SubmitNonceResponse{verify_result: event_1.is_ok});
+                        return future::ok(SubmitNonceResponse{verify_result: event.unwrap().is_ok});
                     }
                     else {
                         return future::err(FetchError::Substrate(SubError::Other("PoC::VerifyDeadline err".to_string())));
