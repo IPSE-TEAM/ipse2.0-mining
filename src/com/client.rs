@@ -245,9 +245,16 @@ impl Client {
         match xt_result {
             Ok(success) => {
                 if let Some(event) = success.mining().ok() {
-
                     info!("verify_result: {:?}", event);
-                    return future::ok(SubmitNonceResponse{verify_result: event.unwrap().is_ok});
+                    if let Some(event_1) = event.ok() {
+
+                        return future::ok(SubmitNonceResponse{verify_result: event_1.is_ok});
+                    }
+                    else {
+                        return future::err(FetchError::Substrate(SubError::Other("PoC::VerifyDeadline err".to_string())));
+                    }
+
+
                 }
                 else{
                     return future::err(FetchError::Substrate(SubError::Other("Failed to find PoC::VerifyDeadline".to_string())));
