@@ -50,7 +50,7 @@ pub const MAX_MINING_TIME: u64 = 9000;
 
 pub const POC_MODULE: &str = "PoC";
 pub const TS_MODULE: &str = "Timestamp";
-
+pub const MiningDuration: u64 = 1;
 pub const MINING: &str = "mining";
 
 
@@ -146,7 +146,9 @@ impl Client {
         async_std::task::block_on(async move {
             // use block_hash as gen_sig
             let block_hash = self.inner.block_hash(None).await.unwrap().unwrap();
+
             let block_hash = block_hash.as_fixed_bytes();
+
             let height = self.get_current_height().await;
 
             let base_target = if let Some(di) = self.get_last_difficulty().await {
@@ -194,7 +196,7 @@ impl Client {
         async_std::task::block_on(async move {
             info!("check current best deadline!!!");
             let height = self.get_current_height().await;
-            if height/3 - submission_data.height/3 > 1 {
+            if height/MiningDuration - submission_data.height/MiningDuration > 1 {
                 info!("verification of this round is expired, Now on-chain height = {}", height);
                 return Err(())
             }
@@ -202,7 +204,7 @@ impl Client {
             if let Some(info) = self.get_last_mining_info().await {
                 info!("on-chain best deadline = {} ,  deadline to submit = {}", info.best_dl, submission_data.deadline);
                 if info.best_dl <= submission_data.deadline
-                    && (info.block - 1)/3 == (submission_data.height - 1)/3 {
+                    && (info.block - 1)/MiningDuration == (submission_data.height - 1)/MiningDuration {
                     info!(" There was already a better deadline on chain, the best deadline on-chain is {} ", info.best_dl);
                     Err(())
                 } else {
@@ -226,7 +228,8 @@ impl Client {
         let xt_result =
         async_std::task::block_on(async move {
             info!("starting submit_nonce to substrate!!!");
-            let signer = PairSigner::new(AccountKeyring::Alice.pair());
+
+            let signer = PairSigner::new(AccountKeyring::Charlie.pair());
 
             let xt_result = self.inner.
                 mining_and_watch(
