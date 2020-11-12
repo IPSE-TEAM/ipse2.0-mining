@@ -103,10 +103,16 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="304" y="104" key="#SSH_Configurations/0.23.1440.877@0.23.1440.877" timestamp="1603766753395" />
-    <state x="609" y="247" width="770" height="589" key="find.popup" timestamp="1603956410008">
+    <state x="784" y="317" width="424" height="484" key="FileChooserDialogImpl" timestamp="1605171009914">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="2663" y="297" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1604372624706" />
+    <state x="784" y="317" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1605171009914" />
+    <state x="609" y="247" width="851" height="589" key="find.popup" timestamp="1605090218651">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="421" y="206" width="598" height="490" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1603768794200" />
-    <state x="609" y="247" width="770" height="589" key="find.popup/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1603956410008" />
+    <state x="2482" y="226" width="798" height="605" key="find.popup/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605079506697" />
+    <state x="609" y="247" width="851" height="589" key="find.popup/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1605090218651" />
   </component>
 </project>

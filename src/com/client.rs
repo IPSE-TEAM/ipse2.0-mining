@@ -46,7 +46,7 @@ type Runtime = PocRuntime;
 type AccountId = <Runtime as System>::AccountId;
 // type Moment = <Runtime as Timestamp>::Moment;
 
-pub const MAX_MINING_TIME: u64 = 9000;
+pub const MAX_MINING_TIME: u64 = 12000;
 
 pub const POC_MODULE: &str = "PoC";
 pub const TS_MODULE: &str = "Timestamp";
@@ -221,15 +221,20 @@ impl Client {
             return future::ok(SubmitNonceResponse{verify_result: false})
         }
 
-        // if submission_data.deadline > MAX_MINING_TIME {
-        //     return future::ok(SubmitNonceResponse{verify_result: false})
-        // }
+        if submission_data.deadline > MAX_MINING_TIME {
+            return future::ok(SubmitNonceResponse{verify_result: false})
+        }
 
         let xt_result =
         async_std::task::block_on(async move {
             info!("starting submit_nonce to substrate!!!");
 
             let signer = PairSigner::new(AccountKeyring::Charlie.pair());
+//             let signer = PairSigner::new(AccountKeyring::Alice.pair());
+//             let signer = PairSigner::new(AccountKeyring::Bob.pair());
+//             let signer = PairSigner::new(AccountKeyring::Dave.pair());
+//             let signer = PairSigner::new(AccountKeyring::Eve.pair());
+//             let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
 
             let xt_result = self.inner.
                 mining_and_watch(
