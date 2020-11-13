@@ -229,12 +229,14 @@ impl Client {
         async_std::task::block_on(async move {
             info!("starting submit_nonce to substrate!!!");
 
+
             let signer = PairSigner::new(AccountKeyring::Charlie.pair());
 //             let signer = PairSigner::new(AccountKeyring::Alice.pair());
 //             let signer = PairSigner::new(AccountKeyring::Bob.pair());
 //             let signer = PairSigner::new(AccountKeyring::Dave.pair());
 //             let signer = PairSigner::new(AccountKeyring::Eve.pair());
 //             let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
+
 
             let xt_result = self.inner.
                 mining_and_watch(
@@ -248,7 +250,11 @@ impl Client {
                 ).await?;
 
             Ok(xt_result)
+
+
         });
+
+        info!("挖矿函数返回来的结果是：{:?}", xt_result);
 
         match xt_result {
             Ok(success) => {
@@ -317,6 +323,7 @@ impl Client {
         let ts_key = StorageKey(storage_key);
 
         let ts_opt: Option<u64> = self.inner.now(None).await.unwrap();
+        info!("当前的区块时间是: {:?}", ts_opt);
         ts_opt.unwrap()
     }
 
@@ -324,6 +331,7 @@ impl Client {
     async fn get_current_height(&self) -> u64 {
         let header = self.inner.header::<<Runtime as System>::Hash>(None).await.unwrap().unwrap();
         let block_num = *header.number();
+        info!("当前的高度是： {:?}", block_num);
         block_num as u64
     }
 }

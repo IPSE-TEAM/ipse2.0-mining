@@ -32,6 +32,8 @@ use std::u64;
 use stopwatch::Stopwatch;
 use tokio::prelude::*;
 use tokio::runtime::TaskExecutor;
+ use tokio::clock::now;
+
 
 pub struct Miner {
     reader: Reader,
@@ -459,14 +461,18 @@ impl Miner {
         // there might be a way to solve this without two nested moves
         let get_mining_info_interval = self.get_mining_info_interval;
         let wakeup_after = self.wakeup_after;
+
         let sleep_duration = Duration::from_millis(get_mining_info_interval - 1000);
+
         let interval_duration = Duration::from_millis(1000);
         self.executor.clone().spawn(
             Interval::new_interval(interval_duration)
                 .for_each(move |_| {
                     let state = state.clone();
                     let reader = reader.clone();
+
                     request_handler.get_mining_info().then(move |mining_info| {
+
                         match mining_info {
                             Ok(mining_info) => {
                                 let mut state = state.lock().unwrap();
@@ -494,6 +500,7 @@ impl Miner {
                                     reader.lock().unwrap().wakeup();
                                     state.sw.restart();
                                 }
+
                                 if mining_info.duration_from_last_mining <= 1000 {
                                     std::thread::sleep(sleep_duration)
                                 }
@@ -529,11 +536,16 @@ impl Miner {
         let request_handler = self.request_handler.clone();
         let state = self.state.clone();
         let reader_task_count = self.reader_task_count;
+
+        let mut start = now();
+
         self.executor.clone().spawn(
             self.rx_nonce_data
                 .for_each(move |nonce_data| {
                     let mut state = state.lock().unwrap();
+
                     let deadline = nonce_data.deadline / nonce_data.base_target;
+
                     if state.height == nonce_data.height {
                         let best_deadline = *state
                             .account_id_to_best_deadline
@@ -586,6 +598,12 @@ impl Miner {
                             }
                         }
                     }
+
+                    let end = now();
+
+                    info!("挖矿花费的时间是： {:?}", end - start);
+
+                    start = end;
                     Ok(())
                 })
                 .map_err(|e| panic!("interval errored: err={:?}", e)),
