@@ -46,7 +46,7 @@ type Runtime = PocRuntime;
 type AccountId = <Runtime as System>::AccountId;
 // type Moment = <Runtime as Timestamp>::Moment;
 
-pub const MAX_MINING_TIME: u64 = 12000;
+pub const MAX_MINING_TIME: u64 = 36000;
 
 pub const POC_MODULE: &str = "PoC";
 pub const TS_MODULE: &str = "Timestamp";
@@ -195,22 +195,26 @@ impl Client {
         let check_dl_result =
         async_std::task::block_on(async move {
             info!("check current best deadline!!!");
+            // 当前真正的高度
             let height = self.get_current_height().await;
             if height/MiningDuration - submission_data.height/MiningDuration > 1 {
                 info!("verification of this round is expired, Now on-chain height = {}", height);
                 return Err(())
             }
 
+
+
             if let Some(info) = self.get_last_mining_info().await {
                 info!("on-chain best deadline = {} ,  deadline to submit = {}", info.best_dl, submission_data.deadline);
                 if info.best_dl <= submission_data.deadline
-                    && (info.block - 1)/MiningDuration == (submission_data.height - 1)/MiningDuration {
+                    && info.block/MiningDuration == submission_data.height/MiningDuration {
                     info!(" There was already a better deadline on chain, the best deadline on-chain is {} ", info.best_dl);
                     Err(())
                 } else {
                     info!("find a better deadline = {}", submission_data.deadline );
                     Ok(())
                 }
+
             } else {
                 info!("find no last-mining-info");
                 Ok(())
@@ -229,14 +233,12 @@ impl Client {
         async_std::task::block_on(async move {
             info!("starting submit_nonce to substrate!!!");
 
-
-            let signer = PairSigner::new(AccountKeyring::Charlie.pair());
-//             let signer = PairSigner::new(AccountKeyring::Alice.pair());
+            let signer = PairSigner::new(AccountKeyring::Alice.pair());
 //             let signer = PairSigner::new(AccountKeyring::Bob.pair());
+//             let signer = PairSigner::new(AccountKeyring::Charlie.pair());
 //             let signer = PairSigner::new(AccountKeyring::Dave.pair());
 //             let signer = PairSigner::new(AccountKeyring::Eve.pair());
 //             let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
-
 
             let xt_result = self.inner.
                 mining_and_watch(
