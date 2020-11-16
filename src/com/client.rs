@@ -195,22 +195,26 @@ impl Client {
         let check_dl_result =
         async_std::task::block_on(async move {
             info!("check current best deadline!!!");
+
             // 当前真正的高度
             let height = self.get_current_height().await;
-            if height/MiningDuration - submission_data.height/MiningDuration > 1 {
+
+            // 必须在同一周期 并且提交的时间比处理的时间迟
+            if height/MiningDuration == submission_data.height/MiningDuration && height >= submission_data.height
+            {
                 info!("verification of this round is expired, Now on-chain height = {}", height);
                 return Err(())
             }
 
-
-
             if let Some(info) = self.get_last_mining_info().await {
                 info!("on-chain best deadline = {} ,  deadline to submit = {}", info.best_dl, submission_data.deadline);
                 if info.best_dl <= submission_data.deadline
-                    && info.block/MiningDuration == submission_data.height/MiningDuration {
+                {
                     info!(" There was already a better deadline on chain, the best deadline on-chain is {} ", info.best_dl);
                     Err(())
-                } else {
+                }
+                else
+                {
                     info!("find a better deadline = {}", submission_data.deadline );
                     Ok(())
                 }
@@ -284,9 +288,7 @@ impl Client {
 
     /// Get the last mining info from Substrate.
     async fn get_last_mining_info(&self) -> Option<MiningInfo<AccountId>> {
-        let mut storage_key = twox_128(POC_MODULE.as_ref()).to_vec();
-        storage_key.extend(twox_128(b"DlInfo").to_vec());
-        let dl_key = StorageKey(storage_key);
+
         let dl_opt: Option<Vec<MiningInfo<AccountId>>> = self.inner.dl_info(None).await.unwrap();
         if let Some(dls) = dl_opt {
             if let Some(dl) = dls.last(){
@@ -297,9 +299,7 @@ impl Client {
 
     /// Get the last difficulty from Substrate.
     async fn get_last_difficulty(&self) -> Option<Difficulty> {
-        let mut storage_key = twox_128(POC_MODULE.as_ref()).to_vec();
-        storage_key.extend(twox_128(b"TargetInfo").to_vec());
-        let targets_key = StorageKey(storage_key);
+
         let targets_opt: Option<Vec<Difficulty>> = self.inner.target_info(None).await.unwrap();
         if let Some(targets) = targets_opt {
             let target = targets.last().unwrap();
@@ -311,18 +311,13 @@ impl Client {
 
     /// Get last mining timestamp from Substrate.
     async fn get_last_mining_ts(&self) -> u64 {
-        let mut storage_key = twox_128(POC_MODULE.as_ref()).to_vec();
-        storage_key.extend(twox_128(b"LastMiningTs").to_vec());
-        let ts_key = StorageKey(storage_key);
+
         let ts_opt: Option<u64> = self.inner.last_mining_ts(None).await.unwrap();
         ts_opt.unwrap()
     }
 
     /// GET now timestamp from Substrate.
     async fn get_now_ts(&self) -> u64 {
-        let mut storage_key = twox_128(TS_MODULE.as_ref()).to_vec();
-        storage_key.extend(twox_128(b"Now").to_vec());
-        let ts_key = StorageKey(storage_key);
 
         let ts_opt: Option<u64> = self.inner.now(None).await.unwrap();
         info!("当前的区块时间是: {:?}", ts_opt);

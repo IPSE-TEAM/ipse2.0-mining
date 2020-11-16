@@ -536,9 +536,7 @@ impl Miner {
         let request_handler = self.request_handler.clone();
         let state = self.state.clone();
         let reader_task_count = self.reader_task_count;
-
         let mut start = now();
-
         self.executor.clone().spawn(
             self.rx_nonce_data
                 .for_each(move |nonce_data| {
@@ -579,7 +577,14 @@ impl Miner {
                         //}
 
                         if nonce_data.reader_task_processed {
+
+                            if state.processed_reader_tasks == 1 {
+                                start = now();
+                            }
+
                             state.processed_reader_tasks += 1;
+
+
                             if state.processed_reader_tasks == reader_task_count {
                                 info!(
                                     "{: <80}",
@@ -595,15 +600,14 @@ impl Miner {
                                 state.sw.restart();
                                 println!("%%%%%%%%%%% finished sw.restart %%%%%%%%%%%");
                                 state.scanning = false;
+                                let end = now();
+                                let spend_time = end - start;
+                                info!("挖矿开始的时间是: {:?}, 结束的时间是: {:?}, 需要消耗的总时间是： {:?}", start, end, spend_time);
+
                             }
                         }
                     }
 
-                    let end = now();
-
-                    info!("挖矿花费的时间是： {:?}", end - start);
-
-                    start = end;
                     Ok(())
                 })
                 .map_err(|e| panic!("interval errored: err={:?}", e)),
