@@ -44,9 +44,8 @@ use crate::com::runtimes::MiningCallExt;
 use crate::com::runtimes::MiningEventExt;
 type Runtime = PocRuntime;
 type AccountId = <Runtime as System>::AccountId;
-// type Moment = <Runtime as Timestamp>::Moment;
 
-pub const MAX_MINING_TIME: u64 = 36000;
+pub const MAX_MINING_TIME: u64 = 12000;
 
 pub const POC_MODULE: &str = "PoC";
 pub const TS_MODULE: &str = "Timestamp";
@@ -197,30 +196,33 @@ impl Client {
             info!("check current best deadline!!!");
 
             // 当前真正的高度
-            let height = self.get_current_height().await;
+            let current_block = self.get_current_height().await;
+
+            info!("请求数据的区块是：{:?}, 提交挖矿的区块是: {:?}, 提交的deadline是: {:?}", submission_data.height, current_block, submission_data.deadline);
 
             // 必须在同一周期 并且提交的时间比处理的时间迟
-            if height/MiningDuration == submission_data.height/MiningDuration && height >= submission_data.height
+            if !(current_block/MiningDuration == submission_data.height/MiningDuration && current_block >= submission_data.height)
             {
-                info!("verification of this round is expired, Now on-chain height = {}", height);
+                info!("请求数据的区块离当前区块间隔较大（已经过期), 请求数据的区块是：{:?}, 提交挖矿的区块是: {:?}", submission_data.height, current_block);
                 return Err(())
             }
 
             if let Some(info) = self.get_last_mining_info().await {
-                info!("on-chain best deadline = {} ,  deadline to submit = {}", info.best_dl, submission_data.deadline);
-                if info.best_dl <= submission_data.deadline
-                {
-                    info!(" There was already a better deadline on chain, the best deadline on-chain is {} ", info.best_dl);
+
+                let last_mining_block = info.block;
+                if info.best_dl <= submission_data.deadline && last_mining_block / MiningDuration == submission_data.height {
+                    info!("本挖矿周期已经有比较好的deadline,  best_dl = {} ", info.best_dl);
                     Err(())
                 }
+
                 else
                 {
-                    info!("find a better deadline = {}", submission_data.deadline );
+                    info!("************************* find a better deadline = {} ******************************", submission_data.deadline );
                     Ok(())
                 }
 
             } else {
-                info!("find no last-mining-info");
+                info!("****************************** find no last-mining-info, and a find better deadline = {} *******************************", submission_data.deadline);
                 Ok(())
             }
         });
@@ -237,12 +239,12 @@ impl Client {
         async_std::task::block_on(async move {
             info!("starting submit_nonce to substrate!!!");
 
-            let signer = PairSigner::new(AccountKeyring::Alice.pair());
+//             let signer = PairSigner::new(AccountKeyring::Alice.pair());
 //             let signer = PairSigner::new(AccountKeyring::Bob.pair());
 //             let signer = PairSigner::new(AccountKeyring::Charlie.pair());
 //             let signer = PairSigner::new(AccountKeyring::Dave.pair());
 //             let signer = PairSigner::new(AccountKeyring::Eve.pair());
-//             let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
+            let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
 
             let xt_result = self.inner.
                 mining_and_watch(
@@ -320,7 +322,6 @@ impl Client {
     async fn get_now_ts(&self) -> u64 {
 
         let ts_opt: Option<u64> = self.inner.now(None).await.unwrap();
-        info!("当前的区块时间是: {:?}", ts_opt);
         ts_opt.unwrap()
     }
 
@@ -328,7 +329,6 @@ impl Client {
     async fn get_current_height(&self) -> u64 {
         let header = self.inner.header::<<Runtime as System>::Hash>(None).await.unwrap().unwrap();
         let block_num = *header.number();
-        info!("当前的高度是： {:?}", block_num);
-        block_num as u64
+        (block_num as u64) + 1u64
     }
 }
