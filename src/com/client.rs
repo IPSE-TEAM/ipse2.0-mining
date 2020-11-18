@@ -8,6 +8,8 @@ use url::form_urlencoded::byte_serialize;
 use url::Url;
 use log::info;
 use std::convert::TryInto;
+// use sp_core::{sr25519::Pair};
+use sp_core::Pair;
 
 use codec::{
     Decode,
@@ -155,7 +157,7 @@ impl Client {
                 di.base_target
             } else {
                 info!("!!!!!!!use default base-target!!!!");
-                488671834567_u64
+                std::u64::MAX
             };
 
             let deadline = if let Some(dl) = self.get_last_mining_info().await {
@@ -210,7 +212,7 @@ impl Client {
             if let Some(info) = self.get_last_mining_info().await {
 
                 let last_mining_block = info.block;
-                if info.best_dl <= submission_data.deadline && last_mining_block / MiningDuration == submission_data.height {
+                if info.best_dl <= submission_data.deadline && current_block / MiningDuration == info.block / MiningDuration {
                     info!("本挖矿周期已经有比较好的deadline,  best_dl = {} ", info.best_dl);
                     Err(())
                 }
@@ -231,20 +233,22 @@ impl Client {
             return future::ok(SubmitNonceResponse{verify_result: false})
         }
 
-        if submission_data.deadline > MAX_MINING_TIME {
-            return future::ok(SubmitNonceResponse{verify_result: false})
-        }
+//         if submission_data.deadline > MAX_MINING_TIME {
+//             return future::ok(SubmitNonceResponse{verify_result: false})
+//         }
 
         let xt_result =
         async_std::task::block_on(async move {
             info!("starting submit_nonce to substrate!!!");
-
+//             let a = Pair::from_phrase("hahahhah", None).unwrap().0;
+            // let signer = PairSigner::new(Pair::from_phrase("hahahhah", None).unwrap().0);
 //             let signer = PairSigner::new(AccountKeyring::Alice.pair());
-//             let signer = PairSigner::new(AccountKeyring::Bob.pair());
+            let signer = PairSigner::new(AccountKeyring::Bob.pair());
 //             let signer = PairSigner::new(AccountKeyring::Charlie.pair());
 //             let signer = PairSigner::new(AccountKeyring::Dave.pair());
 //             let signer = PairSigner::new(AccountKeyring::Eve.pair());
-            let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
+
+//             let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
 
             let xt_result = self.inner.
                 mining_and_watch(
@@ -319,3 +323,5 @@ impl Client {
         (block_num as u64) + 1u64
     }
 }
+
+

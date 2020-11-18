@@ -501,9 +501,11 @@ impl Miner {
                                     state.sw.restart();
                                 }
 
-                                if mining_info.duration_from_last_mining <= 1000 {
-                                    std::thread::sleep(sleep_duration)
-                                }
+
+//                                 if mining_info.duration_from_last_mining <= 1000 {
+//                                     std::thread::sleep(sleep_duration)
+//                                 }
+
                             }
                             _ => {
                                 let mut state = state.lock().unwrap();
