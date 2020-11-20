@@ -462,7 +462,7 @@ impl Miner {
         let get_mining_info_interval = self.get_mining_info_interval;
         let wakeup_after = self.wakeup_after;
 
-        let sleep_duration = Duration::from_millis(get_mining_info_interval - 1000);
+//         let sleep_duration = Duration::from_millis(get_mining_info_interval - 1000);
 
         let interval_duration = Duration::from_millis(1000);
         self.executor.clone().spawn(
@@ -491,7 +491,10 @@ impl Miner {
                                         state.scoop,
                                         &Arc::new(state.generation_signature_bytes),
                                     );
+
+
                                     drop(state);
+
                                 } else if !state.scanning
                                     && wakeup_after != 0
                                     && state.sw.elapsed_ms() > wakeup_after
@@ -501,10 +504,14 @@ impl Miner {
                                     state.sw.restart();
                                 }
 
-
-//                                 if mining_info.duration_from_last_mining <= 1000 {
-//                                     std::thread::sleep(sleep_duration)
-//                                 }
+                                /// 如果在3s前获取  那么就停止
+                                if mining_info.duration_from_last_mining <= 4000 {
+                                    let sleep_duration = Duration::from_millis(get_mining_info_interval - mining_info.duration_from_last_mining);
+                                }
+//
+                                else {
+                                    let sleep_duration = Duration::from_millis(get_mining_info_interval/3);
+                                }
 
                             }
                             _ => {

@@ -23,7 +23,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e7f590a7-b194-4a73-8b5f-c7af3e5a05e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/client.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/client.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/miner.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/miner.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,11 +122,11 @@
     </state>
     <state x="2663" y="297" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1604372624706" />
     <state x="784" y="317" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1605171009914" />
-    <state x="609" y="247" width="851" height="589" key="find.popup" timestamp="1605689656704">
+    <state x="609" y="247" width="851" height="589" key="find.popup" timestamp="1605859456823">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="421" y="206" width="598" height="490" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1603768794200" />
-    <state x="2482" y="226" width="798" height="605" key="find.popup/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605604639956" />
-    <state x="609" y="247" width="851" height="589" key="find.popup/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1605689656704" />
+    <state x="2482" y="226" width="798" height="605" key="find.popup/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605757081101" />
+    <state x="609" y="247" width="851" height="589" key="find.popup/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1605859456823" />
   </component>
 </project>
