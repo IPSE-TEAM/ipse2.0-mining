@@ -504,14 +504,8 @@ impl Miner {
                                     state.sw.restart();
                                 }
 
-                                /// 如果在3s前获取  那么就停止
-                                if mining_info.duration_from_last_mining <= 4000 {
-                                    let sleep_duration = Duration::from_millis(get_mining_info_interval - mining_info.duration_from_last_mining);
-                                }
-//
-                                else {
-                                    let sleep_duration = Duration::from_millis(get_mining_info_interval/3);
-                                }
+                                /// 3秒提交一次
+                                thread::sleep(Duration::from_millis(1000));
 
                             }
                             _ => {

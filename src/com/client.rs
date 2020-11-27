@@ -42,8 +42,10 @@ use crate::com::timestamp::NowStoreExt;
 use crate::com::runtimes::LastMiningTsStoreExt;
 use crate::com::runtimes::TargetInfoStoreExt;
 use crate::com::runtimes::DlInfoStoreExt;
+use substrate_subxt::system::BlockNumberStoreExt;
 use crate::com::runtimes::MiningCallExt;
 use crate::com::runtimes::MiningEventExt;
+
 type Runtime = PocRuntime;
 type AccountId = <Runtime as System>::AccountId;
 
@@ -169,6 +171,7 @@ impl Client {
             };
 
             let now_ts = self.get_now_ts().await;
+
             let last_mining_ts = self.get_last_mining_ts().await;
 
             let duration_from_last_mining = now_ts - last_mining_ts;
@@ -246,9 +249,9 @@ impl Client {
 //             let signer = PairSigner::new(AccountKeyring::Bob.pair());
 //             let signer = PairSigner::new(AccountKeyring::Charlie.pair());
 //             let signer = PairSigner::new(AccountKeyring::Dave.pair());
-            let signer = PairSigner::new(AccountKeyring::Eve.pair());
+//             let signer = PairSigner::new(AccountKeyring::Eve.pair());
 
-//             let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
+            let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
 
             let xt_result = self.inner.
                 mining_and_watch(
@@ -318,10 +321,14 @@ impl Client {
 
     /// Get current block height from Substrate.
     async fn get_current_height(&self) -> u64 {
-        let header = self.inner.header::<<Runtime as System>::Hash>(None).await.unwrap().unwrap();
-        let block_num = *header.number();
-        (block_num as u64) + 1u64
+//         let header = self.inner.header::<<Runtime as System>::Hash>(None).await.unwrap().unwrap();
+//         let block_num = *header.number();
+        let block_num = self.inner.block_number(None).await.unwrap();
+        info!("当前区块的高度是: {:?}", block_num);
+        block_num as u64 + 1u64
     }
+
+
 }
 
 

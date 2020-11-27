@@ -49,8 +49,8 @@ bytes = "0.4.11"
 url_serde = "0.2"
 async-std = "1.2.0"
 
+substrate-subxt = { git = "https://github.com/transxask/mysubxt.git", package = "substrate-subxt", version = "0.13.0", branch = "main"}
 
-substrate-subxt = "0.13.0"
 sub-runtime = { git = "https://github.com/IPSE-TEAM/ipse-core", package = "node-runtime", version = "2.0.0", branch = "ipse"}
 codec = { package = "parity-scale-codec", version = "1.3.5", default-features = false, features = ["derive", "full"] }
 sp-keyring = { version = "2.0.0", package = "sp-keyring" }

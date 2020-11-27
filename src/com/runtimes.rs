@@ -82,6 +82,12 @@ pub struct LastMiningTsStore<T: PoC> {
     pub _runtime: PhantomData<T>,
 }
 
+// #[derive(Clone, Debug, Eq, PartialEq, Store, Encode)]
+// pub struct NumberStore<T: System> {
+//     #[store(returns = <T as System>::BlockNumber)]
+//     pub _runtime: PhantomData<T>,
+// }
+
 #[derive(Clone, Debug, Eq, PartialEq, Event, Decode)]
 pub struct MiningEvent<T: PoC> {
     /// Account balance was transfered from.
