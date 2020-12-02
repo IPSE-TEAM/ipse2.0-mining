@@ -22,8 +22,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7f590a7-b194-4a73-8b5f-c7af3e5a05e5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/client.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/client.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/runtimes.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/runtimes.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/miner.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/miner.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +54,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.advertisement.text.has.clang-format" value="true" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../substrate-subxt" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../substrate" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="org.rust.disableDetachedFileInspection/Users/legotime/CLionProjects/ipse2.0-mining/src/com/client.rs" value="true" />
   </component>
@@ -78,6 +78,9 @@
       <workItem from="1605669545843" duration="1792000" />
       <workItem from="1605671360185" duration="1194000" />
       <workItem from="1606445655693" duration="17000" />
+      <workItem from="1606876022026" duration="1651000" />
+      <workItem from="1606880455350" duration="1106000" />
+      <workItem from="1606892114674" duration="20000" />
     </task>
     <servers />
   </component>
@@ -119,11 +122,11 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="304" y="104" key="#SSH_Configurations/0.23.1440.877@0.23.1440.877" timestamp="1603766753395" />
-    <state x="2663" y="297" width="424" height="484" key="FileChooserDialogImpl" timestamp="1606445670269">
+    <state x="2663" y="297" width="424" height="484" key="FileChooserDialogImpl" timestamp="1606901428577">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2663" y="297" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1606445670269" />
-    <state x="784" y="317" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1605171009914" />
+    <state x="2663" y="297" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1606901428577" />
+    <state x="784" y="317" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1606717138514" />
     <state x="609" y="247" width="851" height="589" key="find.popup" timestamp="1605859456823">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>

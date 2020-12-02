@@ -170,12 +170,13 @@ impl Client {
                 std::u64::MAX
             };
 
-            let now_ts = self.get_now_ts().await;
+//             let now_ts = self.get_now_ts().await;
 
-            let last_mining_ts = self.get_last_mining_ts().await;
-
-            let duration_from_last_mining = now_ts - last_mining_ts;
-            info!("NOW-ts = {}, last_mining_ts = {}, duration_from_last_mining = {}", now_ts, last_mining_ts, duration_from_last_mining);
+//             let last_mining_ts = self.get_last_mining_ts().await;
+//
+//             let duration_from_last_mining = now_ts - last_mining_ts;
+               let duration_from_last_mining = 12000;
+//             info!("NOW-ts = {}, last_mining_ts = {}, duration_from_last_mining = {}", now_ts, last_mining_ts, duration_from_last_mining);
 
             info!("GET CURRENT Mining Info: base_target = {}, height = {}, sig = {:?}, target_deadline = {}",
                   base_target, height, *block_hash, deadline);
@@ -250,7 +251,7 @@ impl Client {
 //             let signer = PairSigner::new(AccountKeyring::Charlie.pair());
 //             let signer = PairSigner::new(AccountKeyring::Dave.pair());
 //             let signer = PairSigner::new(AccountKeyring::Eve.pair());
-
+//
             let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
 
             let xt_result = self.inner.
@@ -324,7 +325,7 @@ impl Client {
 //         let header = self.inner.header::<<Runtime as System>::Hash>(None).await.unwrap().unwrap();
 //         let block_num = *header.number();
         let block_num = self.inner.block_number(None).await.unwrap();
-        info!("当前区块的高度是: {:?}", block_num);
+        info!("当前区块的高度是: {:?}", block_num + 1);
         block_num as u64 + 1u64
     }
 

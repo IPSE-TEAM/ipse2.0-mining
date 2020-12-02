@@ -462,6 +462,8 @@ impl Miner {
         let get_mining_info_interval = self.get_mining_info_interval;
         let wakeup_after = self.wakeup_after;
 
+        static mut HEIGHT: u64 = 0;
+        static mut IS_GET: bool = false;
 //         let sleep_duration = Duration::from_millis(get_mining_info_interval - 1000);
 
         let interval_duration = Duration::from_millis(1000);
@@ -470,66 +472,98 @@ impl Miner {
                 .for_each(move |_| {
                     let state = state.clone();
                     let reader = reader.clone();
+                    unsafe {
+
+                        // 如果已经获取到数据 间隔6秒再去请求。如果不是 就2秒请求一次
+                        if IS_GET {
+                            thread::sleep(Duration::from_millis(6000));
+                            IS_GET = false;
+                        }
+                        else {
+                            thread::sleep(Duration::from_millis(2000));
+                        }
+                    }
 
                     request_handler.get_mining_info().then(move |mining_info| {
 
-                        match mining_info {
-                            Ok(mining_info) => {
-                                let mut state = state.lock().unwrap();
-                                state.first = false;
-                                if state.outage {
-                                    error!("{: <80}", "outage resolved.");
-                                    state.outage = false;
-                                }
-                                if mining_info.generation_signature != state.generation_signature_bytes {
-                                    state.update_mining_info(&mining_info);
+                        unsafe {
+                            info!("HEIGHT： {:?}", HEIGHT);
 
-                                    reader.lock().unwrap().start_reading(
-                                        mining_info.height,
-                                        state.block,
-                                        mining_info.base_target,
-                                        state.scoop,
-                                        &Arc::new(state.generation_signature_bytes),
-                                    );
+                            match mining_info {
 
-
-                                    drop(state);
-
-                                } else if !state.scanning
-                                    && wakeup_after != 0
-                                    && state.sw.elapsed_ms() > wakeup_after
-                                {
-                                    info!("HDD, wakeup!");
-                                    reader.lock().unwrap().wakeup();
-                                    state.sw.restart();
-                                }
-
-                                /// 3秒提交一次
-                                thread::sleep(Duration::from_millis(1000));
-
-                            }
-                            _ => {
-                                let mut state = state.lock().unwrap();
-                                if state.first {
-                                    error!(
-                                        "{: <80}",
-                                        "error getting mining info, please check server config"
-                                    );
+                                Ok(mining_info) => {
+                                    let mut state = state.lock().unwrap();
                                     state.first = false;
-                                    state.outage = true;
-                                } else {
-                                    if !state.outage {
+                                    if state.outage {
+                                        error!("{: <80}", "outage resolved.");
+                                        state.outage = false;
+                                    }
+                                    if mining_info.generation_signature != state.generation_signature_bytes {
+
+                                        if mining_info.height != HEIGHT {
+
+                                            state.update_mining_info(&mining_info);
+
+                                            reader.lock().unwrap().start_reading(
+                                                mining_info.height,
+                                                state.block,
+                                                mining_info.base_target,
+                                                state.scoop,
+                                                &Arc::new(state.generation_signature_bytes),
+                                            );
+
+                                            info!("请求获取数据成功! 高度是: {:?}, HEIGHT: {:?}", mining_info.height, HEIGHT);
+
+                                            HEIGHT = mining_info.height;
+
+                                            IS_GET = true;
+
+                                        }
+
+                                        else {
+                                            info!("重复请求数据(已经获取过), 高度是: {:?}, HEIGHT: {:?}", mining_info.height, HEIGHT);
+                                        }
+
+                                        drop(state);
+
+                                    } else if !state.scanning
+                                        && wakeup_after != 0
+                                        && state.sw.elapsed_ms() > wakeup_after
+                                    {
+                                        info!("HDD, wakeup!");
+                                        reader.lock().unwrap().wakeup();
+                                        state.sw.restart();
+                                    }
+
+
+
+                                }
+                                _ => {
+                                    let mut state = state.lock().unwrap();
+                                    if state.first {
                                         error!(
                                             "{: <80}",
-                                            "error getting mining info => connection outage..."
+                                            "error getting mining info, please check server config"
                                         );
+                                        state.first = false;
+                                        state.outage = true;
+                                    } else {
+                                        if !state.outage {
+                                            error!(
+                                                "{: <80}",
+                                                "error getting mining info => connection outage..."
+                                            );
+                                        }
+                                        state.outage = true;
                                     }
-                                    state.outage = true;
                                 }
                             }
+
                         }
+
                         future::ok(())
                     })
+
                 })
                 .map_err(|e| panic!("interval errored: err={:?}", e)),
         );
