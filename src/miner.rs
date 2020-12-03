@@ -464,7 +464,6 @@ impl Miner {
 
         static mut HEIGHT: u64 = 0;
         static mut IS_GET: bool = false;
-//         let sleep_duration = Duration::from_millis(get_mining_info_interval - 1000);
 
         let interval_duration = Duration::from_millis(1000);
         self.executor.clone().spawn(
@@ -474,13 +473,13 @@ impl Miner {
                     let reader = reader.clone();
                     unsafe {
 
-                        // 如果已经获取到数据 间隔6秒再去请求。如果不是 就2秒请求一次
+                        // 如果已经获取到数据 间隔6秒再去请求。如果不是 就4秒请求一次
                         if IS_GET {
-                            thread::sleep(Duration::from_millis(6000));
+                            thread::sleep(Duration::from_millis(get_mining_info_interval / 2));
                             IS_GET = false;
                         }
                         else {
-                            thread::sleep(Duration::from_millis(2000));
+                            thread::sleep(Duration::from_millis(get_mining_info_interval / 4));
                         }
                     }
 
@@ -590,19 +589,12 @@ impl Miner {
                         info!("~~~~~~~~~~~~~~~~server_target_deadline = {}, accountid_id_dl= {} ~~~~~~~~~~~", state.server_target_deadline, *(account_id_to_target_deadline
                             .get(&nonce_data.account_id)
                             .unwrap_or(&target_deadline)));
-                        // if deadline == 0 || (best_deadline > deadline
-                        //     && deadline
-                        //         < min(
-                        //             state.server_target_deadline,
-                        //             *(account_id_to_target_deadline
-                        //                 .get(&nonce_data.account_id)
-                        //                 .unwrap_or(&target_deadline)),
-                        //         ))
-                        // {
+
                             state
                                 .account_id_to_best_deadline
                                 .insert(nonce_data.account_id, deadline);
-                            request_handler.submit_nonce(
+                            async_std::task::block_on(async {
+                                request_handler.submit_nonce(
                                 nonce_data.account_id,
                                 nonce_data.nonce,
                                 nonce_data.height,
@@ -610,8 +602,8 @@ impl Miner {
                                 nonce_data.deadline,
                                 deadline,
                                 state.generation_signature_bytes,
-                            );
-                        //}
+                                );
+                            });
 
                         if nonce_data.reader_task_processed {
 
@@ -620,7 +612,6 @@ impl Miner {
                             }
 
                             state.processed_reader_tasks += 1;
-
 
                             if state.processed_reader_tasks == reader_task_count {
                                 info!(

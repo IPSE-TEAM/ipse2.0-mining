@@ -169,14 +169,7 @@ impl Client {
                 info!("!!!!!!use default deadline!!!!");
                 std::u64::MAX
             };
-
-//             let now_ts = self.get_now_ts().await;
-
-//             let last_mining_ts = self.get_last_mining_ts().await;
-//
-//             let duration_from_last_mining = now_ts - last_mining_ts;
-               let duration_from_last_mining = 12000;
-//             info!("NOW-ts = {}, last_mining_ts = {}, duration_from_last_mining = {}", now_ts, last_mining_ts, duration_from_last_mining);
+            let duration_from_last_mining = 12000;
 
             info!("GET CURRENT Mining Info: base_target = {}, height = {}, sig = {:?}, target_deadline = {}",
                   base_target, height, *block_hash, deadline);
@@ -237,25 +230,25 @@ impl Client {
             return future::ok(SubmitNonceResponse{verify_result: false})
         }
 
-//         if submission_data.deadline > MAX_MINING_TIME {
-//             return future::ok(SubmitNonceResponse{verify_result: false})
-//         }
+        if submission_data.deadline > MAX_MINING_TIME {
+            info!("deadline too large: deadline = {:?}, MAX = {:?}", submission_data.deadline, MAX_MINING_TIME);
+            return future::ok(SubmitNonceResponse{verify_result: false})
+        }
 
         let xt_result =
         async_std::task::block_on(async move {
             info!("starting submit_nonce to substrate!!!");
-//             let a = Pair::from_phrase("hahahhah", None).unwrap().0;
-            // let signer = PairSigner::new(Pair::from_phrase("hahahhah", None).unwrap().0);
-//             let signer = PairSigner::new(AccountKeyring::Alice.pair());
+
+            let signer = PairSigner::new(AccountKeyring::Alice.pair());
 //             let signer = PairSigner::new(AccountKeyring::Bob.pair());
 //             let signer = PairSigner::new(AccountKeyring::Charlie.pair());
 //             let signer = PairSigner::new(AccountKeyring::Dave.pair());
 //             let signer = PairSigner::new(AccountKeyring::Eve.pair());
 //
-            let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
+//             let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
 
             let xt_result = self.inner.
-                mining_and_watch(
+                mining(
                     &signer,
                     submission_data.account_id,
                     submission_data.height,
@@ -263,7 +256,7 @@ impl Client {
                     submission_data.nonce,
                     submission_data.deadline
 
-                ).await?;
+                ).await;
 
             Ok(xt_result)
 
@@ -322,8 +315,6 @@ impl Client {
 
     /// Get current block height from Substrate.
     async fn get_current_height(&self) -> u64 {
-//         let header = self.inner.header::<<Runtime as System>::Hash>(None).await.unwrap().unwrap();
-//         let block_num = *header.number();
         let block_num = self.inner.block_number(None).await.unwrap();
         info!("当前区块的高度是: {:?}", block_num + 1);
         block_num as u64 + 1u64
