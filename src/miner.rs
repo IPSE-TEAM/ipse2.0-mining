@@ -464,6 +464,7 @@ impl Miner {
 
         static mut HEIGHT: u64 = 0;
         static mut IS_GET: bool = false;
+        static mut LastMiningHeight: u64 = 0;
 
         let interval_duration = Duration::from_millis(1000);
         self.executor.clone().spawn(
@@ -478,8 +479,9 @@ impl Miner {
                             thread::sleep(Duration::from_millis(get_mining_info_interval / 2));
                             IS_GET = false;
                         }
+
                         else {
-                            thread::sleep(Duration::from_millis(get_mining_info_interval / 4));
+                            thread::sleep(Duration::from_millis(get_mining_info_interval / 6));
                         }
                     }
 
@@ -499,7 +501,7 @@ impl Miner {
                                     }
                                     if mining_info.generation_signature != state.generation_signature_bytes {
 
-                                        if mining_info.height != HEIGHT {
+                                        if mining_info.height > HEIGHT {
 
                                             state.update_mining_info(&mining_info);
 
@@ -532,6 +534,9 @@ impl Miner {
                                         info!("HDD, wakeup!");
                                         reader.lock().unwrap().wakeup();
                                         state.sw.restart();
+                                    }
+                                    else {
+                                        drop(state);
                                     }
 
 
@@ -579,31 +584,36 @@ impl Miner {
                     let mut state = state.lock().unwrap();
 
                     let deadline = nonce_data.deadline / nonce_data.base_target;
-
-                    if state.height == nonce_data.height {
-                        let best_deadline = *state
-                            .account_id_to_best_deadline
-                            .get(&nonce_data.account_id)
-                            .unwrap_or(&u64::MAX);
-                        info!("@@@@@@@@@@ best_deadline = {}, deadline = {} @@@@@@@@@", best_deadline, deadline);
-                        info!("~~~~~~~~~~~~~~~~server_target_deadline = {}, accountid_id_dl= {} ~~~~~~~~~~~", state.server_target_deadline, *(account_id_to_target_deadline
-                            .get(&nonce_data.account_id)
-                            .unwrap_or(&target_deadline)));
-
-                            state
+                    unsafe {
+                        /// 过期的直接不提交了
+                        if state.height == nonce_data.height && nonce_data.height == HEIGHT && nonce_data.height > LastMiningHeight {
+                            LastMiningHeight = nonce_data.height;
+                            let best_deadline = *state
                                 .account_id_to_best_deadline
-                                .insert(nonce_data.account_id, deadline);
-                            async_std::task::block_on(async {
-                                request_handler.submit_nonce(
-                                nonce_data.account_id,
-                                nonce_data.nonce,
-                                nonce_data.height,
-                                nonce_data.block,
-                                nonce_data.deadline,
-                                deadline,
-                                state.generation_signature_bytes,
-                                );
-                            });
+                                .get(&nonce_data.account_id)
+                                .unwrap_or(&u64::MAX);
+                            info!("@@@@@@@@@@ best_deadline = {}, deadline = {} @@@@@@@@@", best_deadline, deadline);
+                            info!("~~~~~~~~~~~~~~~~server_target_deadline = {}, accountid_id_dl= {} ~~~~~~~~~~~", state.server_target_deadline, *(account_id_to_target_deadline
+                                .get(&nonce_data.account_id)
+                                .unwrap_or(&target_deadline)));
+
+                                state
+                                    .account_id_to_best_deadline
+                                    .insert(nonce_data.account_id, deadline);
+                                async_std::task::block_on(async {
+                                    request_handler.submit_nonce(
+                                    nonce_data.account_id,
+                                    nonce_data.nonce,
+                                    nonce_data.height,
+                                    nonce_data.block,
+                                    nonce_data.deadline,
+                                    deadline,
+                                    state.generation_signature_bytes,
+                                    );
+                                });
+
+                    }
+
 
                         if nonce_data.reader_task_processed {
 

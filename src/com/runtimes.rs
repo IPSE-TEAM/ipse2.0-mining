@@ -37,6 +37,8 @@ use substrate_subxt::{
 };
 use sp_runtime::traits::{AtLeast32Bit, Scale};
 
+// use node_primitives::{AccountIndex, AccountId};
+
 // pub trait Timestamp: System {
 //     type Moment: Parameter + Default + AtLeast32Bit
 //     + Scale<Self::BlockNumber, Output=Self::Moment> + Copy;
@@ -122,7 +124,10 @@ impl System for PocRuntime {
     type Hashing = BlakeTwo256;
     type AccountId = <<MultiSignature as Verify>::Signer as IdentifyAccount>::AccountId;
     type Address = pallet_indices::address::Address<Self::AccountId, u32>;
+//     type Address = sp_runtime::MultiAddress<AccountId, AccountIndex>;
+
     type Header = Header<Self::BlockNumber, BlakeTwo256>;
+
     type Extrinsic = OpaqueExtrinsic;
     type AccountData = AccountData<<Self as Balances>::Balance>;
 }

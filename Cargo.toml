@@ -52,10 +52,17 @@ async-std = "1.2.0"
 substrate-subxt = { git = "https://github.com/transxask/mysubxt.git", package = "substrate-subxt", version = "0.13.0", branch = "main"}
 
 sub-runtime = { git = "https://github.com/transxask/ipse_test.git", package = "node-runtime", version = "2.0.0", branch = "main"}
+
+node-primitives = {git = "https://github.com/transxask/ipse_test.git", package = "node-primitives", version = "2.0.0", branch = "main"}
+
 codec = { package = "parity-scale-codec", version = "1.3.5", default-features = false, features = ["derive", "full"] }
 sp-keyring = { version = "2.0.0", package = "sp-keyring" }
 sp-core = { version = "2.0.0", package = "sp-core" }
+
+#sp-runtime = { git = "https://github.com/transxask/ipse_test.git", package = "sp-runtime", version = "2.0.0", branch = "main"}
+
 sp-runtime = { version = "2.0.0", package = "sp-runtime" }
+
 pallet-indices = { version = "2.0.0", package = "pallet-indices" }
 frame-support = { version = "2.0.0", package = "frame-support" }
 substrate-subxt-proc-macro = "0.13.0"
