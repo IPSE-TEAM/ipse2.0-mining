@@ -2,6 +2,7 @@ use crate::com::api::MiningInfoResponse as MiningInfo;
 use crate::config::Cfg;
 use crate::cpu_worker::create_cpu_worker_task;
 use crate::future::interval::Interval;
+use std::time::Instant;
 #[cfg(feature = "opencl")]
 use crate::gpu_worker::create_gpu_worker_task;
 #[cfg(feature = "opencl")]
@@ -460,13 +461,17 @@ impl Miner {
         let state = self.state.clone();
         // there might be a way to solve this without two nested moves
         let get_mining_info_interval = self.get_mining_info_interval;
+
         let wakeup_after = self.wakeup_after;
 
         static mut HEIGHT: u64 = 0;
         static mut IS_GET: bool = false;
         static mut LastMiningHeight: u64 = 0;
 
+        let mut start = now();
+
         let interval_duration = Duration::from_millis(1000);
+
         self.executor.clone().spawn(
             Interval::new_interval(interval_duration)
                 .for_each(move |_| {
@@ -476,13 +481,13 @@ impl Miner {
 
                         // 如果已经获取到数据 间隔6秒再去请求。如果不是 就4秒请求一次
                         if IS_GET {
-                            thread::sleep(Duration::from_millis(get_mining_info_interval / 2));
+                            thread::sleep(Duration::from_millis(get_mining_info_interval / 3));
                             IS_GET = false;
                         }
 
-                        else {
-                            thread::sleep(Duration::from_millis(get_mining_info_interval / 6));
-                        }
+//                        else {
+//                            thread::sleep(Duration::from_millis(get_mining_info_interval / 6));
+//                        }
                     }
 
                     request_handler.get_mining_info().then(move |mining_info| {
@@ -503,6 +508,9 @@ impl Miner {
 
                                         if mining_info.height > HEIGHT {
 
+                                            start = now();
+
+                                            // state是网络请求获取的数据
                                             state.update_mining_info(&mining_info);
 
                                             reader.lock().unwrap().start_reading(
@@ -519,13 +527,15 @@ impl Miner {
 
                                             IS_GET = true;
 
+                                            drop(state);
+
                                         }
 
                                         else {
                                             info!("重复请求数据(已经获取过), 高度是: {:?}, HEIGHT: {:?}", mining_info.height, HEIGHT);
                                         }
 
-                                        drop(state);
+
 
                                     } else if !state.scanning
                                         && wakeup_after != 0
@@ -535,11 +545,6 @@ impl Miner {
                                         reader.lock().unwrap().wakeup();
                                         state.sw.restart();
                                     }
-                                    else {
-                                        drop(state);
-                                    }
-
-
 
                                 }
                                 _ => {
@@ -577,16 +582,21 @@ impl Miner {
         let request_handler = self.request_handler.clone();
         let state = self.state.clone();
         let reader_task_count = self.reader_task_count;
-        let mut start = now();
+//        let mut start = now();
         self.executor.clone().spawn(
             self.rx_nonce_data
                 .for_each(move |nonce_data| {
+
                     let mut state = state.lock().unwrap();
 
                     let deadline = nonce_data.deadline / nonce_data.base_target;
                     unsafe {
                         /// 过期的直接不提交了
                         if state.height == nonce_data.height && nonce_data.height == HEIGHT && nonce_data.height > LastMiningHeight {
+
+                            let end = now();
+                            info!("扫盘时间大小为: {:?}", end - start);
+
                             LastMiningHeight = nonce_data.height;
                             let best_deadline = *state
                                 .account_id_to_best_deadline
@@ -612,16 +622,17 @@ impl Miner {
                                     );
                                 });
 
-                    }
+                        }
+
+                        else {
+                            info!("提交失败！ state.height = {:?}, nonce_data.height = {:?}, HEIGHT = {:?}", state.height,  nonce_data.height, HEIGHT);
+
+                        }
 
 
                         if nonce_data.reader_task_processed {
 
-                            if state.processed_reader_tasks == 1 {
-                                start = now();
-                            }
-
-                            state.processed_reader_tasks += 1;
+                            info!("state.processed_reader_tasks = {:?}, reader_task_count = {:?}", state.processed_reader_tasks, reader_task_count);
 
                             if state.processed_reader_tasks == reader_task_count {
                                 info!(
@@ -638,11 +649,16 @@ impl Miner {
                                 state.sw.restart();
                                 println!("%%%%%%%%%%% finished sw.restart %%%%%%%%%%%");
                                 state.scanning = false;
-                                let end = now();
-                                let spend_time = end - start;
-                                info!("挖矿开始的时间是: {:?}, 结束的时间是: {:?}, 需要消耗的总时间是： {:?}", start, end, spend_time);
+
 
                             }
+
+                            else {
+
+                                state.processed_reader_tasks += 1;
+                            }
+
+
                         }
                     }
 

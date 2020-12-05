@@ -148,6 +148,8 @@ impl Client {
     pub fn get_mining_info(&self) -> impl Future<Item = MiningInfoResponse, Error = FetchError> {
         async_std::task::block_on(async move {
             // use block_hash as gen_sig
+
+            info!("请求链上信息！");
             let block_hash = self.inner.block_hash(None).await.unwrap().unwrap();
 
             let block_hash = block_hash.as_fixed_bytes();
@@ -155,24 +157,26 @@ impl Client {
             let height = self.get_current_height().await;
 
             let base_target = if let Some(di) = self.get_last_difficulty().await {
-                info!("THERE WAS a !!!!base_target = {}", di.base_target);
+//                info!("THERE WAS a !!!!base_target = {}", di.base_target);
                 di.base_target
             } else {
-                info!("!!!!!!!use default base-target!!!!");
+//                info!("!!!!!!!use default base-target!!!!");
                 std::u64::MAX
             };
 
             let deadline = if let Some(dl) = self.get_last_mining_info().await {
-                info!("THERE WAS a !!!!best_dl = {}", dl.best_dl);
+//                info!("THERE WAS a !!!!best_dl = {}", dl.best_dl);
                 dl.best_dl
             } else {
-                info!("!!!!!!use default deadline!!!!");
+//                info!("!!!!!!use default deadline!!!!");
                 std::u64::MAX
             };
             let duration_from_last_mining = 12000;
+//
+//            info!("GET CURRENT Mining Info: base_target = {}, height = {}, sig = {:?}, target_deadline = {}",
+//                  base_target, height, *block_hash, deadline);
 
-            info!("GET CURRENT Mining Info: base_target = {}, height = {}, sig = {:?}, target_deadline = {}",
-                  base_target, height, *block_hash, deadline);
+//            info!("**************************获取数据结束!**************************************");
             future::ok(MiningInfoResponse{
                 base_target,
                 height,
@@ -181,6 +185,7 @@ impl Client {
                 duration_from_last_mining,
             })
         })
+
 
     }
 
@@ -230,10 +235,10 @@ impl Client {
             return future::ok(SubmitNonceResponse{verify_result: false})
         }
 
-        if submission_data.deadline > MAX_MINING_TIME {
-            info!("deadline too large: deadline = {:?}, MAX = {:?}", submission_data.deadline, MAX_MINING_TIME);
-            return future::ok(SubmitNonceResponse{verify_result: false})
-        }
+//        if submission_data.deadline > MAX_MINING_TIME {
+//            info!("deadline too large: deadline = {:?}, MAX = {:?}", submission_data.deadline, MAX_MINING_TIME);
+//            return future::ok(SubmitNonceResponse{verify_result: false})
+//        }
 
         let xt_result =
         async_std::task::block_on(async move {
@@ -243,9 +248,9 @@ impl Client {
 //             let signer = PairSigner::new(AccountKeyring::Bob.pair());
 //             let signer = PairSigner::new(AccountKeyring::Charlie.pair());
 //             let signer = PairSigner::new(AccountKeyring::Dave.pair());
-            let signer = PairSigner::new(AccountKeyring::Eve.pair());
+//            let signer = PairSigner::new(AccountKeyring::Eve.pair());
 //
-//             let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
+             let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
 
             let xt_result = self.inner.
                 mining(

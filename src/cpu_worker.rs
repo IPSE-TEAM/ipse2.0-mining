@@ -207,7 +207,8 @@ pub fn hash(
             offset = result.1;
         }
 
-        tx_nonce_data
+        if read_reply.info.finished {
+            tx_nonce_data
             .clone()
             .send(NonceData {
                 height: read_reply.info.height,
@@ -220,6 +221,8 @@ pub fn hash(
             })
             .wait()
             .expect("CPU worker failed to send nonce data");
+        }
+
         tx_empty_buffers
             .send(buffer)
             .expect("CPU worker failed to cue empty buffer");
