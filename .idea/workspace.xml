@@ -22,13 +22,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7f590a7-b194-4a73-8b5f-c7af3e5a05e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/client.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/client.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpu_worker.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpu_worker.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gpu_worker.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpu_worker.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gpu_worker_async.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpu_worker_async.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/miner.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/miner.rs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -57,8 +50,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/miner.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="262">
-                  <caret line="490" column="21" lean-forward="true" selection-start-line="490" selection-start-column="21" selection-end-line="490" selection-end-column="21" />
+                <state relative-caret-position="-198">
+                  <caret line="485" column="25" lean-forward="true" selection-start-line="485" selection-start-column="25" selection-end-line="485" selection-end-column="25" />
                 </state>
               </provider>
             </entry>
@@ -151,7 +144,7 @@
             <entry file="file://$PROJECT_DIR$/src/miner.rs">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="348">
-                  <caret line="48" column="22" lean-forward="true" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+                  <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
@@ -184,6 +177,7 @@
       <find>processed_reader_tasks</find>
       <find>THERE WAS a</find>
       <find>get_current_height</find>
+      <find>IS_GET</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -195,8 +189,8 @@
         <option value="$PROJECT_DIR$/src/gpu_worker_async.rs" />
         <option value="$PROJECT_DIR$/src/gpu_worker.rs" />
         <option value="$PROJECT_DIR$/src/cpu_worker.rs" />
-        <option value="$PROJECT_DIR$/src/miner.rs" />
         <option value="$PROJECT_DIR$/src/com/client.rs" />
+        <option value="$PROJECT_DIR$/src/miner.rs" />
       </list>
     </option>
   </component>
@@ -425,8 +419,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/miner.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="490" column="21" lean-forward="true" selection-start-line="490" selection-start-column="21" selection-end-line="490" selection-end-column="21" />
+        <state relative-caret-position="-198">
+          <caret line="485" column="25" lean-forward="true" selection-start-line="485" selection-start-column="25" selection-end-line="485" selection-end-column="25" />
         </state>
       </provider>
     </entry>

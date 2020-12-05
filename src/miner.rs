@@ -470,7 +470,7 @@ impl Miner {
 
         let mut start = now();
 
-        let interval_duration = Duration::from_millis(1000);
+        let interval_duration = Duration::from_millis(2000);
 
         self.executor.clone().spawn(
             Interval::new_interval(interval_duration)
@@ -481,7 +481,7 @@ impl Miner {
 
                         // 如果已经获取到数据 间隔6秒再去请求。如果不是 就4秒请求一次
                         if IS_GET {
-                            thread::sleep(Duration::from_millis(get_mining_info_interval / 3));
+                            thread::sleep(Duration::from_millis(get_mining_info_interval / 2));
                             IS_GET = false;
                         }
 
@@ -526,6 +526,8 @@ impl Miner {
                                             HEIGHT = mining_info.height;
 
                                             IS_GET = true;
+
+//                                            thread::sleep(Duration::from_millis(get_mining_info_interval) - 4 * interval_duration);
 
                                             drop(state);
 
