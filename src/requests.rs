@@ -64,7 +64,8 @@ impl RequestHandler {
                         match res {
                             Ok(res) => {
                                 if res.verify_result{
-                                    println!("verify succeed!!!");
+                                    info!("verify succeed!!!");
+//                                     println!("verify succeed!!!");
                                 } else {
                                     warn!("verify failed: accountId = {}, height = {}, nonce = {}, deadline = {}",
                                           &submission_params.account_id,

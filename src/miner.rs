@@ -470,7 +470,7 @@ impl Miner {
 
         let mut start = now();
 
-        let interval_duration = Duration::from_millis(2000);
+        let interval_duration = Duration::from_millis(1000);
 
         self.executor.clone().spawn(
             Interval::new_interval(interval_duration)
@@ -485,9 +485,9 @@ impl Miner {
                             IS_GET = false;
                         }
 
-//                        else {
-//                            thread::sleep(Duration::from_millis(get_mining_info_interval / 6));
-//                        }
+                       else {
+                           thread::sleep(Duration::from_millis(get_mining_info_interval / 6));
+                       }
                     }
 
                     request_handler.get_mining_info().then(move |mining_info| {
@@ -649,7 +649,8 @@ impl Miner {
                                     )
                                 );
                                 state.sw.restart();
-                                println!("%%%%%%%%%%% finished sw.restart %%%%%%%%%%%");
+                                info!("%%%%%%%%%%% finished sw.restart %%%%%%%%%%%");
+//                                 println!("%%%%%%%%%%% finished sw.restart %%%%%%%%%%%");
                                 state.scanning = false;
 
 

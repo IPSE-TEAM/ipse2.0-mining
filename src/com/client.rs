@@ -194,7 +194,8 @@ impl Client {
         &self,
         submission_data: &SubmissionParameters,
     ) -> impl Future<Item = SubmitNonceResponse, Error = FetchError> {
-        println!(" --------------start submit nonce to Substrate-------------------");
+        info!(" --------------start submit nonce to Substrate-------------------");
+//         println!(" --------------start submit nonce to Substrate-------------------");
         let check_dl_result =
         async_std::task::block_on(async move {
             info!("check current best deadline!!!");
@@ -248,9 +249,9 @@ impl Client {
 //             let signer = PairSigner::new(AccountKeyring::Bob.pair());
 //             let signer = PairSigner::new(AccountKeyring::Charlie.pair());
 //             let signer = PairSigner::new(AccountKeyring::Dave.pair());
-//            let signer = PairSigner::new(AccountKeyring::Eve.pair());
+           let signer = PairSigner::new(AccountKeyring::Eve.pair());
 //
-             let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
+//              let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
 
             let xt_result = self.inner.
                 mining(
