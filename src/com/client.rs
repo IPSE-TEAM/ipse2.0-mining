@@ -273,11 +273,21 @@ impl Client {
 
         match xt_result {
             Ok(success) => {
+                if success.is_ok() {
+                    info!("交易提交成功, hash是： {:?}", success.unwrap());
+                }
+                else {
+                    info!("交易提交错误! 错误信息是: {:?}", success);
+                }
+
                 return future::ok(SubmitNonceResponse{verify_result: true});
 
             },
 
-            Err(err) => future::err(err),
+            Err(err) => {
+                info!("交易提交错误! 错误信息是: {:?}", err);
+                return future::err(err);
+            },
         }
 
     }
