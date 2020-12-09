@@ -247,12 +247,11 @@ impl Client {
         async_std::task::block_on(async move {
             info!("starting submit_nonce to substrate!!!");
 
-            let b = self.str_convert_to_phrase(self.account_id_to_secret_phrase.get(&submission_data.account_id).expect("获取助记词错误").as_str().to_string());
+            let phrase = self.str_convert_to_phrase(self.account_id_to_secret_phrase.get(&submission_data.account_id).expect("获取助记词错误").as_str().to_string());
 
-            let a = Pair::from_phrase(&b, None).expect("签名错误");
-            info!("签名结果是:  seed = {:?}", a.1);
+            let pair = Pair::from_phrase(&phrase, None).expect("签名错误");
 
-            let signer = PairSigner::new(a.0);
+            let signer = PairSigner::new(pair.0);
 
             let xt_result = self.inner.
                 mining(
