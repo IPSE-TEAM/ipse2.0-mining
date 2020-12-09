@@ -46,7 +46,7 @@ use crate::com::runtimes::DlInfoStoreExt;
 use substrate_subxt::system::BlockNumberStoreExt;
 use crate::com::runtimes::MiningCallExt;
 use crate::com::runtimes::MiningEventExt;
-
+use substrate_subxt::Signer;
 
 type Runtime = PocRuntime;
 type AccountId = <Runtime as System>::AccountId;
@@ -63,7 +63,9 @@ pub const MINING: &str = "mining";
 #[derive(Clone)]
 pub struct Client {
     inner: SubClient<Runtime>,
+
     account_id_to_secret_phrase: Arc<HashMap<u64, String>>,
+
     base_uri: Url,
     total_size_gb: usize,
 }
@@ -203,7 +205,7 @@ impl Client {
             // 当前真正的高度
             let current_block = self.get_current_height().await;
 
-            info!("请求数据的区块是：{:?}, 提交挖矿的区块是: {:?}, 提交的deadline是: {:?}", submission_data.height, current_block, submission_data.deadline);
+            info!("请求数据的区块是：{:?}, 现在的区块是: {:?}, 提交的deadline是: {:?}", submission_data.height, current_block, submission_data.deadline);
 
             // 必须在同一周期 并且提交的时间比处理的时间迟
             if !(current_block/MiningDuration == submission_data.height/MiningDuration && current_block >= submission_data.height)
@@ -247,9 +249,9 @@ impl Client {
 
             let pair = Pair::from_phrase(&phrase, None).expect("签名错误");
 
-            let signer = PairSigner::new(pair.0);
+            let signer = PairSigner::new(pair.0.clone());
 
-            info!("助记词签名成功， 正在提交挖矿请求.........");
+            info!("助记词签名成功， public_key = {:?}, account_id = {:?}, 正在提交挖矿请求.........", pair.0.public(), signer.clone().account_id());
 
             let xt_result = self.inner.
                 mining(
