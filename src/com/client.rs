@@ -249,7 +249,10 @@ impl Client {
 
             let pair = Pair::from_phrase(&phrase, None).expect("签名错误");
 
-            let signer = PairSigner::new(pair.0.clone());
+            let mut signer = PairSigner::new(pair.0.clone());
+
+            // 提交的高度 + deadline 作为nonce值， 避免重复
+            signer.set_nonce((submission_data.height + submission_data.deadline) as u32);
 
             info!("助记词签名成功， public_key = {:?}, account_id = {:?}, 正在提交挖矿请求.........", pair.0.public(), signer.clone().account_id());
 
