@@ -14,7 +14,7 @@
   </component>
   <component name="CMakeSettings">
     <configurations>
-      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
     </configurations>
   </component>
   <component name="CargoProjects">
@@ -22,6 +22,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7f590a7-b194-4a73-8b5f-c7af3e5a05e5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/client.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/client.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,26 +112,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="320" y="117" key="#Deployment" timestamp="1603766767747">
-      <screen x="0" y="23" width="1440" height="877" />
-    </state>
-    <state x="320" y="117" key="#Deployment/0.23.1440.877@0.23.1440.877" timestamp="1603766767747" />
-    <state x="304" y="104" key="#SSH_Configurations" timestamp="1603766753395">
-      <screen x="0" y="23" width="1440" height="877" />
-    </state>
-    <state x="304" y="104" key="#SSH_Configurations/0.23.1440.877@0.23.1440.877" timestamp="1603766753395" />
-    <state x="784" y="317" width="424" height="484" key="FileChooserDialogImpl" timestamp="1607413690939">
-      <screen x="67" y="27" width="1853" height="1053" />
-    </state>
-    <state x="2663" y="297" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1607329308855" />
-    <state x="784" y="317" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1607413690939" />
-    <state x="609" y="247" width="851" height="589" key="find.popup" timestamp="1607413918944">
-      <screen x="67" y="27" width="1853" height="1053" />
-    </state>
-    <state x="421" y="206" width="598" height="490" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1603768794200" />
-    <state x="2482" y="226" width="798" height="605" key="find.popup/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1605757081101" />
-    <state x="609" y="247" width="851" height="589" key="find.popup/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1607413918944" />
   </component>
 </project>

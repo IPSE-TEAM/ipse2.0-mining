@@ -8,8 +8,9 @@ use url::form_urlencoded::byte_serialize;
 use url::Url;
 use log::info;
 use std::convert::TryInto;
-// use sp_core::{sr25519::Pair};
-use sp_core::Pair;
+use sp_core::{sr25519::Pair};
+use sp_core::Pair as PairT;
+// use hex_literal::hex;
 
 use codec::{
     Decode,
@@ -45,6 +46,7 @@ use crate::com::runtimes::DlInfoStoreExt;
 use substrate_subxt::system::BlockNumberStoreExt;
 use crate::com::runtimes::MiningCallExt;
 use crate::com::runtimes::MiningEventExt;
+
 
 type Runtime = PocRuntime;
 type AccountId = <Runtime as System>::AccountId;
@@ -245,13 +247,12 @@ impl Client {
         async_std::task::block_on(async move {
             info!("starting submit_nonce to substrate!!!");
 
-            let signer = PairSigner::new(AccountKeyring::Alice.pair());
-//             let signer = PairSigner::new(AccountKeyring::Bob.pair());
-//             let signer = PairSigner::new(AccountKeyring::Charlie.pair());
-//             let signer = PairSigner::new(AccountKeyring::Dave.pair());
-//            let signer = PairSigner::new(AccountKeyring::Eve.pair());
-//
-//              let signer = PairSigner::new(AccountKeyring::Ferdie.pair());
+            let b = self.str_convert_to_phrase(self.account_id_to_secret_phrase.get(&submission_data.account_id).expect("获取助记词错误").as_str().to_string());
+
+            let a = Pair::from_phrase(&b, None).expect("签名错误");
+            info!("签名结果是:  seed = {:?}", a.1);
+
+            let signer = PairSigner::new(a.0);
 
             let xt_result = self.inner.
                 mining(
@@ -293,6 +294,28 @@ impl Client {
         } else { None }
     }
 
+    fn str_convert_to_phrase(&self, st: String) -> String{
+        let mut string = st.to_string();
+        // let mut str_vec = vec![];
+        let mut new_string = String::new();
+
+        loop {
+            let offset = string.find("+").unwrap_or(string.len());
+            let pre_string: String= string.drain(..offset).collect();
+            new_string.push_str(pre_string.as_str());
+            new_string.push_str(" ");
+            if string.is_empty() {
+                break;
+            }
+            else {
+                string.remove(0);
+            }
+
+        }
+
+        new_string
+    }
+
     /// Get the last difficulty from Substrate.
     async fn get_last_difficulty(&self) -> Option<Difficulty> {
 
@@ -321,9 +344,12 @@ impl Client {
 
     /// Get current block height from Substrate.
     async fn get_current_height(&self) -> u64 {
-        let block_num = self.inner.block_number(None).await.unwrap();
+        let header = self.inner.header::<<Runtime as System>::Hash>(None).await.unwrap().unwrap();
+        let block_num = *header.number() as u64 + 1u64;
+        // let block_num = self.inner.block_number(None).await.unwrap();
         info!("当前区块的高度是: {:?}", block_num + 1);
-        block_num as u64 + 1u64
+        // block_num as u64 + 1u64
+        block_num
     }
 
 
