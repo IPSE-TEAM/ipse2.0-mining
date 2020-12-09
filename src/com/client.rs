@@ -159,31 +159,29 @@ impl Client {
             let height = self.get_current_height().await;
 
             let base_target = if let Some(di) = self.get_last_difficulty().await {
-//                info!("THERE WAS a !!!!base_target = {}", di.base_target);
                 di.base_target
             } else {
-//                info!("!!!!!!!use default base-target!!!!");
                 std::u64::MAX
             };
 
-            let deadline = if let Some(dl) = self.get_last_mining_info().await {
-//                info!("THERE WAS a !!!!best_dl = {}", dl.best_dl);
-                dl.best_dl
-            } else {
-//                info!("!!!!!!use default deadline!!!!");
-                std::u64::MAX
-            };
+//            let deadline = if let Some(dl) = self.get_last_mining_info().await {
+//                dl.best_dl
+//            } else {
+//                std::u64::MAX
+//            };
+
             let duration_from_last_mining = 12000;
-//
-//            info!("GET CURRENT Mining Info: base_target = {}, height = {}, sig = {:?}, target_deadline = {}",
-//                  base_target, height, *block_hash, deadline);
 
-//            info!("**************************获取数据结束!**************************************");
+            info!("获取数据成功!, base_target = {:?}, height = {:?}", base_target, height);
+
             future::ok(MiningInfoResponse{
                 base_target,
                 height,
                 generation_signature: *block_hash,
-                target_deadline: deadline,
+                // 这个target_deadline几乎没有任何意义
+//                target_deadline: deadline,
+                target_deadline: u64::max_value(),
+                // duration_from_last_mining也没有任何意义
                 duration_from_last_mining,
             })
         })
@@ -196,11 +194,11 @@ impl Client {
         &self,
         submission_data: &SubmissionParameters,
     ) -> impl Future<Item = SubmitNonceResponse, Error = FetchError> {
-        info!(" --------------start submit nonce to Substrate-------------------");
-//         println!(" --------------start submit nonce to Substrate-------------------");
+
+        info!(" --------------扫盘完成， 正在检查提交。-------------------");
+
         let check_dl_result =
         async_std::task::block_on(async move {
-            info!("check current best deadline!!!");
 
             // 当前真正的高度
             let current_block = self.get_current_height().await;
@@ -210,7 +208,7 @@ impl Client {
             // 必须在同一周期 并且提交的时间比处理的时间迟
             if !(current_block/MiningDuration == submission_data.height/MiningDuration && current_block >= submission_data.height)
             {
-                info!("请求数据的区块离当前区块间隔较大（已经过期), 请求数据的区块是：{:?}, 提交挖矿的区块是: {:?}", submission_data.height, current_block);
+                info!("禁止提交! 请求数据的区块离当前区块间隔较大（已经过期)");
                 return Err(())
             }
 
@@ -218,18 +216,17 @@ impl Client {
 
                 let last_mining_block = info.block;
                 if info.best_dl <= submission_data.deadline && current_block / MiningDuration == info.block / MiningDuration {
-                    info!("本挖矿周期已经有比较好的deadline,  best_dl = {} ", info.best_dl);
+                    info!("禁止提交! 本挖矿周期已经有比较好的deadline = {} ", info.best_dl);
                     Err(())
                 }
 
                 else
                 {
-                    info!("************************* find a better deadline = {} ******************************", submission_data.deadline );
                     Ok(())
                 }
 
             } else {
-                info!("****************************** find no last-mining-info, and a find better deadline = {} *******************************", submission_data.deadline);
+
                 Ok(())
             }
         });
@@ -245,13 +242,14 @@ impl Client {
 
         let xt_result =
         async_std::task::block_on(async move {
-            info!("starting submit_nonce to substrate!!!");
 
             let phrase = self.str_convert_to_phrase(self.account_id_to_secret_phrase.get(&submission_data.account_id).expect("获取助记词错误").as_str().to_string());
 
             let pair = Pair::from_phrase(&phrase, None).expect("签名错误");
 
             let signer = PairSigner::new(pair.0);
+
+            info!("助记词签名成功， 正在提交挖矿请求.........");
 
             let xt_result = self.inner.
                 mining(
@@ -269,15 +267,13 @@ impl Client {
 
         });
 
-        info!("挖矿函数返回来的结果是：{:?}", xt_result);
-
         match xt_result {
             Ok(success) => {
                 if success.is_ok() {
-                    info!("交易提交成功, hash是： {:?}", success.unwrap());
+                    info!("挖矿请求提交成功, hash是： {:?}", success.unwrap());
                 }
                 else {
-                    info!("交易提交错误! 错误信息是: {:?}", success);
+                    info!("挖矿请求提交错误! 错误信息是: {:?}", success);
                 }
 
                 return future::ok(SubmitNonceResponse{verify_result: true});
@@ -285,7 +281,7 @@ impl Client {
             },
 
             Err(err) => {
-                info!("交易提交错误! 错误信息是: {:?}", err);
+                info!("挖矿请求提交错误! 错误信息是: {:?}", err);
                 return future::err(err);
             },
         }
@@ -305,7 +301,6 @@ impl Client {
 
     fn str_convert_to_phrase(&self, st: String) -> String{
         let mut string = st.to_string();
-        // let mut str_vec = vec![];
         let mut new_string = String::new();
 
         loop {
@@ -355,9 +350,7 @@ impl Client {
     async fn get_current_height(&self) -> u64 {
         let header = self.inner.header::<<Runtime as System>::Hash>(None).await.unwrap().unwrap();
         let block_num = *header.number() as u64 + 1u64;
-        // let block_num = self.inner.block_number(None).await.unwrap();
         info!("当前区块的高度是: {:?}", block_num + 1);
-        // block_num as u64 + 1u64
         block_num
     }
 

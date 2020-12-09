@@ -23,6 +23,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e7f590a7-b194-4a73-8b5f-c7af3e5a05e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/com/client.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/client.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/miner.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/miner.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,14 +34,14 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.38256523">
+    <splitter split-orientation="horizontal" split-proportion="0.46751803">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/client.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-6">
-                  <caret line="255" column="38" selection-start-line="255" selection-start-column="38" selection-end-line="255" selection-end-column="38" />
+                <state relative-caret-position="139">
+                  <caret line="160" column="72" selection-start-line="160" selection-start-column="53" selection-end-line="160" selection-end-column="72" />
                   <folding>
                     <element signature="e#2943#2944#0" expanded="true" />
                     <element signature="e#2979#2980#0" expanded="true" />
@@ -52,8 +53,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/miner.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="148">
-                  <caret line="482" column="35" selection-start-line="482" selection-start-column="35" selection-end-line="482" selection-end-column="35" />
+                <state relative-caret-position="137">
+                  <caret line="42" column="19" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
@@ -61,7 +62,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/runtimes.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-315" />
+                <state relative-caret-position="-1428" />
               </provider>
             </entry>
           </file>
@@ -140,16 +141,20 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/client.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="191">
-                  <caret line="253" column="49" selection-start-line="253" selection-start-column="49" selection-end-line="253" selection-end-column="49" />
+                <state relative-caret-position="229">
+                  <caret line="296" column="27" lean-forward="true" selection-start-line="296" selection-start-column="27" selection-end-line="296" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#2943#2944#0" expanded="true" />
+                    <element signature="e#2979#2980#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$USER_HOME$/.cargo/registry/src/crates.rustcc.com-a21e0f92747beca3/sp-core-2.0.0/src/sr25519.rs">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="1558">
@@ -165,8 +170,18 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>get_now_ts</find>
-      <find>get_last_difficulty</find>
+      <find>SubmissionParameters</find>
+      <find>block</find>
+      <find>account_id</find>
+      <find>account_id_to_best_deadline</find>
+      <find>best_deadline</find>
+      <find>server_target_deadline</find>
+      <find>account_id_to_target_deadline</find>
+      <find>target_deadline</find>
+      <find>duration_from_last_mining</find>
+      <find>deadline</find>
       <find>get_last_mining_info</find>
+      <find>get_last_difficulty</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -175,6 +190,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/miner.rs" />
         <option value="$PROJECT_DIR$/src/com/client.rs" />
       </list>
     </option>
@@ -260,7 +276,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.41340783" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.40782124" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -305,20 +321,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.cargo/registry/src/crates.rustcc.com-a21e0f92747beca3/sp-core-2.0.0/src/sr25519.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1558">
-          <caret line="516" column="5" selection-start-line="516" selection-start-column="5" selection-end-line="516" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/miner.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="482" column="35" selection-start-line="482" selection-start-column="35" selection-end-line="482" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/plot.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -326,15 +328,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.cargo/registry/src/crates.rustcc.com-a21e0f92747beca3/sp-core-2.0.0/src/sr25519.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1558">
+          <caret line="516" column="5" selection-start-line="516" selection-start-column="5" selection-end-line="516" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/runtimes.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-315" />
+        <state relative-caret-position="-1428" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/miner.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="42" column="19" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="19" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/client.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6">
-          <caret line="255" column="38" selection-start-line="255" selection-start-column="38" selection-end-line="255" selection-end-column="38" />
+        <state relative-caret-position="139">
+          <caret line="160" column="72" selection-start-line="160" selection-start-column="53" selection-end-line="160" selection-end-column="72" />
           <folding>
             <element signature="e#2943#2944#0" expanded="true" />
             <element signature="e#2979#2980#0" expanded="true" />

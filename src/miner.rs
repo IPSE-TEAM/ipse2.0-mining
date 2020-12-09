@@ -493,7 +493,7 @@ impl Miner {
                     request_handler.get_mining_info().then(move |mining_info| {
 
                         unsafe {
-                            info!("HEIGHT： {:?}", HEIGHT);
+                            info!("HEIGHT(处理数据的上一个的区块高度)： {:?}", HEIGHT);
 
                             match mining_info {
 
@@ -521,7 +521,7 @@ impl Miner {
                                                 &Arc::new(state.generation_signature_bytes),
                                             );
 
-                                            info!("请求获取数据成功! 高度是: {:?}, HEIGHT: {:?}", mining_info.height, HEIGHT);
+                                            info!("处理返回的数据! 高度是: {:?}, HEIGHT(处理数据的上一个的区块高度): {:?}", mining_info.height, HEIGHT);
 
                                             HEIGHT = mining_info.height;
 
@@ -534,7 +534,7 @@ impl Miner {
                                         }
 
                                         else {
-                                            info!("重复请求数据(已经获取过), 高度是: {:?}, HEIGHT: {:?}", mining_info.height, HEIGHT);
+                                            info!("重复请求数据(已经获取过), 高度是: {:?}, HEIGHT(处理数据的上一个的区块高度): {:?}", mining_info.height, HEIGHT);
                                         }
 
 
@@ -592,6 +592,7 @@ impl Miner {
                     let mut state = state.lock().unwrap();
 
                     let deadline = nonce_data.deadline / nonce_data.base_target;
+
                     unsafe {
                         /// 过期的直接不提交了
                         if state.height == nonce_data.height && nonce_data.height == HEIGHT && nonce_data.height > LastMiningHeight {
@@ -600,14 +601,18 @@ impl Miner {
                             info!("扫盘时间大小为: {:?}", end - start);
 
                             LastMiningHeight = nonce_data.height;
-                            let best_deadline = *state
-                                .account_id_to_best_deadline
-                                .get(&nonce_data.account_id)
-                                .unwrap_or(&u64::MAX);
-                            info!("@@@@@@@@@@ best_deadline = {}, deadline = {} @@@@@@@@@", best_deadline, deadline);
-                            info!("~~~~~~~~~~~~~~~~server_target_deadline = {}, accountid_id_dl= {} ~~~~~~~~~~~", state.server_target_deadline, *(account_id_to_target_deadline
-                                .get(&nonce_data.account_id)
-                                .unwrap_or(&target_deadline)));
+//                            let best_deadline = *state
+//                                .account_id_to_best_deadline
+//                                .get(&nonce_data.account_id)
+//                                .unwrap_or(&u64::MAX);
+//
+//                            // 这个best_deadline应该是没有任何意义
+//
+//                            info!("@@@@@@@@@@ best_deadline = {}, deadline = {} @@@@@@@@@", best_deadline, deadline);
+//                            info!("~~~~~~~~~~~~~~~~server_target_deadline = {}, accountid_id_dl= {} ~~~~~~~~~~~", state.server_target_deadline, *(account_id_to_target_deadline
+//                                .get(&nonce_data.account_id)
+//                                // target_deadline 几乎也没有任何意义
+//                                .unwrap_or(&target_deadline)));
 
                                 state
                                     .account_id_to_best_deadline
@@ -616,10 +621,10 @@ impl Miner {
                                     request_handler.submit_nonce(
                                     nonce_data.account_id,
                                     nonce_data.nonce,
-                                    nonce_data.height,
-                                    nonce_data.block,
-                                    nonce_data.deadline,
-                                    deadline,
+                                    nonce_data.height, // 这个高度就是获取数据时候的高度
+                                    nonce_data.block, // 这个值貌似没有什么用
+                                    nonce_data.deadline, // deadline_unadjusted
+                                    deadline, // 提交到链上的是这个deadline
                                     state.generation_signature_bytes,
                                     );
                                 });
