@@ -10,6 +10,7 @@ use log::info;
 use std::convert::TryInto;
 use sp_core::{sr25519::Pair};
 use sp_core::Pair as PairT;
+use substrate_subxt::system::AccountStoreExt;
 // use hex_literal::hex;
 
 use codec::{
@@ -264,6 +265,27 @@ impl Client {
 
                 ).await;
 
+             // 如果返回错误 那么试着去另外提交一次（nonce值加1）
+            if xt_result.is_err() {
+                info!("发送请求错误, 更改nonce值重新发送");
+                // 获取nonce值
+                let nonce = self.inner.account(signer.clone().account_id(),None).await.unwrap().nonce;
+                signer.set_nonce(nonce + 2);
+                info!("设置的nonce值是: {:?}", signer.nonce());
+                let last_result = self.inner.
+                    mining(
+                    &signer,
+                    submission_data.account_id,
+                    submission_data.height,
+                    submission_data.gen_sig,
+                    submission_data.nonce,
+                    submission_data.deadline
+
+                ).await;
+                info!("更改后的结果是: {:?}", last_result.ok());
+
+             }
+
             Ok(xt_result)
 
 
@@ -355,6 +377,11 @@ impl Client {
         info!("当前区块的高度是: {:?}", block_num + 1);
         block_num
     }
+
+//     async fn get_nonce(&self) -> u32 {
+//         let account_info = self.inner.account(None).await.unwrap();
+//         account_info.
+//     }
 
 
 }
