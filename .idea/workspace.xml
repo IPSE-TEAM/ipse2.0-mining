@@ -22,9 +22,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7f590a7-b194-4a73-8b5f-c7af3e5a05e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ipse2.0-mining.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ipse2.0-mining.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/client.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/client.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/supervision.py" beforeDir="false" afterPath="$PROJECT_DIR$/supervision.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,25 +32,6 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>get_now_ts</find>
-      <find>SubmissionParameters</find>
-      <find>block</find>
-      <find>account_id</find>
-      <find>account_id_to_best_deadline</find>
-      <find>best_deadline</find>
-      <find>server_target_deadline</find>
-      <find>account_id_to_target_deadline</find>
-      <find>deadline</find>
-      <find>get_last_difficulty</find>
-      <find>base_target</find>
-      <find>target_deadline</find>
-      <find>duration_from_last_mining</find>
-      <find>account_id_to_secret_phrase</find>
-      <find>get_last_mining_info</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

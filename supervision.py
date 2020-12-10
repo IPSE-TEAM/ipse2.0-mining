@@ -29,7 +29,8 @@ def run(FileName):
 
 				info = f.readlines()[-1]  # .split()
 				print(info)
-				if info != start and "Client Error" not in info:
+
+				if info != start:
 					count = 0
 					start = info
 
@@ -37,7 +38,8 @@ def run(FileName):
 					count += 1
 					print(count)
 
-				if count >= 5:
+				# 卡住5次以上或是出现Error 马上重启
+				if (count >= 5) or ("Error" in info) or ("error" in info):
 					kill_process(FileName)
 					print("关闭挖矿软件!")
 					time.sleep(5)
