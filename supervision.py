@@ -1,15 +1,18 @@
 import os
 import time
+import getopt
+import sys
 
 def kill_process(FileName):
 	info = os.popen("ps -ef | grep {0}".format(FileName)).readlines()
-	for i in info:
-		try:
-			j = i.split()[1].strip()
-			os.system("kill -9 " + j)
-			print("杀掉进程! {0}".format(i))
-		except Exception as e:
-			print("删除进程错误! e = {0}, info = {1}".format(e, i))
+	if info:
+		for i in info:
+			try:
+				j = i.split()[1].strip()
+				os.system("kill -9 " + j)
+				print("杀掉进程! {0}".format(i))
+			except Exception as e:
+				print("删除进程错误! e = {0}, info = {1}".format(e, i))
 
 
 def run(FileName):
@@ -57,10 +60,36 @@ def run(FileName):
 		time.sleep(10)
 
 
+def stop(FileName):
+	info = os.popen("ps -ef | grep {0}".format(FileName)).readlines()#.extend(os.popen("ps -ef | grep supervision.py").readlines())
+	info1 = os.popen("ps -ef | grep supervision.py").readlines()
+	info.extend(info1)
+	if info:
+		for i in info:
+			print(i)
+			try:
+				j = i.split()[1].strip()
+				os.system("kill -9 " + j)
+				print("杀掉进程! {0}".format(i))
+			except Exception as e:
+				print("删除进程错误! e = {0}, info = {1}".format(e, i))
+
+
 if __name__ == "__main__":
 	# 监控节点 放在与挖矿软件相同的文件夹中
-	FileName = "Alice"
-	run(FileName)
+
+	FileName = "poc-mining"
+	opts, args = getopt.getopt(sys.argv[1:], "", ["stop", "start"])
+	if len(opts) == 1:
+		for opt, arg in opts:
+			if opt == "--stop":
+				stop(FileName)
+			elif opt == "--start":
+				run(FileName)
+			else:
+				exit("终端命令输入错误！ 请再次输入。")
+	else:
+		exit("终端命令输入错误！ 请再次输入。")
 
 
 

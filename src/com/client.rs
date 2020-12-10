@@ -275,7 +275,7 @@ impl Client {
         match xt_result {
             Ok(success) => {
                 if success.is_ok() {
-                    info!("挖矿请求提交成功, hash是： {:?}", success.unwrap());
+                    info!("***************************************** 挖矿请求提交成功, 区块是: {:?}, hash是： {:?} **************************************", submission_data.height, success.unwrap());
                 }
                 else {
                     info!("挖矿请求提交错误! 错误信息是: {:?}", success);
