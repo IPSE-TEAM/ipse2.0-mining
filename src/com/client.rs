@@ -166,11 +166,11 @@ impl Client {
                 std::u64::MAX
             };
 
-//            let deadline = if let Some(dl) = self.get_last_mining_info().await {
-//                dl.best_dl
-//            } else {
-//                std::u64::MAX
-//            };
+           let deadline = if let Some(dl) = self.get_last_mining_info().await {
+               dl.best_dl
+           } else {
+               std::u64::MAX
+           };
 
             let duration_from_last_mining = 12000;
 
@@ -181,8 +181,8 @@ impl Client {
                 height,
                 generation_signature: *block_hash,
                 // 这个target_deadline几乎没有任何意义
-//                target_deadline: deadline,
-                target_deadline: u64::max_value(),
+               target_deadline: deadline,
+//                 target_deadline: u64::max_value(),
                 // duration_from_last_mining也没有任何意义
                 duration_from_last_mining,
             })
