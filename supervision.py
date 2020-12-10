@@ -80,6 +80,10 @@ def stop(FileName):
 if __name__ == "__main__":
 	# 监控节点 放在与挖矿软件相同的文件夹中
 
+	# 使用方法：
+		# 开启挖矿： python3 supervision.py --start
+		# 结束挖矿： python3 supervision.py --stop
+
 	FileName = "poc-mining"
 	opts, args = getopt.getopt(sys.argv[1:], "", ["stop", "start"])
 	if len(opts) == 1:
