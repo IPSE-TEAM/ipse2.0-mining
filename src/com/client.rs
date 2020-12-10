@@ -181,8 +181,8 @@ impl Client {
                 height,
                 generation_signature: *block_hash,
                 // 这个target_deadline几乎没有任何意义
-               target_deadline: deadline,
-//                 target_deadline: u64::max_value(),
+//                target_deadline: deadline,
+                target_deadline: u64::max_value(),
                 // duration_from_last_mining也没有任何意义
                 duration_from_last_mining,
             })
@@ -250,9 +250,6 @@ impl Client {
             let pair = Pair::from_phrase(&phrase, None).expect("签名错误");
 
             let mut signer = PairSigner::new(pair.0.clone());
-
-            // 提交的高度 + deadline 作为nonce值， 避免重复
-            signer.set_nonce((submission_data.height + submission_data.deadline) as u32);
 
             info!("助记词签名成功， public_key = {:?}, account_id = {:?}, 正在提交挖矿请求.........", pair.0.public(), signer.clone().account_id());
 
