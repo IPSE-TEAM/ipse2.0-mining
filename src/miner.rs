@@ -607,7 +607,11 @@ impl Miner {
                     let mut state = state.lock().unwrap();
 
                     let end = now();
-                    info!("%%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: {:?} %%%%%%%%%%%%%%%%%%%%%%%%%%", end - state.start_time);
+
+                    let len = state.height - nonce_data.height;
+
+                    info!("%%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: {:?} %%%%%%%%%%%%%%%%%%%%%%%%%%", (end - state.start_time) + Duration::from_millis(len * 12000));
+
 
                     let deadline = nonce_data.deadline / nonce_data.base_target;
 
