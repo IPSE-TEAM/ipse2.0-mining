@@ -270,7 +270,7 @@ impl Client {
                 info!("发送请求错误, 更改nonce值重新发送");
                 // 获取nonce值
                 let nonce = self.inner.account(signer.clone().account_id(),None).await.unwrap().nonce;
-                signer.set_nonce(nonce + 2);
+                signer.set_nonce(nonce);
                 info!("设置的nonce值是: {:?}", signer.nonce());
                 let last_result = self.inner.
                     mining(

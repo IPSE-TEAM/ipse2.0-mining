@@ -2,6 +2,7 @@ use crate::com::api::MiningInfoResponse as MiningInfo;
 use crate::config::Cfg;
 use crate::cpu_worker::create_cpu_worker_task;
 use crate::future::interval::Interval;
+use std::convert::TryInto;
 use std::time::Instant;
 #[cfg(feature = "opencl")]
 use crate::gpu_worker::create_gpu_worker_task;
@@ -47,6 +48,7 @@ pub struct Miner {
     get_mining_info_interval: u64,
     executor: TaskExecutor,
     wakeup_after: i64,
+    start_time: Instant,
 }
 
 pub struct State {
@@ -62,6 +64,7 @@ pub struct State {
     scoop: u32,
     first: bool,
     outage: bool,
+    pub start_time: Instant,
 }
 
 impl State {
@@ -79,13 +82,17 @@ impl State {
             scanning: false,
             first: true,
             outage: false,
+            start_time: now()
         }
     }
 
     fn update_mining_info(&mut self, mining_info: &MiningInfo) {
+
+        self.start_time = now();
         for best_deadlines in self.account_id_to_best_deadline.values_mut() {
             *best_deadlines = u64::MAX;
         }
+
         self.height = mining_info.height;
         self.block += 1;
         self.base_target = mining_info.base_target;
@@ -103,6 +110,7 @@ impl State {
         self.sw.restart();
         self.processed_reader_tasks = 0;
         self.scanning = true;
+
     }
 }
 
@@ -414,6 +422,7 @@ impl Miner {
         let tx_read_replies_gpu = Some(tx_read_replies_gpu);
         #[cfg(not(feature = "opencl"))]
         let tx_read_replies_gpu = None;
+        let start_time = now();
 
         Miner {
             reader_task_count: drive_id_to_plots.len(),
@@ -429,6 +438,7 @@ impl Miner {
                 cfg.show_drive_stats,
                 cfg.cpu_thread_pinning,
                 cfg.benchmark_cpu(),
+                // start_time,
             ),
             rx_nonce_data,
             target_deadline: cfg.target_deadline,
@@ -447,10 +457,11 @@ impl Miner {
             get_mining_info_interval: max(1000, cfg.get_mining_info_interval),
             executor,
             wakeup_after: cfg.hdd_wakeup_after * 1000, // ms -> s
+            start_time: start_time,
         }
     }
 
-    pub fn run(self) {
+    pub fn run(mut self) {
         let request_handler = self.request_handler.clone();
         let total_size = self.reader.total_size;
 
@@ -463,6 +474,7 @@ impl Miner {
         let get_mining_info_interval = self.get_mining_info_interval;
 
         let wakeup_after = self.wakeup_after;
+        let mut start_time = self.start_time;
 
         static mut HEIGHT: u64 = 0;
         static mut IS_GET: bool = false;
@@ -504,11 +516,13 @@ impl Miner {
                                         error!("{: <80}", "outage resolved.");
                                         state.outage = false;
                                     }
+                                    
                                     if mining_info.generation_signature != state.generation_signature_bytes {
 
                                         if mining_info.height > HEIGHT {
 
-                                            start = now();
+                                            start_time = now();
+                                            // let a: u64 = start;
 
                                             // state是网络请求获取的数据
                                             state.update_mining_info(&mining_info);
@@ -584,6 +598,7 @@ impl Miner {
         let request_handler = self.request_handler.clone();
         let state = self.state.clone();
         let reader_task_count = self.reader_task_count;
+
 //        let mut start = now();
         self.executor.clone().spawn(
             self.rx_nonce_data
@@ -591,14 +606,14 @@ impl Miner {
 
                     let mut state = state.lock().unwrap();
 
+                    let end = now();
+                    info!("%%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: {:?} %%%%%%%%%%%%%%%%%%%%%%%%%%", end - state.start_time);
+
                     let deadline = nonce_data.deadline / nonce_data.base_target;
 
                     unsafe {
                         /// 过期的直接不提交了
                         if state.height == nonce_data.height && nonce_data.height == HEIGHT && nonce_data.height > LastMiningHeight {
-
-                            let end = now();
-                            info!("扫盘时间大小为: {:?}", end - start);
 
                             LastMiningHeight = nonce_data.height;
 //                            let best_deadline = *state
