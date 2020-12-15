@@ -207,7 +207,7 @@ pub fn hash(
             offset = result.1;
         }
 
-        if read_reply.info.finished {
+//         if read_reply.info.finished {
             tx_nonce_data
             .clone()
             .send(NonceData {
@@ -221,7 +221,7 @@ pub fn hash(
             })
             .wait()
             .expect("CPU worker failed to send nonce data");
-        }
+//         }
 
         tx_empty_buffers
             .send(buffer)

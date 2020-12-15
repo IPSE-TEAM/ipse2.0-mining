@@ -209,7 +209,7 @@ impl Client {
             info!("请求数据的区块是：{:?}, 现在的区块是: {:?}, 提交的deadline是: {:?}", submission_data.height, current_block, submission_data.deadline);
 
             // 必须在同一周期 并且提交的时间比处理的时间迟
-            if !(current_block/MiningDuration == submission_data.height/MiningDuration && current_block >= submission_data.height)
+            if current_block != submission_data.height
             {
                 info!("禁止提交! 请求数据的区块离当前区块间隔较大（已经过期)");
                 return Err(())
@@ -218,7 +218,7 @@ impl Client {
             if let Some(info) = self.get_last_mining_info().await {
 
                 let last_mining_block = info.block;
-                if info.best_dl <= submission_data.deadline && current_block / MiningDuration == info.block / MiningDuration {
+                if info.best_dl <= submission_data.deadline && current_block  == info.block  {
                     info!("禁止提交! 本挖矿周期已经有比较好的deadline = {} ", info.best_dl);
                     Err(())
                 }
@@ -270,7 +270,7 @@ impl Client {
                 info!("发送请求错误, 更改nonce值重新发送");
                 // 获取nonce值
                 let nonce = self.inner.account(signer.clone().account_id(),None).await.unwrap().nonce;
-                signer.set_nonce(nonce);
+                signer.set_nonce(nonce + 1);
                 info!("设置的nonce值是: {:?}", signer.nonce());
                 let last_result = self.inner.
                     mining(
@@ -372,10 +372,12 @@ impl Client {
 
     /// Get current block height from Substrate.
     async fn get_current_height(&self) -> u64 {
-        let header = self.inner.header::<<Runtime as System>::Hash>(None).await.unwrap().unwrap();
-        let block_num = *header.number() as u64 + 1u64;
-        info!("当前区块的高度是: {:?}", block_num + 1);
-        block_num
+//         let header = self.inner.header::<<Runtime as System>::Hash>(None).await.unwrap().unwrap();
+//         let block_num = *header.number() as u64 + 1u64;
+        let block_num = self.inner.block_number(None).await.unwrap() + 1;
+
+        info!("当前区块的高度是: {:?}", block_num);
+        block_num.into()
     }
 
 //     async fn get_nonce(&self) -> u32 {
