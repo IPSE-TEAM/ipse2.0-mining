@@ -51,10 +51,12 @@ pub struct PocRuntime;
 
 use substrate_subxt::balances::BalancesEventsDecoder;
 use substrate_subxt::system::SystemEventsDecoder;
+
 use crate::com::timestamp::{Timestamp, TimestampEventsDecoder};
+use crate::com::poc_staking::{PocStaking, PocStakingEventsDecoder};
 
 #[module]
-pub trait PoC: System + Balances + Timestamp{}
+pub trait PoC: System + Balances + Timestamp + PocStaking{}
 
 impl PoC for PocRuntime {
 
@@ -134,6 +136,10 @@ impl System for PocRuntime {
 
 impl Timestamp for PocRuntime {
 //     type Moment = u128;
+}
+
+impl PocStaking for PocRuntime {
+
 }
 
 impl Balances for PocRuntime {

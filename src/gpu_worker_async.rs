@@ -87,7 +87,7 @@ pub fn create_gpu_worker_task_async(
                     let deadline = result.0;
                     let offset = result.1;
 
-                    if last_buffer_info_a.finished {
+//                     if last_buffer_info_a.finished {
                         tx_nonce_data
                         .clone()
                         .send(NonceData {
@@ -101,7 +101,7 @@ pub fn create_gpu_worker_task_async(
                         })
                         .wait()
                         .expect("GPU async worker failed to send nonce data");
-                    }
+//                     }
 
 
                     if let Ok(sink_buffer) = rx_sink.try_recv() {
@@ -132,7 +132,7 @@ pub fn create_gpu_worker_task_async(
                 let deadline = result.0;
                 let offset = result.1;
 
-                if last_buffer_info_a.finished {
+//                 if last_buffer_info_a.finished {
                     tx_nonce_data
                     .clone()
                     .send(NonceData {
@@ -146,7 +146,7 @@ pub fn create_gpu_worker_task_async(
                     })
                     .wait()
                     .expect("GPU async worker failed to cue empty buffer");
-                }
+//                 }
 
                 if let Ok(sink_buffer) = rx_sink.try_recv() {
                     tx_empty_buffers

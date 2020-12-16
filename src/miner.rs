@@ -48,7 +48,9 @@ pub struct Miner {
     get_mining_info_interval: u64,
     executor: TaskExecutor,
     wakeup_after: i64,
+    // 每次获取数据的时间（挖矿开始)
     start_time: Instant,
+
 }
 
 pub struct State {
@@ -64,7 +66,12 @@ pub struct State {
     scoop: u32,
     first: bool,
     outage: bool,
+    // 每次获取数据的时间（挖矿开始)
     pub start_time: Instant,
+    // 每次挖矿的最小值
+    pub min_deadline: u64,
+    // 本周期发送挖矿请求的次数
+    pub mining_num: u32,
 }
 
 impl State {
@@ -82,13 +89,16 @@ impl State {
             scanning: false,
             first: true,
             outage: false,
-            start_time: now()
+            start_time: now(),
+            min_deadline: u64::max_value(),
+            mining_num: 0u32,
         }
     }
 
     fn update_mining_info(&mut self, mining_info: &MiningInfo) {
-
+        self.min_deadline = u64::max_value();
         self.start_time = now();
+        self.mining_num = 0u32;
         for best_deadlines in self.account_id_to_best_deadline.values_mut() {
             *best_deadlines = u64::MAX;
         }
@@ -379,6 +389,8 @@ impl Miner {
             }
         }
 
+
+        // 创建通道
         let (tx_nonce_data, rx_nonce_data) = mpsc::channel(buffer_count);
 
         thread::spawn({
@@ -451,6 +463,7 @@ impl Miner {
                 cfg.send_proxy_details,
                 cfg.additional_headers,
                 executor.clone(),
+                cfg.account_id,
             ),
             state: Arc::new(Mutex::new(State::new())),
             // floor at 1s to protect servers
@@ -617,9 +630,11 @@ impl Miner {
 
                     unsafe {
                         /// 过期的直接不提交了
-                        if state.height == nonce_data.height && nonce_data.height == HEIGHT && nonce_data.height > LastMiningHeight {
+                        if state.height == nonce_data.height  && deadline < state.min_deadline && state.mining_num == 0{
 
-                            LastMiningHeight = nonce_data.height;
+                            info!("基本可以挖矿！ state.height = {:?}, nonce_data.height = {:?}, deadline = {:?}, min_deadline = {:?}, state.mining_num = {:?}", state.height,  nonce_data.height, deadline, state.min_deadline, state.mining_num);
+                            state.min_deadline = deadline;
+
 //                            let best_deadline = *state
 //                                .account_id_to_best_deadline
 //                                .get(&nonce_data.account_id)
@@ -648,10 +663,21 @@ impl Miner {
                                     );
                                 });
 
+                                state.mining_num += 1;
+
+                                thread::sleep(Duration::from_millis(1000));
+
+
+                        }
+
+                        else if state.height > nonce_data.height {
+                            state.min_deadline = u64::max_value();
+                            state.mining_num = 0;
+
                         }
 
                         else {
-                            info!("提交失败！ state.height = {:?}, nonce_data.height = {:?}, HEIGHT = {:?}", state.height,  nonce_data.height, HEIGHT);
+                            info!("不可以挖矿！ state.height = {:?}, nonce_data.height = {:?}, deadline = {:?}, min_deadline = {:?}", state.height,  nonce_data.height, deadline, state.min_deadline);
 
                         }
 

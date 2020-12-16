@@ -17,6 +17,9 @@ pub struct Cfg {
     #[serde(default = "default_secret_phrase")]
     pub account_id_to_secret_phrase: HashMap<u64, String>,
 
+    #[serde(default = "default_account_id")]
+    pub account_id: u64,
+
     pub plot_dirs: Vec<PathBuf>,
 
     #[serde(with = "url_serde")]
@@ -126,6 +129,8 @@ impl<'de> Deserialize<'de> for Benchmark {
 fn default_secret_phrase() -> HashMap<u64, String> {
     HashMap::new()
 }
+
+fn default_account_id() -> u64 { 10717349404514113857 }
 
 fn default_hdd_reader_thread_count() -> usize {
     0

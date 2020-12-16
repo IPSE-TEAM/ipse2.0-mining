@@ -1,22 +1,31 @@
 use crate::com::api::{FetchError, MiningInfoResponse};
 use crate::com::client::{Client, ProxyDetails, SubmissionParameters};
 use crate::future::prio_retry::PrioRetry;
+use crate::config::Cfg;
 use futures::future::Future;
 use futures::stream::Stream;
 use futures::sync::mpsc;
 use std::collections::HashMap;
 use std::time::Duration;
 use std::u64;
-
+use crate::com::poc_staking::DiskOfStoreExt;
 use tokio;
 use tokio::runtime::TaskExecutor;
 use url::Url;
+pub use substrate_subxt::{PairSigner};
+use sp_core::{sr25519::Pair};
+use sp_core::Pair as PairT;
+use frame_support::sp_std::sync::Condvar;
+use log4rs::config::Config;
+use substrate_subxt::Signer;
 
 #[derive(Clone)]
 pub struct RequestHandler {
     client: Client,
     tx_submit_data: mpsc::UnboundedSender<SubmissionParameters>,
 }
+
+
 
 impl RequestHandler {
     pub fn new(
@@ -27,13 +36,22 @@ impl RequestHandler {
         send_proxy_details: bool,
         additional_headers: HashMap<String, String>,
         executor: TaskExecutor,
+        account_id: u64,
+
     ) -> RequestHandler {
+
+        let phrase = RequestHandler::str_convert_to_phrase(secret_phrases.get(&account_id).expect("获取助记词错误").as_str().to_string());
+
+        let pair = Pair::from_phrase(&phrase, None).expect("签名错误").0;
 
         let client = Client::new(
             base_uri,
-            secret_phrases,
+            // secret_phrases,
             total_size_gb,
+            pair.clone(),
         );
+
+        client.register(pair.clone());
 
         let (tx_submit_data, rx_submit_nonce_data) = mpsc::unbounded();
         RequestHandler::handle_submissions(
@@ -42,6 +60,8 @@ impl RequestHandler {
             tx_submit_data.clone(),
             executor,
         );
+
+
 
         RequestHandler {
             client,
@@ -89,6 +109,27 @@ impl RequestHandler {
 
     pub fn get_mining_info(&self) -> impl Future<Item = MiningInfoResponse, Error = FetchError> {
         self.client.get_mining_info()
+    }
+
+    fn str_convert_to_phrase(st: String) -> String{
+        let mut string = st.to_string();
+        let mut new_string = String::new();
+
+        loop {
+            let offset = string.find("+").unwrap_or(string.len());
+            let pre_string: String= string.drain(..offset).collect();
+            new_string.push_str(pre_string.as_str());
+            new_string.push_str(" ");
+            if string.is_empty() {
+                break;
+            }
+            else {
+                string.remove(0);
+            }
+
+        }
+
+        new_string
     }
 
     pub fn submit_nonce(

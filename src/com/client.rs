@@ -8,10 +8,14 @@ use url::form_urlencoded::byte_serialize;
 use url::Url;
 use log::info;
 use std::convert::TryInto;
-use sp_core::{sr25519::Pair};
+use sp_core::{sr25519::{Pair, Public}};
 use sp_core::Pair as PairT;
 use substrate_subxt::system::AccountStoreExt;
+use crate::com::poc_staking::DiskOfStoreExt;
+use crate::com::poc_staking::RegisterCallExt;
 // use hex_literal::hex;
+// use node_primitives::{AccountIndex, AccountId};
+
 
 use codec::{
     Decode,
@@ -63,9 +67,11 @@ pub const MINING: &str = "mining";
 /// A client for communicating with Pool/Proxy/Wallet.
 #[derive(Clone)]
 pub struct Client {
-    inner: SubClient<Runtime>,
+    pub inner: SubClient<Runtime>,
 
-    account_id_to_secret_phrase: Arc<HashMap<u64, String>>,
+    // account_id_to_secret_phrase: Arc<HashMap<u64, String>>,
+
+    pair: Pair,
 
     base_uri: Url,
     total_size_gb: usize,
@@ -127,12 +133,13 @@ impl Client {
     /// Create a new client communicating with Pool/Proxy/Wallet.
     pub fn new(
         base_uri: Url,
-        mut secret_phrases: HashMap<u64, String>,
+        // mut secret_phrases: HashMap<u64, String>,
         total_size_gb: usize,
+        mut pair: Pair,
     ) -> Self {
-        for secret_phrase in secret_phrases.values_mut() {
-            *secret_phrase = byte_serialize(secret_phrase.as_bytes()).collect();
-        }
+        // for secret_phrase in secret_phrases.values_mut() {
+        //     *secret_phrase = byte_serialize(secret_phrase.as_bytes()).collect();
+        // }
 
         let url = base_uri.as_str();
         let client = async_std::task::block_on(async move {
@@ -143,9 +150,10 @@ impl Client {
 
         Self {
             inner: client,
-            account_id_to_secret_phrase: Arc::new(secret_phrases),
+            // account_id_to_secret_phrase: Arc::new(secret_phrases),
             base_uri,
             total_size_gb,
+            pair,
         }
     }
 
@@ -209,7 +217,7 @@ impl Client {
             info!("请求数据的区块是：{:?}, 现在的区块是: {:?}, 提交的deadline是: {:?}", submission_data.height, current_block, submission_data.deadline);
 
             // 必须在同一周期 并且提交的时间比处理的时间迟
-            if !(current_block/MiningDuration == submission_data.height/MiningDuration && current_block >= submission_data.height)
+            if current_block != submission_data.height
             {
                 info!("禁止提交! 请求数据的区块离当前区块间隔较大（已经过期)");
                 return Err(())
@@ -218,7 +226,7 @@ impl Client {
             if let Some(info) = self.get_last_mining_info().await {
 
                 let last_mining_block = info.block;
-                if info.best_dl <= submission_data.deadline && current_block / MiningDuration == info.block / MiningDuration {
+                if info.best_dl <= submission_data.deadline && current_block  == info.block {
                     info!("禁止提交! 本挖矿周期已经有比较好的deadline = {} ", info.best_dl);
                     Err(())
                 }
@@ -246,13 +254,13 @@ impl Client {
         let xt_result =
         async_std::task::block_on(async move {
 
-            let phrase = self.str_convert_to_phrase(self.account_id_to_secret_phrase.get(&submission_data.account_id).expect("获取助记词错误").as_str().to_string());
+            // let phrase = self.str_convert_to_phrase(self.account_id_to_secret_phrase.get(&submission_data.account_id).expect("获取助记词错误").as_str().to_string());
+            //
+            // let pair = Pair::from_phrase(&phrase, None).expect("签名错误");
 
-            let pair = Pair::from_phrase(&phrase, None).expect("签名错误");
+            let mut signer = PairSigner::new(self.pair.clone());
 
-            let mut signer = PairSigner::new(pair.0.clone());
-
-            info!("助记词签名成功， public_key = {:?}, account_id = {:?}, 正在提交挖矿请求.........", pair.0.public(), signer.clone().account_id());
+            info!("助记词签名成功， public_key = {:?}, account_id = {:?}, 正在提交挖矿请求.........", self.pair.public().clone(), signer.clone().account_id());
 
             let xt_result = self.inner.
                 mining(
@@ -270,8 +278,10 @@ impl Client {
                 info!("发送请求错误, 更改nonce值重新发送");
                 // 获取nonce值
                 let nonce = self.inner.account(signer.clone().account_id(),None).await.unwrap().nonce;
-                signer.set_nonce(nonce);
-                info!("设置的nonce值是: {:?}", signer.nonce());
+                signer.set_nonce(nonce + 1);
+
+                info!("设置的nonce值是: {:?}", signer.nonce().unwrap() + 1);
+
                 let last_result = self.inner.
                     mining(
                     &signer,
@@ -372,11 +382,33 @@ impl Client {
 
     /// Get current block height from Substrate.
     async fn get_current_height(&self) -> u64 {
-        let header = self.inner.header::<<Runtime as System>::Hash>(None).await.unwrap().unwrap();
-        let block_num = *header.number() as u64 + 1u64;
-        info!("当前区块的高度是: {:?}", block_num + 1);
-        block_num
+        let block_num = self.inner.block_number(None).await.unwrap() + 1;
+
+        info!("当前区块的高度是: {:?}", block_num);
+        block_num.into()
+
     }
+
+    pub async fn register(&self, pair: Pair) {
+
+        let public = pair.clone().public();
+
+        let disk_info = self.inner.disk_of(public.into(), None).await.unwrap();
+
+        match disk_info {
+            Some(x) => { info!(""); },
+
+            None => {
+
+                let mut signer = PairSigner::new(self.pair.clone());
+
+                let result = self.inner.register(&signer, 0,0,0).await;
+            },
+        };
+
+    }
+
+
 
 //     async fn get_nonce(&self) -> u32 {
 //         let account_info = self.inner.account(None).await.unwrap();

@@ -61,7 +61,7 @@ pub fn create_gpu_worker_task(
             let deadline = result.0;
             let offset = result.1;
 
-            if read_reply.info.finished {
+//             if read_reply.info.finished {
                 tx_nonce_data
                 .clone()
                 .send(NonceData {
@@ -76,7 +76,7 @@ pub fn create_gpu_worker_task(
                 .wait()
                 .expect("GPU worker failed to cue empty buffer");
 
-            }
+//             }
 
 
             tx_empty_buffers.send(buffer).unwrap();
