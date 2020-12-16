@@ -25,6 +25,7 @@
       <change afterPath="$PROJECT_DIR$/src/com/poc_staking.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/client.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/client.rs" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/com/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mod.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/runtimes.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/runtimes.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.rs" afterDir="false" />
@@ -33,6 +34,10 @@
       <change beforePath="$PROJECT_DIR$/src/gpu_worker_async.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/gpu_worker_async.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/miner.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/miner.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/requests.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/requests.rs" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/cpu_worker.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpu_worker.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/supervision.py" beforeDir="false" />
+>>>>>>> 94370e1fdd25f063093d0862d2aa6cb8fdc4615d
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +75,11 @@
     <property name="cf.advertisement.text.has.clang-format" value="true" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="editor.config.ad.shown" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../substrate-polkadot-0-8-25-dep" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../substrate-polkadot-0-8-25-dep" />
+>>>>>>> 94370e1fdd25f063093d0862d2aa6cb8fdc4615d
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="org.rust.disableDetachedFileInspection/Users/legotime/CLionProjects/ipse2.0-mining/src/com/client.rs" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -165,5 +174,20 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1607910131846">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1607836652533" />
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1607910131846" />
+    <state x="688" y="270" width="610" height="564" key="find.popup" timestamp="1607850944519">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="688" y="270" width="610" height="564" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1607850944519" />
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1607836816455">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1607836816455" />
   </component>
 </project>

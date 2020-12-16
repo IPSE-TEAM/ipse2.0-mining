@@ -226,7 +226,9 @@ impl Client {
             if let Some(info) = self.get_last_mining_info().await {
 
                 let last_mining_block = info.block;
-                if info.best_dl <= submission_data.deadline && current_block  == info.block {
+
+                if info.best_dl <= submission_data.deadline && current_block  == info.block  {
+
                     info!("禁止提交! 本挖矿周期已经有比较好的deadline = {} ", info.best_dl);
                     Err(())
                 }
@@ -281,6 +283,7 @@ impl Client {
                 signer.set_nonce(nonce + 1);
 
                 info!("设置的nonce值是: {:?}", signer.nonce().unwrap() + 1);
+
 
                 let last_result = self.inner.
                     mining(
@@ -382,10 +385,12 @@ impl Client {
 
     /// Get current block height from Substrate.
     async fn get_current_height(&self) -> u64 {
+
         let block_num = self.inner.block_number(None).await.unwrap() + 1;
 
         info!("当前区块的高度是: {:?}", block_num);
         block_num.into()
+
 
     }
 
