@@ -2,12 +2,13 @@
 # YOU DO NOT NEED TO ENTER YOUR PASSPHRASE FOR POOL MINING.
 # NEVER POST YOUR CONFIG.YAML INCLUDING YOUR PASSPHRASE TO ANY BOARD OR CHAT!
 
-account_id: 10282355196851764065  # 矿工p盘id
+
+account_id: &numeric_id 10282355196851764065 # 矿工p盘id
 plot_size: 100 # p盘空间大小 单位是GB
 miner_proportion: 20 # 矿工分润占比 （0 ～ 100）
 
 account_id_to_secret_phrase:                   # P盘id对应的IPSE主网助记词
-  10282355196851764065: 'glad suffer red during single glow shut slam hill death lust although'          # Bold's example wallet
+  *numeric_id: 'glad suffer red during single glow shut slam hill death lust although'          # Bold's example wallet
   1796535821016683299: 'stand rude those door invite reflection anywhere lace safe hidden fur horrible'  # Johnny's example wallet
 
 plot_dirs:
@@ -38,7 +39,7 @@ gpu_async: false                      # default false
 
 target_deadline: 18446744073709551615 # default u32::MAX
 account_id_to_target_deadline:        # target dls for multi-id (optional)
- 10282355196851764065: 18446744073709551615
+ *numeric_id: 18446744073709551615
  1796535821016683299: 55555555
 
 get_mining_info_interval: 12000        # default 3000ms
