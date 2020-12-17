@@ -13,8 +13,6 @@ use sp_core::Pair as PairT;
 use substrate_subxt::system::AccountStoreExt;
 use crate::com::poc_staking::DiskOfStoreExt;
 use crate::com::poc_staking::RegisterCallExt;
-// use hex_literal::hex;
-// use node_primitives::{AccountIndex, AccountId};
 
 
 use codec::{
@@ -35,7 +33,6 @@ pub use substrate_subxt::{
     Call,
     Error as SubError,
     Client as SubClient,
-    //DefaultNodeRuntime as Runtime,
     ClientBuilder,
 };
 use sp_core::{storage::StorageKey, twox_128};
@@ -68,8 +65,6 @@ pub const MINING: &str = "mining";
 #[derive(Clone)]
 pub struct Client {
     pub inner: SubClient<Runtime>,
-
-    // account_id_to_secret_phrase: Arc<HashMap<u64, String>>,
 
     pair: Pair,
 
@@ -137,9 +132,6 @@ impl Client {
         total_size_gb: usize,
         mut pair: Pair,
     ) -> Self {
-        // for secret_phrase in secret_phrases.values_mut() {
-        //     *secret_phrase = byte_serialize(secret_phrase.as_bytes()).collect();
-        // }
 
         let url = base_uri.as_str();
         let client = async_std::task::block_on(async move {
@@ -150,12 +142,13 @@ impl Client {
 
         Self {
             inner: client,
-            // account_id_to_secret_phrase: Arc::new(secret_phrases),
             base_uri,
             total_size_gb,
             pair,
         }
     }
+
+
 
     /// Get current mining info.
     pub fn get_mining_info(&self) -> impl Future<Item = MiningInfoResponse, Error = FetchError> {
@@ -189,16 +182,15 @@ impl Client {
                 base_target,
                 height,
                 generation_signature: *block_hash,
-                // 这个target_deadline几乎没有任何意义
-//                target_deadline: deadline,
-                target_deadline: u64::max_value(),
-                // duration_from_last_mining也没有任何意义
-                duration_from_last_mining,
+                target_deadline: u64::max_value(), // 无意义
+                duration_from_last_mining, // 无意义
             })
         })
 
 
     }
+
+
 
     /// Submit nonce to Substrate.
     pub fn submit_nonce(
@@ -211,7 +203,6 @@ impl Client {
         let check_dl_result =
         async_std::task::block_on(async move {
 
-            // 当前真正的高度
             let current_block = self.get_current_height().await;
 
             info!("请求数据的区块是：{:?}, 现在的区块是: {:?}, 提交的deadline是: {:?}", submission_data.height, current_block, submission_data.deadline);
@@ -248,17 +239,8 @@ impl Client {
             return future::ok(SubmitNonceResponse{verify_result: false})
         }
 
-//        if submission_data.deadline > MAX_MINING_TIME {
-//            info!("deadline too large: deadline = {:?}, MAX = {:?}", submission_data.deadline, MAX_MINING_TIME);
-//            return future::ok(SubmitNonceResponse{verify_result: false})
-//        }
-
         let xt_result =
         async_std::task::block_on(async move {
-
-            // let phrase = self.str_convert_to_phrase(self.account_id_to_secret_phrase.get(&submission_data.account_id).expect("获取助记词错误").as_str().to_string());
-            //
-            // let pair = Pair::from_phrase(&phrase, None).expect("签名错误");
 
             let mut signer = PairSigner::new(self.pair.clone());
 
@@ -278,12 +260,12 @@ impl Client {
              // 如果返回错误 那么试着去另外提交一次（nonce值加1）
             if xt_result.is_err() {
                 info!("发送请求错误, 更改nonce值重新发送");
-                // 获取nonce值
+
                 let nonce = self.inner.account(signer.clone().account_id(),None).await.unwrap().nonce;
+
                 signer.set_nonce(nonce + 1);
 
                 info!("设置的nonce值是: {:?}", signer.nonce().unwrap() + 1);
-
 
                 let last_result = self.inner.
                     mining(
@@ -295,7 +277,15 @@ impl Client {
                     submission_data.deadline
 
                 ).await;
-                info!("更改后的结果是: {:?}", last_result.ok());
+
+                if last_result.is_err() {
+
+                    info!("重新发送后， 挖矿依然失败！");
+                }
+                else {
+
+                    info!("重新发送挖矿请求成功! hash是{:?}", last_result.ok());
+                }
 
              }
 
@@ -307,7 +297,7 @@ impl Client {
         match xt_result {
             Ok(success) => {
                 if success.is_ok() {
-                    info!("***************************************** 挖矿请求提交成功, 区块是: {:?}, hash是： {:?} **************************************", submission_data.height, success.unwrap());
+                    info!("***************************************** 挖矿请求提交成功, 区块是: {:?}, deadline是: {:?}, hash是： {:?} **************************************", submission_data.height, submission_data.deadline, success.unwrap());
                 }
                 else {
                     info!("挖矿请求提交错误! 错误信息是: {:?}", success);
@@ -325,6 +315,8 @@ impl Client {
 
     }
 
+
+
     /// Get the last mining info from Substrate.
     async fn get_last_mining_info(&self) -> Option<MiningInfo<AccountId>> {
 
@@ -335,6 +327,8 @@ impl Client {
             } else { None }
         } else { None }
     }
+
+
 
     fn str_convert_to_phrase(&self, st: String) -> String{
         let mut string = st.to_string();
@@ -357,6 +351,8 @@ impl Client {
         new_string
     }
 
+
+
     /// Get the last difficulty from Substrate.
     async fn get_last_difficulty(&self) -> Option<Difficulty> {
 
@@ -369,19 +365,7 @@ impl Client {
         }
     }
 
-    /// Get last mining timestamp from Substrate.
-    async fn get_last_mining_ts(&self) -> u64 {
 
-        let ts_opt: Option<u64> = self.inner.last_mining_ts(None).await.unwrap();
-        ts_opt.unwrap()
-    }
-
-    /// GET now timestamp from Substrate.
-    async fn get_now_ts(&self) -> u64 {
-
-        let ts_opt: Option<u64> = self.inner.now(None).await.unwrap();
-        ts_opt.unwrap()
-    }
 
     /// Get current block height from Substrate.
     async fn get_current_height(&self) -> u64 {
@@ -394,8 +378,9 @@ impl Client {
 
     }
 
-    pub fn register(&self, pair: Pair, plot_size: u64, numeric_id:u128, miner_proportion: u32) {
 
+
+    pub fn register(&self, pair: Pair, plot_size: u64, numeric_id:u128, miner_proportion: u32) {
 
         let result = async_std::task::block_on(async move {
             info!("进入注册函数！");
@@ -411,7 +396,8 @@ impl Client {
                     let signer: PairSigner<PocRuntime, Pair> = PairSigner::new(self.pair.clone());
 
                     info!("注册的账号是：{:?}, p盘id是: {:?}, p盘空间大小为: {:?} GB, 矿工分润占比是: {:?} %", signer.clone().account_id(), numeric_id, plot_size, miner_proportion);
-                    let result = self.inner.register_and_watch(&signer, plot_size * 1024 * 1024, numeric_id, miner_proportion).await;
+                    let result = self.inner.register(&signer, plot_size * 1024 * 1024, numeric_id, miner_proportion).await;
+
                     info!("注册的结果是:{:?}", result);
                 },
             };
@@ -419,12 +405,6 @@ impl Client {
 
     }
 
-
-
-//     async fn get_nonce(&self) -> u32 {
-//         let account_info = self.inner.account(None).await.unwrap();
-//         account_info.
-//     }
 
 
 }

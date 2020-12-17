@@ -48,8 +48,6 @@ pub struct Miner {
     block_duration: u64,
     executor: TaskExecutor,
     wakeup_after: i64,
-    // 每次获取数据的时间（挖矿开始)
-    start_time: Instant,
 
 }
 
@@ -73,6 +71,7 @@ pub struct State {
     // 本周期发送挖矿请求的次数
     pub mining_num: u32,
     pub is_get: bool,
+
     max_deadline_value: u64,
 }
 
@@ -100,13 +99,14 @@ impl State {
         }
     }
 
-    fn update_state(&mut self, is_get: bool) {
-
-        self.is_get = is_get
-
-    }
+//    fn update_state(&mut self, is_get: bool) {
+//
+//        self.is_get = is_get
+//
+//    }
 
     fn update_mining_info(&mut self, mining_info: &MiningInfo) {
+        self.is_get = true;
         self.min_deadline = u64::max_value();
         self.start_time = now();
         self.mining_num = 0u32;
@@ -445,7 +445,6 @@ impl Miner {
         let tx_read_replies_gpu = Some(tx_read_replies_gpu);
         #[cfg(not(feature = "opencl"))]
         let tx_read_replies_gpu = None;
-        let start_time = now();
 
         Miner {
             reader_task_count: drive_id_to_plots.len(),
@@ -461,7 +460,7 @@ impl Miner {
                 cfg.show_drive_stats,
                 cfg.cpu_thread_pinning,
                 cfg.benchmark_cpu(),
-                // start_time,
+
             ),
             rx_nonce_data,
             target_deadline: cfg.target_deadline,
@@ -484,7 +483,6 @@ impl Miner {
             block_duration: max(1000, cfg.block_duration),
             executor,
             wakeup_after: cfg.hdd_wakeup_after * 1000, // ms -> s
-            start_time: start_time,
         }
     }
 
@@ -497,17 +495,12 @@ impl Miner {
         let reader = Arc::new(Mutex::new(self.reader));
 
         let state = self.state.clone();
-        // there might be a way to solve this without two nested moves
+
         let block_duration = self.block_duration;
 
         let wakeup_after = self.wakeup_after;
-        let mut start_time = self.start_time;
 
         static mut HEIGHT: u64 = 0;
-        static mut IS_GET: bool = false;
-        static mut LastMiningHeight: u64 = 0;
-
-        let mut start = now();
 
         let interval_duration = Duration::from_millis(1000);
 
@@ -516,99 +509,90 @@ impl Miner {
                 .for_each(move |_| {
                     let state = state.clone();
                     let reader = reader.clone();
-                    unsafe {
-                        // 如果已经获取到数据 间隔6秒再去请求。如果不是 就4秒请求一次
-                        if IS_GET {
-                            thread::sleep(Duration::from_millis(block_duration / 2));
-                            IS_GET = false;
-                        }
-
-                       else {
-                           thread::sleep(Duration::from_millis(block_duration / 6));
-                       }
-                    }
 
                     request_handler.get_mining_info().then(move |mining_info| {
 
-                        unsafe {
-                            info!("HEIGHT(处理数据的上一个的区块高度)： {:?}", HEIGHT);
+                        let mut state = state.lock().unwrap();
 
-                            match mining_info {
+                        if state.is_get {
+                            thread::sleep(Duration::from_millis(block_duration / 2));
+                            state.is_get = false;
+                        }
 
-                                Ok(mining_info) => {
-                                    let mut state = state.lock().unwrap();
-                                    state.first = false;
-                                    if state.outage {
-                                        error!("{: <80}", "outage resolved.");
-                                        state.outage = false;
-                                    }
-                                    
-                                    if mining_info.generation_signature != state.generation_signature_bytes {
-
-                                        if mining_info.height > state.height {
-
-                                            start_time = now();
-                                            // let a: u64 = start;
-
-                                            // state是网络请求获取的数据
-                                            state.update_mining_info(&mining_info);
-
-                                            reader.lock().unwrap().start_reading(
-                                                mining_info.height,
-                                                state.block,
-                                                mining_info.base_target,
-                                                state.scoop,
-                                                &Arc::new(state.generation_signature_bytes),
-                                            );
-
-                                            info!("处理返回的数据! 高度是: {:?}, HEIGHT(处理数据的上一个的区块高度): {:?}", mining_info.height, HEIGHT);
-
-                                            HEIGHT = mining_info.height;
-                                            IS_GET = true;
-                                            state.update_state(true);
-//                                            thread::sleep(Duration::from_millis(block_duration) - 4 * interval_duration);
-
-                                            drop(state);
-
-                                        }
-
-                                        else {
-                                            info!("重复请求数据(已经获取过), 高度是: {:?}, HEIGHT(处理数据的上一个的区块高度): {:?}", mining_info.height, HEIGHT);
-                                        }
+                        else {
+                           thread::sleep(Duration::from_millis(block_duration / 6));
+                        }
 
 
+                        match mining_info {
 
-                                    } else if !state.scanning
-                                        && wakeup_after != 0
-                                        && state.sw.elapsed_ms() > wakeup_after
-                                    {
-                                        info!("HDD, wakeup!");
-                                        reader.lock().unwrap().wakeup();
-                                        state.sw.restart();
-                                    }
+                            Ok(mining_info) => {
 
+                                state.first = false;
+                                if state.outage {
+                                    error!("{: <80}", "outage resolved.");
+                                    state.outage = false;
                                 }
-                                _ => {
-                                    let mut state = state.lock().unwrap();
-                                    if state.first {
-                                        error!(
-                                            "{: <80}",
-                                            "error getting mining info, please check server config"
+
+                                if mining_info.generation_signature != state.generation_signature_bytes {
+
+                                    if mining_info.height > state.height {
+
+                                        info!("处理数据的上一个的区块高度是： {:?}", state.height);
+
+                                        state.update_mining_info(&mining_info);
+
+                                        reader.lock().unwrap().start_reading(
+                                            mining_info.height,
+                                            state.block,
+                                            mining_info.base_target,
+                                            state.scoop,
+                                            &Arc::new(state.generation_signature_bytes),
                                         );
-                                        state.first = false;
-                                        state.outage = true;
-                                    } else {
-                                        if !state.outage {
-                                            error!(
-                                                "{: <80}",
-                                                "error getting mining info => connection outage..."
-                                            );
-                                        }
-                                        state.outage = true;
+
+                                        info!("处理返回的数据! 高度是: {:?}", mining_info.height);
+
+                                        drop(state);
+
                                     }
+
+                                    else {
+                                        info!("重复请求数据(已经获取过), 高度是: {:?}", mining_info.height);
+                                    }
+
+
+
+                                } else if !state.scanning
+                                    && wakeup_after != 0
+                                    && state.sw.elapsed_ms() > wakeup_after
+                                {
+                                    info!("HDD, wakeup!");
+                                    reader.lock().unwrap().wakeup();
+                                    state.sw.restart();
                                 }
+
                             }
 
+                            _ => {
+//                                    let mut state = state.lock().unwrap();
+                                if state.first {
+
+                                    error!(
+                                        "{: <80}",
+                                        "error getting mining info, please check server config"
+                                    );
+                                    state.first = false;
+                                    state.outage = true;
+                                } else {
+                                    if !state.outage {
+                                        error!(
+                                            "{: <80}",
+                                            "error getting mining info => connection outage..."
+                                        );
+                                    }
+                                    state.outage = true;
+                                }
+                            }
                         }
 
                         future::ok(())
@@ -624,7 +608,6 @@ impl Miner {
         let state = self.state.clone();
         let reader_task_count = self.reader_task_count;
 
-//        let mut start = now();
         self.executor.clone().spawn(
             self.rx_nonce_data
                 .for_each(move |nonce_data| {
@@ -637,14 +620,11 @@ impl Miner {
 
                     info!("%%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: {:?} %%%%%%%%%%%%%%%%%%%%%%%%%%", (end - state.start_time) + Duration::from_millis(len * 12000));
 
-
                     let deadline = nonce_data.deadline / nonce_data.base_target;
 
-
-                    /// 过期的直接不提交了
                     if state.height == nonce_data.height  && deadline < state.min_deadline && deadline <= state.max_deadline_value && state.mining_num == 0 {
 
-                        info!("基本可以挖矿！ state.height = {:?}, nonce_data.height = {:?}, deadline = {:?}, min_deadline = {:?}, state.mining_num = {:?}", state.height,  nonce_data.height, deadline, state.min_deadline, state.mining_num);
+                        info!("初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： {:?}, 本周期目前最佳deadline值是: {:?}, 允许提交的最大deadline值是: {:?}", deadline, state.min_deadline, state.max_deadline_value);
                         state.min_deadline = deadline;
 
                             state
@@ -669,20 +649,18 @@ impl Miner {
                     }
 
                     else if state.height > nonce_data.height {
+                        info!("扫盘导致过期, 不能挖矿!");
                         state.min_deadline = u64::max_value();
                         state.mining_num = 0;
 
                     }
 
                     else {
-                        info!("不可以挖矿！ state.height = {:?}, nonce_data.height = {:?}, deadline = {:?}, min_deadline = {:?}", state.height,  nonce_data.height, deadline, state.min_deadline);
 
                     }
 
 
                     if nonce_data.reader_task_processed {
-
-                        info!("state.processed_reader_tasks = {:?}, reader_task_count = {:?}", state.processed_reader_tasks, reader_task_count);
 
                         if state.processed_reader_tasks == reader_task_count {
                             info!(
@@ -698,7 +676,6 @@ impl Miner {
                             );
                             state.sw.restart();
                             info!("%%%%%%%%%%% finished sw.restart %%%%%%%%%%%");
-//                                 println!("%%%%%%%%%%% finished sw.restart %%%%%%%%%%%");
                             state.scanning = false;
 
 
