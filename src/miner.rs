@@ -45,7 +45,7 @@ pub struct Miner {
     account_id_to_target_deadline: HashMap<u64, u64>,
     state: Arc<Mutex<State>>,
     reader_task_count: usize,
-    get_mining_info_interval: u64,
+    block_duration: u64,
     executor: TaskExecutor,
     wakeup_after: i64,
     // 每次获取数据的时间（挖矿开始)
@@ -470,7 +470,7 @@ impl Miner {
             ),
             state: Arc::new(Mutex::new(State::new())),
             // floor at 1s to protect servers
-            get_mining_info_interval: max(1000, cfg.get_mining_info_interval),
+            block_duration: max(1000, cfg.block_duration),
             executor,
             wakeup_after: cfg.hdd_wakeup_after * 1000, // ms -> s
             start_time: start_time,
@@ -487,7 +487,7 @@ impl Miner {
 
         let state = self.state.clone();
         // there might be a way to solve this without two nested moves
-        let get_mining_info_interval = self.get_mining_info_interval;
+        let block_duration = self.block_duration;
 
         let wakeup_after = self.wakeup_after;
         let mut start_time = self.start_time;
@@ -509,12 +509,12 @@ impl Miner {
 
                         // 如果已经获取到数据 间隔6秒再去请求。如果不是 就4秒请求一次
                         if IS_GET {
-                            thread::sleep(Duration::from_millis(get_mining_info_interval / 2));
+                            thread::sleep(Duration::from_millis(block_duration / 2));
                             IS_GET = false;
                         }
 
                        else {
-                           thread::sleep(Duration::from_millis(get_mining_info_interval / 6));
+                           thread::sleep(Duration::from_millis(block_duration / 6));
                        }
                     }
 
@@ -557,7 +557,7 @@ impl Miner {
 
                                             IS_GET = true;
 
-//                                            thread::sleep(Duration::from_millis(get_mining_info_interval) - 4 * interval_duration);
+//                                            thread::sleep(Duration::from_millis(block_duration) - 4 * interval_duration);
 
                                             drop(state);
 

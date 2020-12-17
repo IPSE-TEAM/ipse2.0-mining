@@ -23,6 +23,9 @@ pub struct Cfg {
     #[serde(default = "default_plot_size")]
     pub plot_size: u64,
 
+    #[serde(default = "default_max_deadline_value")]
+    pub max_deadline_value: u64,
+
     #[serde(default = "default_miner_proportion")]
     pub miner_proportion: u32,
 
@@ -79,8 +82,8 @@ pub struct Cfg {
     #[serde(default = "default_account_id_to_target_deadline")]
     pub account_id_to_target_deadline: HashMap<u64, u64>,
 
-    #[serde(default = "default_get_mining_info_interval")]
-    pub get_mining_info_interval: u64,
+    #[serde(default = "default_block_duration")]
+    pub block_duration: u64,
 
     #[serde(default = "default_timeout")]
     pub timeout: u64,
@@ -137,6 +140,10 @@ fn default_secret_phrase() -> HashMap<u64, String> {
 }
 
 fn default_account_id() -> u64 { 100 }
+
+fn default_max_deadline_value() -> u64 {
+    u64::max_value()
+}
 
 fn default_plot_size() -> u64 { 100 }
 
@@ -206,7 +213,7 @@ fn default_account_id_to_target_deadline() -> HashMap<u64, u64> {
     HashMap::new()
 }
 
-fn default_get_mining_info_interval() -> u64 {
+fn default_block_duration() -> u64 {
     9000
 }
 

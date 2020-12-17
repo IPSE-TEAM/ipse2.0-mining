@@ -3,20 +3,25 @@
 # NEVER POST YOUR CONFIG.YAML INCLUDING YOUR PASSPHRASE TO ANY BOARD OR CHAT!
 
 
+
+
+# ********************* 您可能需要修改以下这几个参数 ***********************#
+
 account_id: &numeric_id 10717349404514113857 # 矿工p盘id
 plot_size: 100 # p盘空间大小 单位是GB
 miner_proportion: 20 # 矿工分润占比 （0 ～ 100）
-
-account_id_to_secret_phrase:                   # P盘id对应的IPSE主网助记词(用于提交挖矿请求时签名)
+account_id_to_secret_phrase:    # 助记词
   *numeric_id: 'cash mixture tongue cry roof glare monkey island unfair brown spirit inflict'
-plot_dirs:
+plot_dirs: # p盘数据存储路径
    - '/data/test_data'
-#  - 'C:\second\windows\plot\dir'
-#  - '/first/linux/plot/dir'
-#  - '/second/linux/plot/dir'
-
 url: 'ws://localhost:9944'  # IPSE节点地址
-#url: 'http://dummypool.megash.it'                  # dummypool with constant scoop number for benchmarking
+max_deadline_value: 2000 # 允许的deadline最大提交值
+
+# ********************* 您可能需要修改以上这几个参数 ***********************#
+
+
+
+
 
 hdd_reader_thread_count: 0            # default 0 (=auto: number of disks)
 hdd_use_direct_io: true               # default true
@@ -38,13 +43,10 @@ gpu_async: false                      # default false
 target_deadline: 18446744073709551615 # default u32::MAX
 account_id_to_target_deadline:        # target dls for multi-id (optional)
  *numeric_id: 18446744073709551615
- 1796535821016683299: 55555555
 
-get_mining_info_interval: 12000        # default 3000ms
+block_duration: 12000        # 主网一个区块所需的时间(不要修改)
 timeout: 5000                         # default 5000ms
 send_proxy_details: true              # default false
-#additional_headers:                  # add/overwrite html header
-#  "AccountKey" : "1234567890"
 
 console_log_level: 'info'             # default Info, options (off, error, warn, info, debug, trace)
 logfile_log_level: 'warn'             # default Warn, options (off, error, warn, info, debug, trace)
