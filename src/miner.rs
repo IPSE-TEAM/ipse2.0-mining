@@ -72,12 +72,15 @@ pub struct State {
     pub min_deadline: u64,
     // 本周期发送挖矿请求的次数
     pub mining_num: u32,
+    pub is_get: bool,
+    max_deadline_value: u64,
 }
 
 impl State {
-    fn new() -> Self {
+    fn new(max_deadline_value: u64) -> Self {
         Self {
             height: 0,
+
             block: 0,
             scoop: 0,
             account_id_to_best_deadline: HashMap::new(),
@@ -92,7 +95,15 @@ impl State {
             start_time: now(),
             min_deadline: u64::max_value(),
             mining_num: 0u32,
+            is_get: false,
+            max_deadline_value: max_deadline_value,
         }
+    }
+
+    fn update_state(&mut self, is_get: bool) {
+
+        self.is_get = is_get
+
     }
 
     fn update_mining_info(&mut self, mining_info: &MiningInfo) {
@@ -468,7 +479,7 @@ impl Miner {
                 cfg.miner_proportion,
 
             ),
-            state: Arc::new(Mutex::new(State::new())),
+            state: Arc::new(Mutex::new(State::new(cfg.max_deadline_value))),
             // floor at 1s to protect servers
             block_duration: max(1000, cfg.block_duration),
             executor,
@@ -505,18 +516,17 @@ impl Miner {
                 .for_each(move |_| {
                     let state = state.clone();
                     let reader = reader.clone();
-                    unsafe {
 
-                        // 如果已经获取到数据 间隔6秒再去请求。如果不是 就4秒请求一次
-                        if IS_GET {
-                            thread::sleep(Duration::from_millis(block_duration / 2));
-                            IS_GET = false;
-                        }
+                   //  // 如果已经获取到数据 间隔6秒再去请求。如果不是 就4秒请求一次
+                   //  if state.is_get {
+                   //      thread::sleep(Duration::from_millis(block_duration / 2));
+                   //      state.update_state(false);
+                   //  }
+                   //
+                   // else {
+                   //     thread::sleep(Duration::from_millis(block_duration / 6));
+                   // }
 
-                       else {
-                           thread::sleep(Duration::from_millis(block_duration / 6));
-                       }
-                    }
 
                     request_handler.get_mining_info().then(move |mining_info| {
 
@@ -535,7 +545,7 @@ impl Miner {
                                     
                                     if mining_info.generation_signature != state.generation_signature_bytes {
 
-                                        if mining_info.height > HEIGHT {
+                                        if mining_info.height > state.height {
 
                                             start_time = now();
                                             // let a: u64 = start;
@@ -555,8 +565,7 @@ impl Miner {
 
                                             HEIGHT = mining_info.height;
 
-                                            IS_GET = true;
-
+                                            state.update_state(true);
 //                                            thread::sleep(Duration::from_millis(block_duration) - 4 * interval_duration);
 
                                             drop(state);
@@ -631,92 +640,78 @@ impl Miner {
 
                     let deadline = nonce_data.deadline / nonce_data.base_target;
 
-                    unsafe {
-                        /// 过期的直接不提交了
-                        if state.height == nonce_data.height  && deadline < state.min_deadline && state.mining_num == 0{
 
-                            info!("基本可以挖矿！ state.height = {:?}, nonce_data.height = {:?}, deadline = {:?}, min_deadline = {:?}, state.mining_num = {:?}", state.height,  nonce_data.height, deadline, state.min_deadline, state.mining_num);
-                            state.min_deadline = deadline;
+                    /// 过期的直接不提交了
+                    if state.height == nonce_data.height  && deadline < state.min_deadline && deadline <= state.max_deadline_value && state.mining_num == 0 {
 
-//                            let best_deadline = *state
-//                                .account_id_to_best_deadline
-//                                .get(&nonce_data.account_id)
-//                                .unwrap_or(&u64::MAX);
-//
-//                            // 这个best_deadline应该是没有任何意义
-//
-//                            info!("@@@@@@@@@@ best_deadline = {}, deadline = {} @@@@@@@@@", best_deadline, deadline);
-//                            info!("~~~~~~~~~~~~~~~~server_target_deadline = {}, accountid_id_dl= {} ~~~~~~~~~~~", state.server_target_deadline, *(account_id_to_target_deadline
-//                                .get(&nonce_data.account_id)
-//                                // target_deadline 几乎也没有任何意义
-//                                .unwrap_or(&target_deadline)));
+                        info!("基本可以挖矿！ state.height = {:?}, nonce_data.height = {:?}, deadline = {:?}, min_deadline = {:?}, state.mining_num = {:?}", state.height,  nonce_data.height, deadline, state.min_deadline, state.mining_num);
+                        state.min_deadline = deadline;
 
-                                state
-                                    .account_id_to_best_deadline
-                                    .insert(nonce_data.account_id, deadline);
-                                async_std::task::block_on(async {
-                                    request_handler.submit_nonce(
-                                    nonce_data.account_id,
-                                    nonce_data.nonce,
-                                    nonce_data.height, // 这个高度就是获取数据时候的高度
-                                    nonce_data.block, // 这个值貌似没有什么用
-                                    nonce_data.deadline, // deadline_unadjusted
-                                    deadline, // 提交到链上的是这个deadline
-                                    state.generation_signature_bytes,
-                                    );
-                                });
+                            state
+                                .account_id_to_best_deadline
+                                .insert(nonce_data.account_id, deadline);
+                            async_std::task::block_on(async {
+                                request_handler.submit_nonce(
+                                nonce_data.account_id,
+                                nonce_data.nonce,
+                                nonce_data.height, // 这个高度就是获取数据时候的高度
+                                nonce_data.block, // 这个值貌似没有什么用
+                                nonce_data.deadline, // deadline_unadjusted
+                                deadline, // 提交到链上的是这个deadline
+                                state.generation_signature_bytes,
+                                );
+                            });
 
-                                state.mining_num += 1;
+                            state.mining_num += 1;
 
-                                thread::sleep(Duration::from_millis(1000));
+                            thread::sleep(Duration::from_millis(1000));
+
+                    }
+
+                    else if state.height > nonce_data.height {
+                        state.min_deadline = u64::max_value();
+                        state.mining_num = 0;
+
+                    }
+
+                    else {
+                        info!("不可以挖矿！ state.height = {:?}, nonce_data.height = {:?}, deadline = {:?}, min_deadline = {:?}", state.height,  nonce_data.height, deadline, state.min_deadline);
+
+                    }
 
 
-                        }
+                    if nonce_data.reader_task_processed {
 
-                        else if state.height > nonce_data.height {
-                            state.min_deadline = u64::max_value();
-                            state.mining_num = 0;
+                        info!("state.processed_reader_tasks = {:?}, reader_task_count = {:?}", state.processed_reader_tasks, reader_task_count);
+
+                        if state.processed_reader_tasks == reader_task_count {
+                            info!(
+                                "{: <80}",
+                                format!(
+                                    "round finished: roundtime={}ms, speed={:.2}MiB/s",
+                                    state.sw.elapsed_ms(),
+                                    total_size as f64 * 1000.0
+                                        / 1024.0
+                                        / 1024.0
+                                        / state.sw.elapsed_ms() as f64
+                                )
+                            );
+                            state.sw.restart();
+                            info!("%%%%%%%%%%% finished sw.restart %%%%%%%%%%%");
+//                                 println!("%%%%%%%%%%% finished sw.restart %%%%%%%%%%%");
+                            state.scanning = false;
+
 
                         }
 
                         else {
-                            info!("不可以挖矿！ state.height = {:?}, nonce_data.height = {:?}, deadline = {:?}, min_deadline = {:?}", state.height,  nonce_data.height, deadline, state.min_deadline);
 
+                            state.processed_reader_tasks += 1;
                         }
 
 
-                        if nonce_data.reader_task_processed {
-
-                            info!("state.processed_reader_tasks = {:?}, reader_task_count = {:?}", state.processed_reader_tasks, reader_task_count);
-
-                            if state.processed_reader_tasks == reader_task_count {
-                                info!(
-                                    "{: <80}",
-                                    format!(
-                                        "round finished: roundtime={}ms, speed={:.2}MiB/s",
-                                        state.sw.elapsed_ms(),
-                                        total_size as f64 * 1000.0
-                                            / 1024.0
-                                            / 1024.0
-                                            / state.sw.elapsed_ms() as f64
-                                    )
-                                );
-                                state.sw.restart();
-                                info!("%%%%%%%%%%% finished sw.restart %%%%%%%%%%%");
-//                                 println!("%%%%%%%%%%% finished sw.restart %%%%%%%%%%%");
-                                state.scanning = false;
-
-
-                            }
-
-                            else {
-
-                                state.processed_reader_tasks += 1;
-                            }
-
-
-                        }
                     }
+
 
                     Ok(())
                 })
