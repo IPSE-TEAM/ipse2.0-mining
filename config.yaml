@@ -14,7 +14,7 @@ account_id_to_secret_phrase:    # 助记词
   *numeric_id: 'cash mixture tongue cry roof glare monkey island unfair brown spirit inflict'
 plot_dirs: # p盘数据存储路径
    - '/data/test_data'
-url: 'ws://localhost:9944'  # IPSE节点地址
+url: 'ws://47.108.199.133:9948'  # IPSE节点地址
 max_deadline_value: 2000 # 允许的deadline最大提交值
 
 # ********************* 您可能需要修改以上这几个参数 ***********************#

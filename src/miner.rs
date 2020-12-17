@@ -516,17 +516,17 @@ impl Miner {
                 .for_each(move |_| {
                     let state = state.clone();
                     let reader = reader.clone();
+                    unsafe {
+                        // 如果已经获取到数据 间隔6秒再去请求。如果不是 就4秒请求一次
+                        if IS_GET {
+                            thread::sleep(Duration::from_millis(block_duration / 2));
+                            IS_GET = false;
+                        }
 
-                   //  // 如果已经获取到数据 间隔6秒再去请求。如果不是 就4秒请求一次
-                   //  if state.is_get {
-                   //      thread::sleep(Duration::from_millis(block_duration / 2));
-                   //      state.update_state(false);
-                   //  }
-                   //
-                   // else {
-                   //     thread::sleep(Duration::from_millis(block_duration / 6));
-                   // }
-
+                       else {
+                           thread::sleep(Duration::from_millis(block_duration / 6));
+                       }
+                    }
 
                     request_handler.get_mining_info().then(move |mining_info| {
 
@@ -564,7 +564,7 @@ impl Miner {
                                             info!("处理返回的数据! 高度是: {:?}, HEIGHT(处理数据的上一个的区块高度): {:?}", mining_info.height, HEIGHT);
 
                                             HEIGHT = mining_info.height;
-
+                                            IS_GET = true;
                                             state.update_state(true);
 //                                            thread::sleep(Duration::from_millis(block_duration) - 4 * interval_duration);
 
