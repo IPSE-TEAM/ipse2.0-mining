@@ -394,22 +394,28 @@ impl Client {
 
     }
 
-    pub async fn register(&self, pair: Pair) {
+    pub fn register(&self, pair: Pair, plot_size: u64, numeric_id:u128, miner_proportion: u32) {
 
-        let public = pair.clone().public();
 
-        let disk_info = self.inner.disk_of(public.into(), None).await.unwrap();
+        let result = async_std::task::block_on(async move {
+            info!("进入注册函数！");
+            let public = pair.clone().public();
 
-        match disk_info {
-            Some(x) => { info!(""); },
+            let disk_info = self.inner.disk_of(public.into(), None).await.unwrap();
+            match disk_info {
+                Some(x) => { info!("已经注册过， 可以挖矿啦！"); },
 
-            None => {
+                None => {
+                    info!("没有注册，正在注册，请稍等......");
 
-                let mut signer = PairSigner::new(self.pair.clone());
+                    let signer: PairSigner<PocRuntime, Pair> = PairSigner::new(self.pair.clone());
 
-                let result = self.inner.register(&signer, 0,0,0).await;
-            },
-        };
+                    info!("注册的账号是：{:?}, p盘id是: {:?}, p盘空间大小为: {:?} GB, 矿工分润占比是: {:?} %", signer.clone().account_id(), numeric_id, plot_size, miner_proportion);
+                    let result = self.inner.register_and_watch(&signer, plot_size * 1024 * 1024, numeric_id, miner_proportion).await;
+                    info!("注册的结果是:{:?}", result);
+                },
+            };
+        });
 
     }
 

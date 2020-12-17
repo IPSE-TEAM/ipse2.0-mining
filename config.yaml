@@ -3,20 +3,19 @@
 # NEVER POST YOUR CONFIG.YAML INCLUDING YOUR PASSPHRASE TO ANY BOARD OR CHAT!
 
 
-account_id: &numeric_id 10282355196851764065 # 矿工p盘id
+account_id: &numeric_id 10717349404514113857 # 矿工p盘id
 plot_size: 100 # p盘空间大小 单位是GB
 miner_proportion: 20 # 矿工分润占比 （0 ～ 100）
 
 account_id_to_secret_phrase:                   # P盘id对应的IPSE主网助记词(用于提交挖矿请求时签名)
-  *numeric_id: 'glad suffer red during single glow shut slam hill death lust although'          # Bold's example wallet
-
+  *numeric_id: 'cash mixture tongue cry roof glare monkey island unfair brown spirit inflict'
 plot_dirs:
-   - 'test_data'
+   - '/data/test_data'
 #  - 'C:\second\windows\plot\dir'
 #  - '/first/linux/plot/dir'
 #  - '/second/linux/plot/dir'
 
-url: 'http://50-50-pool.burst.cryptoguru.org:8124'  # cryptoguru 50-50 pool
+url: 'ws://localhost:9944'  # IPSE节点地址
 #url: 'http://dummypool.megash.it'                  # dummypool with constant scoop number for benchmarking
 
 hdd_reader_thread_count: 0            # default 0 (=auto: number of disks)

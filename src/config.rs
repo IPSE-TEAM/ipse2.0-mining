@@ -20,6 +20,12 @@ pub struct Cfg {
     #[serde(default = "default_account_id")]
     pub account_id: u64,
 
+    #[serde(default = "default_plot_size")]
+    pub plot_size: u64,
+
+    #[serde(default = "default_miner_proportion")]
+    pub miner_proportion: u32,
+
     pub plot_dirs: Vec<PathBuf>,
 
     #[serde(with = "url_serde")]
@@ -130,7 +136,11 @@ fn default_secret_phrase() -> HashMap<u64, String> {
     HashMap::new()
 }
 
-fn default_account_id() -> u64 { 10717349404514113857 }
+fn default_account_id() -> u64 { 100 }
+
+fn default_plot_size() -> u64 { 100 }
+
+fn default_miner_proportion() -> u32 { 20 }
 
 fn default_hdd_reader_thread_count() -> usize {
     0

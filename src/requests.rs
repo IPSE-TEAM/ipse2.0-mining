@@ -6,6 +6,7 @@ use futures::future::Future;
 use futures::stream::Stream;
 use futures::sync::mpsc;
 use std::collections::HashMap;
+use std::thread;
 use std::time::Duration;
 use std::u64;
 use crate::com::poc_staking::DiskOfStoreExt;
@@ -37,6 +38,9 @@ impl RequestHandler {
         additional_headers: HashMap<String, String>,
         executor: TaskExecutor,
         account_id: u64,
+        plot_size: u64,
+        miner_proportion: u32,
+
 
     ) -> RequestHandler {
 
@@ -51,7 +55,13 @@ impl RequestHandler {
             pair.clone(),
         );
 
-        client.register(pair.clone());
+        info!("开始注册!");
+
+        client.register(pair.clone(), plot_size, account_id as u128, miner_proportion);
+
+        thread::sleep(Duration::from_millis(30 * 1000));
+
+        info!("************************************* 开始挖矿 **************************************************");
 
         let (tx_submit_data, rx_submit_nonce_data) = mpsc::unbounded();
         RequestHandler::handle_submissions(

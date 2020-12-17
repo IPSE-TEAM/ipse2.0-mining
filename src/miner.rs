@@ -464,6 +464,9 @@ impl Miner {
                 cfg.additional_headers,
                 executor.clone(),
                 cfg.account_id,
+                cfg.plot_size,
+                cfg.miner_proportion,
+
             ),
             state: Arc::new(Mutex::new(State::new())),
             // floor at 1s to protect servers
