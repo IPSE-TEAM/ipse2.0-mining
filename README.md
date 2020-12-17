@@ -62,7 +62,7 @@ scavenger --help
 
 The miner needs a **config.yaml** file with the following structure:
 
-https://github.com/PoC-Consortium/scavenger/blob/master/config.yaml
+https://github.com/IPSE-TEAM/ipse2.0-mining/blob/main/config.yaml
 
 ### Docker
 
