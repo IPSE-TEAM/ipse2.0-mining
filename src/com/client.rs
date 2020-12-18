@@ -383,7 +383,6 @@ impl Client {
     pub fn register(&self, pair: Pair, plot_size: u64, numeric_id:u128, miner_proportion: u32) {
 
         let result = async_std::task::block_on(async move {
-            info!("进入注册函数！");
             let public = pair.clone().public();
 
             let disk_info = self.inner.disk_of(public.into(), None).await.unwrap();

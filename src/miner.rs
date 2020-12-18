@@ -515,12 +515,12 @@ impl Miner {
                         let mut state = state.lock().unwrap();
 
                         if state.is_get {
-                            thread::sleep(Duration::from_millis(block_duration / 2));
+                            thread::sleep(Duration::from_millis(block_duration / 3));
                             state.is_get = false;
                         }
 
                         else {
-                           thread::sleep(Duration::from_millis(block_duration / 6));
+                           thread::sleep(Duration::from_millis(block_duration / 24));
                         }
 
 

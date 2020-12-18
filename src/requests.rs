@@ -55,11 +55,9 @@ impl RequestHandler {
             pair.clone(),
         );
 
-        info!("开始注册!");
-
         client.register(pair.clone(), plot_size, account_id as u128, miner_proportion);
 
-        thread::sleep(Duration::from_millis(30 * 1000));
+        thread::sleep(Duration::from_millis(20 * 1000));
 
         info!("************************************* 开始挖矿 **************************************************");
 
