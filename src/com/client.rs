@@ -395,7 +395,8 @@ impl Client {
                     let signer: PairSigner<PocRuntime, Pair> = PairSigner::new(self.pair.clone());
 
                     info!("注册的账号是：{:?}, p盘id是: {:?}, p盘空间大小为: {:?} GB, 矿工分润占比是: {:?} %", signer.clone().account_id(), numeric_id, plot_size, miner_proportion);
-                    let result = self.inner.register(&signer, plot_size * 1024 * 1024, numeric_id, miner_proportion).await;
+
+                    let result = self.inner.register(&signer, plot_size * 1000, numeric_id, miner_proportion).await;
 
                     info!("注册的结果是:{:?}", result);
                 },
