@@ -15,7 +15,7 @@ account_id_to_secret_phrase:                    # 助记词
 plot_dirs:                                      # p盘数据存储路径
    - '/data/test_data'
 url: 'ws://localhost:9948'                 # IPSE节点地址
-max_deadline_value: 2000                        # 允许的deadline最大提交值
+max_deadline_value: 18446744073709551615                         # 允许的deadline最大提交值
 miner_reward_dest: '5FHb1AEeNui5ANvyT368dECmNEJeouLeeZ6a9z8GTvxPLaVs'    # 收益地址(一定要指定)
 
 # ********************* 您可能需要修改以上这几个参数 ***********************#
