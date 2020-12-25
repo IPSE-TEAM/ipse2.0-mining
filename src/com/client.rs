@@ -10,10 +10,11 @@ use log::info;
 use std::convert::TryInto;
 use sp_core::{sr25519::{Pair, Public}};
 use sp_core::Pair as PairT;
+
 use substrate_subxt::system::AccountStoreExt;
 use crate::com::poc_staking::DiskOfStoreExt;
 use crate::com::poc_staking::RegisterCallExt;
-
+use sp_core::crypto::{AccountId32, Ss58Codec};
 
 use codec::{
     Decode,
@@ -380,7 +381,7 @@ impl Client {
 
 
 
-    pub fn register(&self, pair: Pair, plot_size: u64, numeric_id:u128, miner_proportion: u32) {
+    pub fn register(&self, pair: Pair, plot_size: u64, numeric_id:u128, miner_proportion: u32, dest: AccountId32) {
 
         let result = async_std::task::block_on(async move {
             let public = pair.clone().public();
@@ -394,9 +395,9 @@ impl Client {
 
                     let signer: PairSigner<PocRuntime, Pair> = PairSigner::new(self.pair.clone());
 
-                    info!("注册的账号是：{:?}, p盘id是: {:?}, p盘空间大小为: {:?} GiB, 矿工分润占比是: {:?} %", signer.clone().account_id(), numeric_id, plot_size, miner_proportion);
+                    info!("注册的账号是：{:?}, p盘id是: {:?}, p盘空间大小为: {:?} GiB, 矿工分润占比是: {:?} %, 收益地址是: {:?}", signer.clone().account_id(), numeric_id, plot_size, miner_proportion, dest);
 
-                    let result = self.inner.register(&signer, plot_size , numeric_id, miner_proportion).await;
+                    let result = self.inner.register(&signer, plot_size , numeric_id, miner_proportion, Some(dest)).await;
 
                     info!("注册的结果是:{:?}", result);
                 },

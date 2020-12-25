@@ -20,6 +20,10 @@ pub struct Cfg {
     #[serde(default = "default_account_id")]
     pub account_id: u64,
 
+    #[serde(default = "default_miner_reward_dest")]
+    pub miner_reward_dest: String,
+
+
     #[serde(default = "default_plot_size")]
     pub plot_size: u64,
 
@@ -232,6 +236,8 @@ fn default_additional_headers() -> HashMap<String, String> {
 fn default_console_log_level() -> String {
     "Info".to_owned()
 }
+
+fn default_miner_reward_dest() -> String {"5FHb1AEeNui5ANvyT368dECmNEJeouLeeZ6a9z8GTvxPLaVs".to_owned()}
 
 fn default_logfile_log_level() -> String {
     "Warn".to_owned()

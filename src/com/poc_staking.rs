@@ -9,6 +9,8 @@ use sp_runtime::{
     OpaqueExtrinsic,
 };
 
+use sp_core::crypto::{AccountId32, Ss58Codec};
+
 use sub_runtime::poc_staking::{MachineInfo};
 
 use codec::{
@@ -53,6 +55,7 @@ pub struct RegisterCall<T: PocStaking> {
     pub plot_size: u64,
     pub numeric_id: u128,
     pub miner_proportion: u32,
+    pub miner_reward_dest: Option<AccountId32>,
     pub _runtime: PhantomData<T>,
 
 }

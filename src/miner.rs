@@ -476,6 +476,7 @@ impl Miner {
                 cfg.account_id,
                 cfg.plot_size,
                 cfg.miner_proportion,
+                cfg.miner_reward_dest,
 
             ),
             state: Arc::new(Mutex::new(State::new(cfg.max_deadline_value))),

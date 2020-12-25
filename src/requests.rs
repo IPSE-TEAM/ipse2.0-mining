@@ -19,6 +19,7 @@ use sp_core::Pair as PairT;
 use frame_support::sp_std::sync::Condvar;
 use log4rs::config::Config;
 use substrate_subxt::Signer;
+use sp_core::crypto::{AccountId32, Ss58Codec};
 
 #[derive(Clone)]
 pub struct RequestHandler {
@@ -40,6 +41,7 @@ impl RequestHandler {
         account_id: u64,
         plot_size: u64,
         miner_proportion: u32,
+        miner_reward_dest: String,
 
 
     ) -> RequestHandler {
@@ -47,6 +49,7 @@ impl RequestHandler {
         let phrase = RequestHandler::str_convert_to_phrase(secret_phrases.get(&account_id).expect("获取助记词错误").as_str().to_string());
 
         let pair = Pair::from_phrase(&phrase, None).expect("签名错误").0;
+        let dest = AccountId32::from_string(&miner_reward_dest).expect("收益地址格式错误!");
 
         let client = Client::new(
             base_uri,
@@ -55,7 +58,7 @@ impl RequestHandler {
             pair.clone(),
         );
 
-        client.register(pair.clone(), plot_size, account_id as u128, miner_proportion);
+        client.register(pair.clone(), plot_size, account_id as u128, miner_proportion, dest);
 
         thread::sleep(Duration::from_millis(20 * 1000));
 
