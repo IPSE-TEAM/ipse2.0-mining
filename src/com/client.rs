@@ -58,8 +58,9 @@ pub const MAX_MINING_TIME: u64 = 12000;
 
 pub const POC_MODULE: &str = "PoC";
 pub const TS_MODULE: &str = "Timestamp";
-pub const MiningDuration: u64 = 1;
+pub const MiningExpire: u64 = 2;
 pub const MINING: &str = "mining";
+
 
 
 /// A client for communicating with Pool/Proxy/Wallet.
@@ -209,7 +210,7 @@ impl Client {
             info!("请求数据的区块是：{:?}, 现在的区块是: {:?}, 提交的deadline是: {:?}", submission_data.height, current_block, submission_data.deadline);
 
             // 必须在同一周期 并且提交的时间比处理的时间迟
-            if current_block != submission_data.height
+            if current_block / MiningExpire != submission_data.height / MiningExpire
             {
                 info!("禁止提交! 请求数据的区块离当前区块间隔较大（已经过期)");
                 return Err(())
@@ -219,7 +220,7 @@ impl Client {
 
                 let last_mining_block = info.block;
 
-                if info.best_dl <= submission_data.deadline && current_block  == info.block  {
+                if info.best_dl <= submission_data.deadline && current_block / MiningExpire  == info.block / MiningExpire {
 
                     info!("禁止提交! 本挖矿周期已经有比较好的deadline = {} ", info.best_dl);
                     Err(())

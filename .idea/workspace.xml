@@ -32,10 +32,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e7f590a7-b194-4a73-8b5f-c7af3e5a05e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/client.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/client.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/poc_staking.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/poc_staking.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/miner.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/miner.rs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,14 +46,30 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.43468952">
+    <splitter split-orientation="horizontal" split-proportion="0.48072806">
       <split-first>
         <leaf>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/client.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1471">
-                  <caret line="206" column="50" selection-start-line="206" selection-start-column="50" selection-end-line="206" selection-end-column="50" />
+                <state relative-caret-position="146">
+                  <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main.rs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1891" />
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/miner.rs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="168">
+                  <caret line="115" column="31" lean-forward="true" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
                 </state>
               </provider>
             </entry>
@@ -69,11 +83,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/runtimes.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="104" column="44" selection-start-line="104" selection-start-column="44" selection-end-line="104" selection-end-column="44" />
+                <state relative-caret-position="1270">
+                  <caret line="99" column="20" lean-forward="true" selection-start-line="99" selection-start-column="20" selection-end-line="99" selection-end-column="20" />
                 </state>
               </provider>
             </entry>
@@ -92,9 +106,11 @@
       <split-second>
         <leaf>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/com/client.rs">
+            <entry file="file://$PROJECT_DIR$/src/miner.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-810" />
+                <state relative-caret-position="236">
+                  <caret line="39" column="22" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="22" />
+                </state>
               </provider>
             </entry>
           </file>
@@ -106,8 +122,10 @@
     <findStrings>
       <find>plot_size</find>
       <find>get_last_mining_info</find>
-      <find>MiningInfo</find>
       <find>BlockNumber</find>
+      <find>MiningInfo</find>
+      <find>MiningDuration</find>
+      <find>mining_num</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -116,10 +134,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/client.rs" />
         <option value="$PROJECT_DIR$/Cargo.toml" />
         <option value="$PROJECT_DIR$/src/com/poc_staking.rs" />
         <option value="$PROJECT_DIR$/src/com/runtimes.rs" />
+        <option value="$PROJECT_DIR$/src/com/client.rs" />
+        <option value="$PROJECT_DIR$/src/miner.rs" />
       </list>
     </option>
   </component>
@@ -205,7 +224,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
-      <window_info active="true" anchor="bottom" id="Terminal" sideWeight="0.49946466" visible="true" weight="0.5835141" />
+      <window_info active="true" anchor="bottom" id="Terminal" sideWeight="0.49946466" visible="true" weight="0.38069415" />
       <window_info anchor="bottom" id="Event Log" sideWeight="0.5005353" side_tool="true" weight="0.329718" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -262,13 +281,6 @@
     <state x="2663" y="297" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1608881793368" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/client.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1471">
-          <caret line="206" column="50" selection-start-line="206" selection-start-column="50" selection-end-line="206" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Cargo.toml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -285,8 +297,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/runtimes.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="104" column="44" selection-start-line="104" selection-start-column="44" selection-end-line="104" selection-end-column="44" />
+        <state relative-caret-position="1270">
+          <caret line="99" column="20" lean-forward="true" selection-start-line="99" selection-start-column="20" selection-end-line="99" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1891" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/client.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/miner.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="115" column="31" lean-forward="true" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
         </state>
       </provider>
     </entry>

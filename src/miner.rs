@@ -20,6 +20,7 @@ use crate::utils::{get_device_id, new_thread_pool};
 use crossbeam_channel;
 use filetime::FileTime;
 use futures::sync::mpsc;
+
 #[cfg(feature = "opencl")]
 use ocl_core::Mem;
 use std::cmp::{max, min};
@@ -34,7 +35,9 @@ use std::u64;
 use stopwatch::Stopwatch;
 use tokio::prelude::*;
 use tokio::runtime::TaskExecutor;
- use tokio::clock::now;
+use tokio::clock::now;
+
+pub const MiningExpire: u64 = 2;
 
 
 pub struct Miner {
@@ -619,13 +622,16 @@ impl Miner {
 
                     let len = state.height - nonce_data.height;
 
-                    info!("%%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: {:?} %%%%%%%%%%%%%%%%%%%%%%%%%%", (end - state.start_time) + Duration::from_millis(len * 12000));
+                    info!("%%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: {:?} %%%%%%%%%%%%%%%%%%%%%%%%%%",
+                          (end - state.start_time) + Duration::from_millis(len * 12000));
 
                     let deadline = nonce_data.deadline / nonce_data.base_target;
 
-                    if state.height == nonce_data.height  && deadline < state.min_deadline && deadline <= state.max_deadline_value && state.mining_num == 0 {
+                    if state.height / MiningExpire == nonce_data.height / MiningExpire  && deadline < state.min_deadline &&
+                        deadline <= state.max_deadline_value && state.mining_num == 0 {
 
-                        info!("初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： {:?}, 本周期目前最佳deadline值是: {:?}, 允许提交的最大deadline值是: {:?}", deadline, state.min_deadline, state.max_deadline_value);
+                        info!("初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： {:?}, 本周期目前最佳deadline值是: {:?}, \
+                        允许提交的最大deadline值是: {:?}", deadline, state.min_deadline, state.max_deadline_value);
                         state.min_deadline = deadline;
 
                             state
@@ -649,7 +655,7 @@ impl Miner {
 
                     }
 
-                    else if state.height > nonce_data.height {
+                    else if state.height / MiningExpire != nonce_data.height / MiningExpire {
                         info!("扫盘导致过期, 不能挖矿!");
                         state.min_deadline = u64::max_value();
                         state.mining_num = 0;
