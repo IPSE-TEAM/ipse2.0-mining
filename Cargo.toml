@@ -51,7 +51,7 @@ async-std = "1.2.0"
 
 substrate-subxt = { git = "https://github.com/transxask/mysubxt.git", package = "substrate-subxt", version = "0.13.0", branch = "main"}
 
-sub-runtime = { git = "https://github.com/transxask/ipse_test.git", package = "node-runtime", version = "2.0.0", branch = "main"}
+sub-runtime = { git = "https://github.com/IPSE-TEAM/ipse-core.git", package = "node-runtime", version = "2.0.0", branch = "ipse"}
 
 node-primitives = {git = "https://github.com/transxask/ipse_test.git", package = "node-primitives", version = "2.0.0", branch = "main"}
 

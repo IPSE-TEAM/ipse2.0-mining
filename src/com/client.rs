@@ -169,11 +169,11 @@ impl Client {
                 std::u64::MAX
             };
 
-           let deadline = if let Some(dl) = self.get_last_mining_info().await {
-               dl.best_dl
-           } else {
-               std::u64::MAX
-           };
+//           let deadline = if let Some(dl) = self.get_last_mining_info().await {
+//               dl.best_dl
+//           } else {
+//               std::u64::MAX
+//           };
 
             let duration_from_last_mining = 12000;
 

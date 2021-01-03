@@ -62,7 +62,7 @@ pub struct RegisterCall<T: PocStaking> {
 
 #[derive(Clone, Debug, Eq, PartialEq, Store, Encode)]
 pub struct DiskOfStore<T: PocStaking> {
-    #[store(returns = Option<MachineInfo<T::BlockNumber>>)]
+    #[store(returns = Option<MachineInfo<T::BlockNumber, T::AccountId>>)]
     pub account_id: T::AccountId,
     pub _runtime: PhantomData<T>,
 }

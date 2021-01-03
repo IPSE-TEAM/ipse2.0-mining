@@ -7,13 +7,13 @@
 
 # ********************* 您可能需要修改以下这几个参数 ***********************#
 
-account_id: &numeric_id 10717349404514113857    # 矿工p盘id
-plot_size: 50                                  # p盘空间大小 单位是GiB
+account_id: &numeric_id 12784004271573219481    # 矿工p盘id
+plot_size: 10                                  # p盘空间大小 单位是GiB
 miner_proportion: 20                            # 矿工分润占比 （0 ～ 100）
 account_id_to_secret_phrase:                    # 助记词
   *numeric_id: 'cash mixture tongue cry roof glare monkey island unfair brown spirit inflict'
 plot_dirs:                                      # p盘数据存储路径
-   - '/data/test_data'
+   - 'data'
 url: 'ws://localhost:9948'                 # IPSE节点地址
 max_deadline_value: 18446744073709551615                         # 允许的deadline最大提交值
 miner_reward_dest: '5FHb1AEeNui5ANvyT368dECmNEJeouLeeZ6a9z8GTvxPLaVs'    # 收益地址(一定要指定)
