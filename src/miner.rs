@@ -540,7 +540,7 @@ impl Miner {
 
                                 if mining_info.generation_signature != state.generation_signature_bytes {
 
-                                    if mining_info.height > state.height {
+                                    if mining_info.height / MiningExpire != state.height / MiningExpire {
 
                                         info!("处理数据的上一个的区块高度是： {:?}", state.height);
 

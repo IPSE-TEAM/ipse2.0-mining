@@ -32,7 +32,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e7f590a7-b194-4a73-8b5f-c7af3e5a05e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/client.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/client.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/miner.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/miner.rs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -68,7 +67,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/miner.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="168">
+                <state relative-caret-position="1455">
                   <caret line="115" column="31" lean-forward="true" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
                 </state>
               </provider>
@@ -108,8 +107,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/miner.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="236">
-                  <caret line="39" column="22" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="22" />
+                <state relative-caret-position="86">
+                  <caret line="657" column="40" selection-start-line="657" selection-start-column="40" selection-end-line="657" selection-end-column="40" />
                 </state>
               </provider>
             </entry>
@@ -316,8 +315,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/miner.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="115" column="31" lean-forward="true" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
+        <state relative-caret-position="86">
+          <caret line="657" column="40" selection-start-line="657" selection-start-column="40" selection-end-line="657" selection-end-column="40" />
         </state>
       </provider>
     </entry>
