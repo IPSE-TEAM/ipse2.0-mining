@@ -58,7 +58,7 @@ impl RequestHandler {
             pair.clone(),
         );
 
-        client.register(pair.clone(), plot_size, account_id as u128, miner_proportion, dest);
+        client.register(pair.clone(), plot_size, account_id as u128, miner_proportion, dest).expect("请链上重新启动挖矿！");
 
         thread::sleep(Duration::from_millis(20 * 1000));
 

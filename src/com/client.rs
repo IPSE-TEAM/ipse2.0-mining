@@ -382,14 +382,20 @@ impl Client {
 
 
 
-    pub fn register(&self, pair: Pair, plot_size: u64, numeric_id:u128, miner_proportion: u32, dest: AccountId32) {
+    pub fn register(&self, pair: Pair, plot_size: u64, numeric_id:u128, miner_proportion: u32, dest: AccountId32) -> std::result::Result<(), &'static str>{
 
         let result = async_std::task::block_on(async move {
             let public = pair.clone().public();
 
             let disk_info = self.inner.disk_of(public.into(), None).await.unwrap();
             match disk_info {
-                Some(x) => { info!("已经注册过， 可以挖矿啦！"); },
+                Some(x) => {
+                if x.is_stop == true {
+
+                    return Err("链上已经注册， 但是您手动停止了挖矿，请重新启动挖矿！");
+
+                }
+                info!("已经注册过， 可以挖矿啦！"); },
 
                 None => {
                     info!("没有注册，正在注册，请稍等......");
@@ -403,7 +409,11 @@ impl Client {
                     info!("注册的结果是:{:?}", result);
                 },
             };
+
+            Ok(())
         });
+
+        result
 
     }
 
