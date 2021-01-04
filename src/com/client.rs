@@ -412,11 +412,11 @@ impl Client {
             let disk_info = self.inner.disk_of(public.into(), None).await.unwrap();
             match disk_info {
                 Some(x) => {
-                if x.is_stop == true {
-
-                    return Err("链上已经注册， 但是您手动停止了挖矿，请重新启动挖矿！");
-
-                }
+//                 if x.is_stop == true {
+//
+//                     return Err("链上已经注册， 但是您手动停止了挖矿，请重新启动挖矿！");
+//
+//                 }
                 info!("已经注册过， 可以挖矿啦！"); },
 
                 None => {
