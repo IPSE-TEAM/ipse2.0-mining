@@ -410,7 +410,7 @@ impl Client {
                 },
             };
 
-            Ok(())
+            return Ok(());
         });
 
         result
