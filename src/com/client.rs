@@ -205,6 +205,11 @@ impl Client {
         let check_dl_result =
         async_std::task::block_on(async move {
 
+            if self.is_stop(self.pair.clone()).await.is_err() {
+                info!("%%%%%%%%%%%%%%%%%%%%%%%%%%%% 矿工还没有注册， 或是已经停止挖矿， 不能再挖矿 (请注册或是重新启动挖矿)! %%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+                return Err(());
+            };
+
             let current_block = self.get_current_height().await;
 
             info!("请求数据的区块是：{:?}, 现在的区块是: {:?}, 提交的deadline是: {:?}", submission_data.height, current_block, submission_data.deadline);
@@ -378,6 +383,23 @@ impl Client {
         block_num.into()
 
 
+    }
+
+    async fn is_stop(&self, pair: Pair) -> std::result::Result<(bool), &'static str> {
+
+        let public = pair.clone().public();
+        let disk_info_opt = self.inner.disk_of(public.into(), None).await.unwrap();
+        if let Some(disk_info) = disk_info_opt {
+            if disk_info.is_stop == true {
+                return Err("挖矿被停止， 请链上重新启动挖矿");
+            }
+        }
+
+        else {
+            return Err("矿工没有注册， 请注册!");
+        }
+
+        return Ok(false);
     }
 
 
