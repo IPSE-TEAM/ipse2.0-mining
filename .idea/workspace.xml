@@ -31,11 +31,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7f590a7-b194-4a73-8b5f-c7af3e5a05e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/miner.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/miner.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,79 +40,6 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
-  </component>
-  <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.48072806">
-      <split-first>
-        <leaf>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/client.rs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="146">
-                  <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main.rs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1891" />
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/miner.rs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1455">
-                  <caret line="115" column="31" lean-forward="true" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Cargo.toml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="30">
-                  <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/runtimes.rs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1270">
-                  <caret line="99" column="20" lean-forward="true" selection-start-line="99" selection-start-column="20" selection-end-line="99" selection-end-column="20" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/poc_staking.rs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="64" column="35" selection-start-line="64" selection-start-column="35" selection-end-line="64" selection-end-column="35" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/miner.rs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="86">
-                  <caret line="657" column="40" selection-start-line="657" selection-start-column="40" selection-end-line="657" selection-end-column="40" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -172,27 +96,15 @@
     <property name="cf.advertisement.text.has.clang-format" value="true" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ipse-core" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="org.rust.disableDetachedFileInspection/Users/legotime/CLionProjects/ipse2.0-mining/src/com/client.rs" value="true" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
     <option name="version" value="2" />
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -246,14 +158,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -272,6 +177,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2663" y="297" width="424" height="484" key="FileChooserDialogImpl" timestamp="1608881793368">
