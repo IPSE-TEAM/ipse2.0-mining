@@ -74,15 +74,16 @@ pub struct State {
     // 本周期发送挖矿请求的次数
     pub mining_num: u32,
     pub is_get: bool,
+    pub nonce_data: NonceData,
 
-    max_deadline_value: u64,
+    pub max_deadline_value: u64,
+    pub deadline : u64,
 }
 
-impl State {
+impl State where {
     fn new(max_deadline_value: u64) -> Self {
         Self {
             height: 0,
-
             block: 0,
             scoop: 0,
             account_id_to_best_deadline: HashMap::new(),
@@ -99,6 +100,8 @@ impl State {
             mining_num: 0u32,
             is_get: false,
             max_deadline_value: max_deadline_value,
+            nonce_data: NonceData::default(),
+            deadline: u64::MAX,
         }
     }
 
@@ -134,6 +137,8 @@ impl State {
         self.sw.restart();
         self.processed_reader_tasks = 0;
         self.scanning = true;
+        self.nonce_data = NonceData::default();
+        self.deadline = u64::MAX;
 
     }
 }
@@ -146,6 +151,21 @@ pub struct NonceData {
     pub nonce: u64,
     pub reader_task_processed: bool,
     pub account_id: u64,
+}
+
+impl Default for NonceData {
+    fn default() -> Self {
+        Self {
+            height: 0,
+            block: 0,
+            base_target: u64::MAX,
+            deadline: u64::MAX,
+            nonce: u64::MAX,
+            reader_task_processed: false,
+            account_id: u64::MAX,
+
+        }
+    }
 }
 
 pub trait Buffer {
@@ -627,16 +647,33 @@ impl Miner {
 
                     let deadline = nonce_data.deadline / nonce_data.base_target;
 
-                    if state.height / MiningExpire == nonce_data.height / MiningExpire  && deadline < state.min_deadline &&
-                        deadline <= state.max_deadline_value && state.mining_num == 0 {
+                    //
+
+
+                    if state.height / MiningExpire == nonce_data.height / MiningExpire {
+                        if deadline < state.deadline {
+
+                            state.deadline = deadline;
+                            state.nonce_data = nonce_data;
+                            state.mining_num += 1;
+                            state.processed_reader_tasks += 1;
+
+                        }
+
+                    }
+
+                    if state.height / MiningExpire == state.nonce_data.height / MiningExpire &&
+                        state.deadline <= state.max_deadline_value && state.mining_num == 4u32 {
 
                         info!("初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： {:?}, 本周期目前最佳deadline值是: {:?}, \
                         允许提交的最大deadline值是: {:?}", deadline, state.min_deadline, state.max_deadline_value);
                         state.min_deadline = deadline;
+                        let nonce_data = &state.nonce_data;
 
-                            state
-                                .account_id_to_best_deadline
-                                .insert(nonce_data.account_id, deadline);
+                            // state
+                            //     .account_id_to_best_deadline
+                            //     .insert(state.nonce_data.account_id, deadline);
+
                             async_std::task::block_on(async {
                                 request_handler.submit_nonce(
                                 nonce_data.account_id,
@@ -649,16 +686,12 @@ impl Miner {
                                 );
                             });
 
-                            state.mining_num += 1;
-
-                            thread::sleep(Duration::from_millis(1000));
-
                     }
 
-                    else if state.height / MiningExpire != nonce_data.height / MiningExpire {
+                    else if state.height / MiningExpire != state.nonce_data.height / MiningExpire {
                         info!("扫盘导致过期, 不能挖矿!");
-                        state.min_deadline = u64::max_value();
-                        state.mining_num = 0;
+                        // state.min_deadline = u64::max_value();
+                        // state.mining_num = 0;
 
                     }
 
@@ -667,7 +700,7 @@ impl Miner {
                     }
 
 
-                    if nonce_data.reader_task_processed {
+                    if state.nonce_data.reader_task_processed {
 
                         if state.processed_reader_tasks == reader_task_count {
                             info!(
@@ -688,10 +721,10 @@ impl Miner {
 
                         }
 
-                        else {
-
-                            state.processed_reader_tasks += 1;
-                        }
+                        // else {
+                        //
+                        //     state.processed_reader_tasks += 1;
+                        // }
 
 
                     }
