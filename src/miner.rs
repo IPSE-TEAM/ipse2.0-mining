@@ -647,18 +647,19 @@ impl Miner {
 
                     let deadline = nonce_data.deadline / nonce_data.base_target;
 
-                    //
-
-
+                    // 扫盘完再提交
                     if state.height / MiningExpire == nonce_data.height / MiningExpire {
                         if deadline < state.deadline {
 
                             state.deadline = deadline;
+                            info!("本次的deadline值是: {:?}", deadline);
                             state.nonce_data = nonce_data;
-                            state.mining_num += 1;
-                            state.processed_reader_tasks += 1;
 
                         }
+
+                        state.mining_num += 1;
+                        info!("扫盘的次数为: {:?}, deadline值是: {:?}", state.mining_num, deadline);
+                        state.processed_reader_tasks += 1;
 
                     }
 
@@ -666,8 +667,8 @@ impl Miner {
                         state.deadline <= state.max_deadline_value && state.mining_num == 4u32 {
 
                         info!("初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： {:?}, 本周期目前最佳deadline值是: {:?}, \
-                        允许提交的最大deadline值是: {:?}", deadline, state.min_deadline, state.max_deadline_value);
-                        state.min_deadline = deadline;
+                        允许提交的最大deadline值是: {:?}", state.deadline, state.min_deadline, state.max_deadline_value);
+                        // state.min_deadline = deadline;
                         let nonce_data = &state.nonce_data;
 
                             // state
@@ -681,7 +682,7 @@ impl Miner {
                                 nonce_data.height, // 这个高度就是获取数据时候的高度
                                 nonce_data.block, // 这个值貌似没有什么用
                                 nonce_data.deadline, // deadline_unadjusted
-                                deadline, // 提交到链上的是这个deadline
+                                state.deadline, // 提交到链上的是这个deadline
                                 state.generation_signature_bytes,
                                 );
                             });
