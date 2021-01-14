@@ -157,7 +157,7 @@ impl Client {
         async_std::task::block_on(async move {
             // use block_hash as gen_sig
 
-            info!("请求链上信息！");
+            // info!("请求链上信息！");
             let block_hash = self.inner.block_hash(None).await.unwrap().unwrap();
 
             let block_hash = block_hash.as_fixed_bytes();
@@ -178,7 +178,7 @@ impl Client {
 
             let duration_from_last_mining = 12000;
 
-            info!("获取数据成功!, base_target = {:?}, height = {:?}", base_target, height);
+            // info!("获取数据成功!, base_target = {:?}, height = {:?}", base_target, height);
 
             future::ok(MiningInfoResponse{
                 base_target,
@@ -200,7 +200,7 @@ impl Client {
         submission_data: &SubmissionParameters,
     ) -> impl Future<Item = SubmitNonceResponse, Error = FetchError> {
 
-        info!(" --------------扫盘完成， 正在检查提交。-------------------");
+        // info!(" --------------扫盘完成， 正在检查提交。-------------------");
 
         let check_dl_result =
         async_std::task::block_on(async move {
@@ -272,7 +272,7 @@ impl Client {
 
                 signer.set_nonce(nonce + 1);
 
-                info!("设置的nonce值是: {:?}", signer.nonce().unwrap() + 1);
+                // info!("设置的nonce值是: {:?}", signer.nonce().unwrap() + 1);
 
                 let last_result = self.inner.
                     mining(
@@ -379,7 +379,7 @@ impl Client {
 
         let block_num = self.inner.block_number(None).await.unwrap() + 1;
 
-        info!("当前区块的高度是: {:?}", block_num);
+        // info!("当前区块的高度是: {:?}", block_num);
         block_num.into()
 
 

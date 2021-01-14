@@ -562,7 +562,7 @@ impl Miner {
 
                                     if mining_info.height / MiningExpire != state.height / MiningExpire {
 
-                                        info!("处理数据的上一个的区块高度是： {:?}", state.height);
+                                        // info!("处理数据的上一个的区块高度是： {:?}", state.height);
 
                                         state.update_mining_info(&mining_info);
 
@@ -574,14 +574,14 @@ impl Miner {
                                             &Arc::new(state.generation_signature_bytes),
                                         );
 
-                                        info!("处理返回的数据! 高度是: {:?}", mining_info.height);
+                                        // info!("处理返回的数据! 高度是: {:?}", mining_info.height);
 
                                         drop(state);
 
                                     }
 
                                     else {
-                                        info!("重复请求数据(已经获取过), 高度是: {:?}", mining_info.height);
+                                        // info!("重复请求数据(已经获取过), 高度是: {:?}", mining_info.height);
                                     }
 
 
@@ -642,9 +642,6 @@ impl Miner {
 
                     let len = state.height - nonce_data.height;
 
-                    info!("%%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: {:?} %%%%%%%%%%%%%%%%%%%%%%%%%%",
-                          (end - state.start_time) + Duration::from_millis(len * 12000));
-
                     let deadline = nonce_data.deadline / nonce_data.base_target;
 
                     // 扫盘完再提交
@@ -652,7 +649,7 @@ impl Miner {
                         if deadline < state.deadline {
 
                             state.deadline = deadline;
-                            info!("本次的deadline值是: {:?}", deadline);
+                            // info!("本次的deadline值是: {:?}", deadline);
                             state.nonce_data = nonce_data;
 
                         }
@@ -661,13 +658,16 @@ impl Miner {
                         info!("扫盘的次数为: {:?}, deadline值是: {:?}", state.mining_num, deadline);
                         state.processed_reader_tasks += 1;
 
+                        info!("%%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: {:?} %%%%%%%%%%%%%%%%%%%%%%%%%%",
+                          (end - state.start_time) + Duration::from_millis(len * 12000));
+
                     }
 
                     if state.height / MiningExpire == state.nonce_data.height / MiningExpire &&
                         state.deadline <= state.max_deadline_value && state.mining_num == 4u32 {
 
-                        info!("初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： {:?}, 本周期目前最佳deadline值是: {:?}, \
-                        允许提交的最大deadline值是: {:?}", state.deadline, state.min_deadline, state.max_deadline_value);
+                        info!("初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： {:?}, \
+                        允许提交的最大deadline值是: {:?}", state.deadline, state.max_deadline_value);
                         // state.min_deadline = deadline;
                         let nonce_data = &state.nonce_data;
 
