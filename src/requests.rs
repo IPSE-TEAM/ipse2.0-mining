@@ -42,20 +42,26 @@ impl RequestHandler {
         plot_size: u64,
         miner_proportion: u32,
         miner_reward_dest: String,
+        payee: String,
 
 
     ) -> RequestHandler {
 
-        let phrase = RequestHandler::str_convert_to_phrase(secret_phrases.get(&account_id).expect("获取助记词错误").as_str().to_string());
+        let phrase = RequestHandler::str_convert_to_phrase(secret_phrases.get(&account_id).expect("获取矿工助记词错误").as_str().to_string());
 
-        let pair = Pair::from_phrase(&phrase, None).expect("签名错误").0;
+        let pair = Pair::from_phrase(&phrase, None).expect("矿工签名错误").0;
+
+        let payee_phrase = RequestHandler::str_convert_to_phrase(payee);
+
+        let payee_pair = Pair::from_phrase(&payee_phrase, None).expect("提交挖矿的账户签名错误").0;
+
         let dest = AccountId32::from_string(&miner_reward_dest).expect("收益地址格式错误!");
 
         let client = Client::new(
             base_uri,
             // secret_phrases,
             total_size_gb,
-            pair.clone(),
+            payee_pair,
         );
 
         client.register(pair.clone(), plot_size, account_id as u128, miner_proportion, dest).expect("请链上重新启动挖矿！");

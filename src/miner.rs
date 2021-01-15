@@ -46,6 +46,7 @@ pub struct Miner {
     rx_nonce_data: mpsc::Receiver<NonceData>,
     target_deadline: u64,
     account_id_to_target_deadline: HashMap<u64, u64>,
+    // Payee: String,
     state: Arc<Mutex<State>>,
     reader_task_count: usize,
     block_duration: u64,
@@ -488,6 +489,7 @@ impl Miner {
             rx_nonce_data,
             target_deadline: cfg.target_deadline,
             account_id_to_target_deadline: cfg.account_id_to_target_deadline,
+            // payee: cfg.payee,
             request_handler: RequestHandler::new(
                 cfg.url,
                 cfg.account_id_to_secret_phrase,
@@ -500,6 +502,7 @@ impl Miner {
                 cfg.plot_size,
                 cfg.miner_proportion,
                 cfg.miner_reward_dest,
+                cfg.payee,
 
             ),
             state: Arc::new(Mutex::new(State::new(cfg.max_deadline_value))),
@@ -507,6 +510,7 @@ impl Miner {
             block_duration: max(1000, cfg.block_duration),
             executor,
             wakeup_after: cfg.hdd_wakeup_after * 1000, // ms -> s
+            // Payee: cfg.payee,
         }
     }
 
