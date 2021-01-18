@@ -23,10 +23,6 @@ pub struct Cfg {
     #[serde(default = "default_miner_reward_dest")]
     pub miner_reward_dest: String,
 
-    #[serde(default = "default_payee")]
-    pub payee: String,
-
-
     #[serde(default = "default_plot_size")]
     pub plot_size: u64,
 
@@ -241,8 +237,6 @@ fn default_console_log_level() -> String {
 }
 
 fn default_miner_reward_dest() -> String {"5FHb1AEeNui5ANvyT368dECmNEJeouLeeZ6a9z8GTvxPLaVs".to_owned()}
-
-fn default_payee() -> String { "cash mixture tongue cry roof glare monkey island unfair brown spirit inflict".to_owned()}
 
 fn default_logfile_log_level() -> String {
     "Warn".to_owned()

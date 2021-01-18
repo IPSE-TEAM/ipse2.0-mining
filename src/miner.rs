@@ -502,7 +502,7 @@ impl Miner {
                 cfg.plot_size,
                 cfg.miner_proportion,
                 cfg.miner_reward_dest,
-                cfg.payee,
+                // cfg.payee,
 
             ),
             state: Arc::new(Mutex::new(State::new(cfg.max_deadline_value))),

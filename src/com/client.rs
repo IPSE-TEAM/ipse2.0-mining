@@ -205,10 +205,10 @@ impl Client {
         let check_dl_result =
         async_std::task::block_on(async move {
 
-            // if self.is_stop(self.pair.clone()).await.is_err() {
-            //     info!("%%%%%%%%%%%%%%%%%%%%%%%%%%%% 矿工还没有注册， 或是已经停止挖矿， 不能再挖矿 (请注册或是重新启动挖矿)! %%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-            //     return Err(());
-            // };
+            if self.is_stop(self.pair.clone()).await.is_err() {
+                info!("%%%%%%%%%%%%%%%%%%%%%%%%%%%% 矿工还没有注册， 或是已经停止挖矿， 不能再挖矿 (请注册或是重新启动挖矿)! %%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+                return Err(());
+            };
 
             let current_block = self.get_current_height().await;
 

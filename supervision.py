@@ -62,9 +62,9 @@ def run(FileName):
 		time.sleep(10)
 
 
-def stop(FileName):
+def stop(FileName, SupervisonFileName):
 	info = os.popen("ps -ef | grep {0}".format(FileName)).readlines()#.extend(os.popen("ps -ef | grep supervision.py").readlines())
-	info1 = os.popen("ps -ef | grep supervision.py").readlines()
+	info1 = os.popen("ps -ef | grep {0}\.py".format(SupervisonFileName)).readlines()
 	info.extend(info1)
 	if info:
 		for i in info:
@@ -85,11 +85,14 @@ if __name__ == "__main__":
 		# 结束挖矿： python3 supervision.py --stop
 
 	FileName = "poc-mining"
+	SupervisonFileName = "supervision"
+	# 以上两个名字要保证在本机唯一
+
 	opts, args = getopt.getopt(sys.argv[1:], "", ["stop", "start"])
 	if len(opts) == 1:
 		for opt, arg in opts:
 			if opt == "--stop":
-				stop(FileName)
+				stop(FileName, SupervisonFileName)
 			elif opt == "--start":
 				run(FileName)
 			else:
