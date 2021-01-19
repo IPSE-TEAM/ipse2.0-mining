@@ -281,6 +281,7 @@ impl Miner {
         let (drive_id_to_plots, total_size) =
             scan_plots(&cfg.plot_dirs, cfg.hdd_use_direct_io, cfg.benchmark_cpu());
 
+
         let cpu_threads = cfg.cpu_threads;
         let cpu_worker_task_count = cfg.cpu_worker_task_count;
 
@@ -659,7 +660,7 @@ impl Miner {
                         }
 
                         state.mining_num += 1;
-                        info!("扫盘的次数为: {:?}, deadline值是: {:?}", state.mining_num, deadline);
+                        info!("扫盘的次数为: {:?}, total_size: {:?}, deadline值是: {:?}", state.mining_num, total_size, deadline);
                         state.processed_reader_tasks += 1;
 
                         info!("%%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: {:?} %%%%%%%%%%%%%%%%%%%%%%%%%%",
@@ -667,8 +668,20 @@ impl Miner {
 
                     }
 
+                    let mut end_num = 0u64;
+
+                    if (total_size * 4) % (16 * 1024 * 1024) == 0 {
+                        end_num = total_size * 4 / 16 / 1024 / 1024
+                    }
+
+                    else {
+                        end_num = total_size * 4 / 16 / 1024 / 1024 + 1;
+                    }
+
+                    info!("end_num: {:?}", end_num);
+
                     if state.height / MiningExpire == state.nonce_data.height / MiningExpire &&
-                        state.deadline <= state.max_deadline_value && state.mining_num == 4u32 {
+                        state.deadline <= state.max_deadline_value && state.mining_num == (end_num as u32) {
 
                         info!("初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： {:?}, \
                         允许提交的最大deadline值是: {:?}", state.deadline, state.max_deadline_value);
@@ -701,7 +714,7 @@ impl Miner {
                     }
 
                     else {
-
+                        // info!("state.nonce_data.reader_task_processed = {:?}", state.nonce_data.reader_task_processed);
                     }
 
 
