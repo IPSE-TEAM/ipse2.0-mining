@@ -1,5 +1,5 @@
 [package]
-name = "poc-mining"
+name = "mining"
 version = "1.7.8"
 license = "GPL-3.0"
 authors = ["PoC Consortium <bots@cryptoguru.org>"]
