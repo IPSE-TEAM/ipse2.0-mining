@@ -2,6 +2,9 @@ import os
 import time
 import getopt
 import sys
+import os
+
+GIB = 1024 * 1024 * 1024
 
 def kill_process(FileName):
 	info = os.popen("ps -ef | grep {0}".format(FileName)).readlines()
@@ -15,7 +18,7 @@ def kill_process(FileName):
 				print("删除进程错误! e = {0}, info = {1}".format(e, i))
 
 
-def run(FileName):
+def run(FileName, LogMaxSize):
 	# 检查5分钟 如果有5条日志以上相同 那么判定挖矿异常
 
 	info = None
@@ -25,6 +28,20 @@ def run(FileName):
 
 	while True:
 		try:
+
+			log_file_size = os.path.getsize(dir_url)
+			print("日志文件的大小为: {0}".format(log_file_size))
+			# 如果日志文件大于20Gib 那么重启
+			if log_file_size > LogMaxSize * GIB:
+				print("日志文件太大， 重启...........")
+				kill_process(FileName)
+				print("关闭挖矿软件!")
+				time.sleep(5)
+
+				os.system(r'./{0} > {1}.log 2>&1 &'.format(FileName, FileName))
+				print("启动挖矿软件!")
+				continue
+
 			with open(dir_url, "r") as f:
 
 				info = f.readlines()[-1]  # .split()
@@ -84,9 +101,10 @@ if __name__ == "__main__":
 		# 开启挖矿： python3 supervision.py --start
 		# 结束挖矿： python3 supervision.py --stop
 
-	FileName = "poc-mining"
-	SupervisonFileName = "supervision"
-	# 以上两个名字要保证在本机唯一
+	FileName = "poc-mining"          	# 挖矿软件名称
+	SupervisonFileName = "supervision"  # 本文件名（去掉 '.py' 后缀)
+	# 注意!!! 以上两个名字要保证在本机唯一
+	LogFileMaxSize = 20                 # 日志文件大小最大允许值(多少Gib)
 
 	opts, args = getopt.getopt(sys.argv[1:], "", ["stop", "start"])
 	if len(opts) == 1:
@@ -94,7 +112,7 @@ if __name__ == "__main__":
 			if opt == "--stop":
 				stop(FileName, SupervisonFileName)
 			elif opt == "--start":
-				run(FileName)
+				run(FileName, LogFileMaxSize)
 			else:
 				exit("终端命令输入错误！ 请再次输入。")
 	else:
