@@ -7,11 +7,11 @@ from pathlib import Path
 
 GIB = 1024 * 1024 * 1024
 
-def kill_process(SupervisonFileName, FileName):
+def kill_process(SupervisionFileName, FileName):
 	info = os.popen("ps -ef | grep {0}".format(FileName)).readlines()
 	if info:
 		for i in info:
-			if SupervisonFileName not in i:
+			if SupervisionFileName not in i:
 				try:
 					j = i.split()[1].strip()
 					os.system("kill -9 " + j)
@@ -20,7 +20,7 @@ def kill_process(SupervisonFileName, FileName):
 					print("删除进程错误! e = {0}, info = {1}".format(e, i))
 
 
-def run(SupervisonFileName, FileName, LogMaxSize):
+def run(SupervisionFileName, FileName, LogMaxSize):
 	# 检查5分钟 如果有5条日志以上相同 那么判定挖矿异常
 
 	info = None
@@ -36,7 +36,7 @@ def run(SupervisonFileName, FileName, LogMaxSize):
 			# 如果日志文件大于20Gib 那么重启
 			if log_file_size > LogMaxSize * GIB:
 				print("日志文件太大， 重启...........")
-				kill_process(SupervisonFileName, FileName)
+				kill_process(SupervisionFileName, FileName)
 				print("关闭挖矿软件!")
 				time.sleep(5)
 
@@ -60,7 +60,7 @@ def run(SupervisonFileName, FileName, LogMaxSize):
 
 				# 卡住5次以上或是出现Error 马上重启
 				if (count >= 5) or ("Error" in info) or ("error" in info):
-					kill_process(SupervisonFileName, FileName)
+					kill_process(SupervisionFileName, FileName)
 					print("关闭挖矿软件!")
 					time.sleep(5)
 
@@ -73,7 +73,7 @@ def run(SupervisonFileName, FileName, LogMaxSize):
 		# 没有日志记录或是没有日志文件 说明没有启动软件
 		except Exception as e:
 			print("没有启动挖矿软件！", e)
-			kill_process(SupervisonFileName, FileName)
+			kill_process(SupervisionFileName, FileName)
 			print("关闭挖矿软件!")
 			result = os.system(r'./{0} > {1}.log 2>&1 &'.format(FileName, FileName))
 			print("启动挖矿软件!")
@@ -82,9 +82,9 @@ def run(SupervisonFileName, FileName, LogMaxSize):
 		time.sleep(10)
 
 
-def stop(FileName, SupervisonFileName):
+def stop(FileName, SupervisionFileName):
 	info = os.popen("ps -ef | grep {0}".format(FileName)).readlines()#.extend(os.popen("ps -ef | grep supervision.py").readlines())
-	info1 = os.popen("ps -ef | grep {0}\.py".format(SupervisonFileName)).readlines()
+	info1 = os.popen("ps -ef | grep {0}\.py".format(SupervisionFileName)).readlines()
 	info.extend(info1)
 	if info:
 		for i in info:
@@ -108,7 +108,7 @@ if __name__ == "__main__":
 	FileName = ""          	# 挖矿软件名称
 	LogFileMaxSize = 20                 # 日志文件大小最大允许值(多少Gib)
 
-	SupervisonFileName = Path(__file__).name.split(".")[0]
+	SupervisionFileName = Path(__file__).name.split(".")[0]
 	opts, args = getopt.getopt(sys.argv[1:], "", ["stop", "mining=", "log-max-size="])
 
 	# 检查是否有文件参数
@@ -130,11 +130,11 @@ if __name__ == "__main__":
 	# 检查是否有停止命令 有的话直接停止
 	for opt, arg in opts:
 		if opt == "--stop":
-			stop(FileName, SupervisonFileName)
+			stop(FileName, SupervisionFileName)
 			exit("停止挖矿")
 			break
 	else:
-		run(SupervisonFileName, FileName, LogFileMaxSize)
+		run(SupervisionFileName, FileName, LogFileMaxSize)
 
 
 
