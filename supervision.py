@@ -27,6 +27,8 @@ def run(SupervisionFileName, FileName, LogMaxSize):
 	start = None
 	count = 0
 	dir_url = r'./{0}.log'.format(FileName)
+	abs = os.path.abspath(r"./")
+	run_poc = r'{0}/{1} > {0}/{1}.log 2>&1 &'.format(abs, FileName)
 
 	while True:
 		try:
@@ -40,7 +42,7 @@ def run(SupervisionFileName, FileName, LogMaxSize):
 				print("关闭挖矿软件!")
 				time.sleep(5)
 
-				os.system(r'./{0} > {1}.log 2>&1 &'.format(FileName, FileName))
+				os.system(run_poc)
 				print("启动挖矿软件!")
 				count = 0
 				continue
@@ -64,7 +66,7 @@ def run(SupervisionFileName, FileName, LogMaxSize):
 					print("关闭挖矿软件!")
 					time.sleep(5)
 
-					os.system(r'./{0} > {1}.log 2>&1 &'.format(FileName, FileName))
+					os.system(run_poc)
 					print("启动挖矿软件!")
 
 					count = 0

@@ -28,9 +28,12 @@ def folder(account_id, host):
     # 删除yaml
     os.system("rm new_config.yaml")
 
+    abs = os.path.abspath(r"./")
+    print("unduilujing:", abs)
+
     with open("./{0}/{1}/command.txt".format(host, account_id), "w", encoding="utf-8") as f:
-        f.write("python3 supervision-{0}.py --mining poc-mining-{0} --log-max-size 10 \n".format(account_id))
-        f.write("python3 supervision-{0}.py --mining poc-mining-{0} --log-max-size 10 --stop\n".format(account_id))
+        f.write("python3 {1}/{2}/{0}/supervision-{0}.py --mining poc-mining-{0} --log-max-size 10 \n".format(account_id, abs, host))
+        f.write("python3 {1}/{2}/{0}/supervision-{0}.py --mining poc-mining-{0} --log-max-size 10 --stop\n".format(account_id, abs, host))
 
 def update_yaml(old_yaml, miner):
     account_id = miner["account_id"]
