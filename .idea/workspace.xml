@@ -32,9 +32,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e7f590a7-b194-4a73-8b5f-c7af3e5a05e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/client.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/client.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/requests.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/requests.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/update_yaml.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/update_yaml.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +74,7 @@
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="org.rust.disableDetachedFileInspection/Users/legotime/CLionProjects/ipse2.0-mining/src/com/client.rs" value="true" />
   </component>
-  <component name="RunManager" selected="Python.update_yaml (1)">
+  <component name="RunManager" selected="Python.update_yaml">
     <configuration name="supervision" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ipse2.0-mining" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -143,8 +140,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.update_yaml (1)" />
         <item itemvalue="Python.update_yaml" />
+        <item itemvalue="Python.update_yaml (1)" />
         <item itemvalue="Python.supervision" />
       </list>
     </recent_temporary>
@@ -210,22 +207,22 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2663" y="297" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611214467496" />
-    <state width="1874" height="359" key="GridCell.Tab.0.bottom" timestamp="1611306212317">
+    <state width="1874" height="359" key="GridCell.Tab.0.bottom" timestamp="1611307186771">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="359" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611306212317" />
-    <state width="1874" height="359" key="GridCell.Tab.0.center" timestamp="1611306212317">
+    <state width="1874" height="359" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611307186771" />
+    <state width="1874" height="359" key="GridCell.Tab.0.center" timestamp="1611307186771">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="359" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611306212317" />
-    <state width="1874" height="359" key="GridCell.Tab.0.left" timestamp="1611306212316">
+    <state width="1874" height="359" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611307186771" />
+    <state width="1874" height="359" key="GridCell.Tab.0.left" timestamp="1611307186771">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="359" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611306212316" />
-    <state width="1874" height="359" key="GridCell.Tab.0.right" timestamp="1611306212317">
+    <state width="1874" height="359" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611307186771" />
+    <state width="1874" height="359" key="GridCell.Tab.0.right" timestamp="1611307186771">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="359" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611306212317" />
+    <state width="1874" height="359" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611307186771" />
     <state x="2575" y="257" width="610" height="564" key="find.popup" timestamp="1611224741377">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
