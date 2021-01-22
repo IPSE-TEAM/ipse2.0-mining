@@ -26,9 +26,7 @@ def run(SupervisionFileName, FileName, LogMaxSize):
 	info = None
 	start = None
 	count = 0
-	dir_url = r'./{0}.log'.format(FileName)
-	abs = os.path.abspath(r"./")
-	run_poc = r'{0}/{1} > {0}/{1}.log 2>&1 &'.format(abs, FileName)
+	dir_url = r'{0}.log'.format(FileName)
 
 	while True:
 		try:
@@ -42,7 +40,7 @@ def run(SupervisionFileName, FileName, LogMaxSize):
 				print("关闭挖矿软件!")
 				time.sleep(5)
 
-				os.system(run_poc)
+				os.system(r'./{0} > {1}.log 2>&1 &'.format(FileName, FileName))
 				print("启动挖矿软件!")
 				count = 0
 				continue
@@ -66,7 +64,7 @@ def run(SupervisionFileName, FileName, LogMaxSize):
 					print("关闭挖矿软件!")
 					time.sleep(5)
 
-					os.system(run_poc)
+					os.system(r'{0} > {1}.log 2>&1 &'.format(FileName, FileName))
 					print("启动挖矿软件!")
 
 					count = 0
@@ -77,7 +75,7 @@ def run(SupervisionFileName, FileName, LogMaxSize):
 			print("没有启动挖矿软件！", e)
 			kill_process(SupervisionFileName, FileName)
 			print("关闭挖矿软件!")
-			result = os.system(r'./{0} > {1}.log 2>&1 &'.format(FileName, FileName))
+			result = os.system(r'{0} > {1}.log 2>&1 &'.format(FileName, FileName))
 			print("启动挖矿软件!")
 			count = 0
 
@@ -112,6 +110,7 @@ if __name__ == "__main__":
 
 	SupervisionFileName = Path(__file__).name.split(".")[0]
 	opts, args = getopt.getopt(sys.argv[1:], "", ["stop", "mining=", "log-max-size="])
+	print(opts)
 
 	# 检查是否有文件参数
 	for opt, arg in opts:
