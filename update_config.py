@@ -59,7 +59,7 @@ def update_yaml(old_yaml, miner):
 
 
 def get_miners_yaml():
-    with open("miners_yaml.yaml", "r", encoding="utf-8") as yaml_r:
+    with open("miners_config.yaml", "r", encoding="utf-8") as yaml_r:
         result = yaml_r.read()
         x = yaml.load(result)
         print(type(x))
