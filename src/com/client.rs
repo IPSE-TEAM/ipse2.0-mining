@@ -38,6 +38,7 @@ pub use substrate_subxt::{
 };
 use sp_core::{storage::StorageKey, twox_128};
 use sp_keyring::AccountKeyring;
+use substrate_subxt::balances::TransferCallExt;
 use sp_runtime::traits::{Header};
 use sub_runtime::poc::{Difficulty, MiningInfo};
 use crate::com::runtimes::{PocRuntime};
@@ -404,12 +405,15 @@ impl Client {
 
 
 
-    pub fn register(&self, pair: Pair, plot_size: u64, numeric_id:u128, miner_proportion: u32, dest: AccountId32) -> std::result::Result<(), &'static str>{
+    pub fn register(&self, pair: Pair,  plot_size: u64, numeric_id:u128, miner_proportion: u32, dest: AccountId32) -> std::result::Result<(), &'static str>{
+
+        let alice_signer: PairSigner<PocRuntime, Pair> = PairSigner::new(AccountKeyring::Alice.pair());
 
         let result = async_std::task::block_on(async move {
             let public = pair.clone().public();
 
             let disk_info = self.inner.disk_of(public.into(), None).await.unwrap();
+
             match disk_info {
                 Some(x) => {
 //                 if x.is_stop == true {
@@ -420,9 +424,23 @@ impl Client {
                 info!("已经注册过， 可以挖矿啦！"); },
 
                 None => {
+
                     info!("没有注册，正在注册，请稍等......");
 
                     let signer: PairSigner<PocRuntime, Pair> = PairSigner::new(self.pair.clone());
+
+                    let free_balance = self.inner.account(&public.into(), None).await.unwrap().data.free;
+
+                    info!("用户的自由余额是： {:?}", free_balance);
+
+                    // let base: u128 = 5_000_000_000_000_000;
+                    // if free_balance < base {
+                    //
+                    //     info!("用户的自由余额不足， 正在充值....");
+                    //     let dest = AccountKeyring::Bob.to_account_id();
+                    //     let _ = self.inner.transfer(&alice_signer, &dest, 100_00000_00000_0000).await;
+                    //
+                    // }
 
                     info!("注册的账号是：{:?}, p盘id是: {:?}, p盘空间大小为: {:?} GiB, 矿工分润占比是: {:?} %, 收益地址是: {:?}", signer.clone().account_id(), numeric_id, plot_size, miner_proportion, dest);
 

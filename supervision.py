@@ -101,8 +101,8 @@ if __name__ == "__main__":
 	# 监控节点 放在与挖矿软件相同的文件夹中
 
 	# 使用方法：
-		# 开启挖矿： python3 supervision.py --file 挖矿软件名称 [--log-max-size 数值(默认值是20)] (Gib为基本单位， 比如数值为1， 代表log文件最大空间允许值是1Gib)
-		# 结束挖矿： python3 supervision.py --file 挖矿软件名称 --stop
+		# 开启挖矿： python3 supervision.py --mining 挖矿软件名称 [--log-max-size 数值(默认值是20)] (Gib为基本单位， 比如数值为1， 代表log文件最大空间允许值是1Gib)
+		# 结束挖矿： python3 supervision.py --mining 挖矿软件名称 --stop
 
 
 	FileName = ""          	# 挖矿软件名称

@@ -31,23 +31,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7f590a7-b194-4a73-8b5f-c7af3e5a05e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/10717349404514113857/config.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/10717349404514113857/poc-mining-10717349404514113857" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/10717349404514113857/supervision-10717349404514113857.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/miners_yaml.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/miners_yaml.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/new_config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poc-mining.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/10717349404514113857/config.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/10717349404514113857/log/scavenger.1.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/10717349404514113857/poc-mining-10717349404514113857" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/10717349404514113857/poc-mining-10717349404514113857.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/10717349404514113857/supervision-10717349404514113857.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/miners_yaml.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/test/miners_yaml.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/new_config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/client.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/client.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/requests.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/requests.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/update_yaml.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/update_yaml.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update_yaml.py" beforeDir="false" afterPath="$PROJECT_DIR$/update_yaml.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,22 +210,22 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2663" y="297" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611214467496" />
-    <state width="1874" height="359" key="GridCell.Tab.0.bottom" timestamp="1611301770599">
+    <state width="1874" height="359" key="GridCell.Tab.0.bottom" timestamp="1611306212317">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="359" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611301770599" />
-    <state width="1874" height="359" key="GridCell.Tab.0.center" timestamp="1611301770599">
+    <state width="1874" height="359" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611306212317" />
+    <state width="1874" height="359" key="GridCell.Tab.0.center" timestamp="1611306212317">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="359" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611301770599" />
-    <state width="1874" height="359" key="GridCell.Tab.0.left" timestamp="1611301770599">
+    <state width="1874" height="359" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611306212317" />
+    <state width="1874" height="359" key="GridCell.Tab.0.left" timestamp="1611306212316">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="359" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611301770599" />
-    <state width="1874" height="359" key="GridCell.Tab.0.right" timestamp="1611301770599">
+    <state width="1874" height="359" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611306212316" />
+    <state width="1874" height="359" key="GridCell.Tab.0.right" timestamp="1611306212317">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="359" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611301770599" />
+    <state width="1874" height="359" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611306212317" />
     <state x="2575" y="257" width="610" height="564" key="find.popup" timestamp="1611224741377">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>

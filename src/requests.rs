@@ -2,6 +2,7 @@ use crate::com::api::{FetchError, MiningInfoResponse};
 use crate::com::client::{Client, ProxyDetails, SubmissionParameters};
 use crate::future::prio_retry::PrioRetry;
 use crate::config::Cfg;
+use sp_keyring::AccountKeyring;
 use futures::future::Future;
 use futures::stream::Stream;
 use futures::sync::mpsc;
