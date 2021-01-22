@@ -60,7 +60,7 @@ def update_yaml(old_yaml, miner):
         yaml.dump(old_yaml, yaml_w)
     folder(account_id, host)
 
-    # os.system("rm config.yaml")
+    os.system("rm miners_yaml.yaml")
 
 
 def get_miners_yaml():
@@ -73,7 +73,12 @@ def get_miners_yaml():
 
 def main():
 
-    os.system("wget -nc  https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.0/config.yaml")
+    result = os.system("wget -nc  https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.0/config.yaml && "
+                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.1/miners_yaml.yaml && "
+                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.1/engraver-2.4.0-x86_64-unknown-linux-gnu-cpu-gpu.tar.xz")
+    print(result)
+    if result != 0:
+        exit("get file err")
 
     old_yaml = get_old_yaml()  # 获取旧的配置文件
     miners = get_miners_yaml()["miners"]  # 获取所有矿工的配置信息
