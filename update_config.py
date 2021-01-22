@@ -60,6 +60,8 @@ def update_yaml(old_yaml, miner):
         yaml.dump(old_yaml, yaml_w)
     folder(account_id, host)
 
+    os.system("rm config.yaml")
+
 
 def get_miners_yaml():
     with open("miners_config.yaml", "r", encoding="utf-8") as yaml_r:
@@ -70,6 +72,8 @@ def get_miners_yaml():
 
 
 def main():
+
+    os.system("wget -nc  https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.0/config.yaml")
 
     old_yaml = get_old_yaml()  # 获取旧的配置文件
     miners = get_miners_yaml()["miners"]  # 获取所有矿工的配置信息
