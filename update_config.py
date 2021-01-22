@@ -17,7 +17,7 @@ def folder(account_id, host):
     # 创建以id为文件名的文件夹
     os.system("mkdir ./{0}/{1}".format(host, account_id))
     # 把挖矿软件复制到文件夹中
-    os.system("cp ./target/release/poc-mining ./{0}/{1}/poc-mining-{2}".format(host, account_id, account_id))
+    os.system("cp ./poc-mining ./{0}/{1}/poc-mining-{2} && chmod 777 ./{0}/{1}/poc-mining-{2}".format(host, account_id, account_id))
     # 把监控脚本复制到文件夹中
     os.system("cp supervision.py ./{0}/{1}/supervision-{2}.py".format(host, account_id, account_id))
     # 把配置文件复制到文件夹中
@@ -29,11 +29,11 @@ def folder(account_id, host):
     os.system("rm new_config.yaml")
 
     abs = os.path.abspath(r"./")
-    print("unduilujing:", abs)
 
     with open("./{0}/{1}/command.txt".format(host, account_id), "w", encoding="utf-8") as f:
         f.write("python3 {1}/{2}/{0}/supervision-{0}.py --mining {1}/{2}/{0}/poc-mining-{0} --log-max-size 10 \n".format(account_id, abs, host))
         f.write("python3 {1}/{2}/{0}/supervision-{0}.py --mining {1}/{2}/{0}/poc-mining-{0} --log-max-size 10 --stop\n".format(account_id, abs, host))
+
 
 def update_yaml(old_yaml, miner):
     account_id = miner["account_id"]
@@ -60,7 +60,7 @@ def update_yaml(old_yaml, miner):
         yaml.dump(old_yaml, yaml_w)
     folder(account_id, host)
 
-    os.system("rm miners_yaml.yaml")
+    os.system("rm supervision.py")
 
 
 def get_miners_yaml():
@@ -73,9 +73,11 @@ def get_miners_yaml():
 
 def main():
 
-    result = os.system("wget -nc  https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.0/config.yaml && "
-                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.1/miners_yaml.yaml && "
-                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.1/engraver-2.4.0-x86_64-unknown-linux-gnu-cpu-gpu.tar.xz")
+    result = os.system("wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.2/config.yaml && "
+                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.2/supervision.py && "
+                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.2/miners_config.yaml && "
+                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.2/engraver-2.4.0-x86_64-unknown-linux-gnu-cpu-gpu.tar.xz")
+
     print(result)
     if result != 0:
         exit("get file err")
