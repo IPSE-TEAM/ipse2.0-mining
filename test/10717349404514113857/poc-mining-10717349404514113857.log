@@ -1,0 +1,203 @@
+15:03:27 [INFO]  Scavenger v.1.7.8
+15:03:27 [INFO]  path=/data/test_data, files=1, size=0.0488 TiB
+15:03:27 [INFO]  plot files loaded: total drives=1, total capacity=0.0488 TiB
+15:03:27 [INFO]  reader-threads=1 CPU-threads=8
+15:03:27 [INFO]  CPU-buffer=4(+8)
+15:03:29 [INFO]  已经注册过， 可以挖矿啦！
+15:03:49 [INFO]  ************************************* 开始挖矿 **************************************************
+15:03:49 [INFO]  new block: height=8415, scoop=477                                               
+Scavenging: 4.00 MB / 12.50 MB │████████░░░░░░░░░░░░░░░│ 32.00 % 832.38 MB/s 0sScavenging: 8.00 MB / 12.50 MB │███████████████░░░░░░░░│ 64.00 % 676.59 MB/s 0sScavenging: 12.00 MB / 12.50 MB │██████████████████████│ 96.00 % 503.21 MB/s 0sScavenging: 12.50 MB / 12.50 MB │████████████████████████│ 100.00 % 514.25 MB/s15:03:49 [INFO]  drive  10302 finished, speed=520 MiB/s                                          
+15:03:49 [INFO]  扫盘的次数为: 1, total_size: 13107200, deadline值是: 32520348
+15:03:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 39.294248ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:03:49 [INFO]  end_num: 4
+15:03:49 [INFO]  round finished: roundtime=39ms, speed=320.51MiB/s                               
+15:03:49 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+15:03:49 [INFO]  扫盘的次数为: 2, total_size: 13107200, deadline值是: 690065
+15:03:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 73.427533ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:03:49 [INFO]  end_num: 4
+15:03:49 [INFO]  扫盘的次数为: 3, total_size: 13107200, deadline值是: 5896639
+15:03:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 74.085961ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:03:49 [INFO]  end_num: 4
+15:03:49 [INFO]  扫盘的次数为: 4, total_size: 13107200, deadline值是: 147220
+15:03:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 75.023332ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:03:49 [INFO]  end_num: 4
+15:03:49 [INFO]  初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： 147220, 允许提交的最大deadline值是: 18446744073709551615
+15:03:50 [INFO]  请求数据的区块是：8415, 现在的区块是: 8415, 提交的deadline是: 147220
+15:03:50 [INFO]  禁止提交! 本挖矿周期已经有比较好的deadline = 4237 
+15:03:50 [WARN]  verify failed: accountId = 10717349404514113857, height = 8415, nonce = 121375, deadline = 147220
+15:04:01 [INFO]  new block: height=8416, scoop=2814                                              
+Scavenging: 4.00 MB / 12.50 MB │████████░░░░░░░░░░░░░░░│ 32.00 % 805.72 MB/s 0sScavenging: 8.00 MB / 12.50 MB │███████████████░░░░░░░░│ 64.00 % 409.29 MB/s 0sScavenging: 12.00 MB / 12.50 MB │██████████████████████│ 96.00 % 554.19 MB/s 0sScavenging: 12.50 MB / 12.50 MB │████████████████████████│ 100.00 % 567.21 MB/s15:04:01 [INFO]  drive  10302 finished, speed=595 MiB/s                                          
+15:04:01 [INFO]  扫盘的次数为: 1, total_size: 13107200, deadline值是: 6219378
+15:04:01 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 35.717222ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:04:01 [INFO]  end_num: 4
+15:04:01 [INFO]  round finished: roundtime=35ms, speed=357.14MiB/s                               
+15:04:01 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+15:04:01 [INFO]  扫盘的次数为: 2, total_size: 13107200, deadline值是: 6228704
+15:04:01 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 70.787241ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:04:01 [INFO]  end_num: 4
+15:04:01 [INFO]  扫盘的次数为: 3, total_size: 13107200, deadline值是: 6232517
+15:04:01 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 72.353662ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:04:01 [INFO]  end_num: 4
+15:04:01 [INFO]  扫盘的次数为: 4, total_size: 13107200, deadline值是: 1721352
+15:04:01 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 76.944051ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:04:01 [INFO]  end_num: 4
+15:04:01 [INFO]  初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： 1721352, 允许提交的最大deadline值是: 18446744073709551615
+15:04:01 [INFO]  请求数据的区块是：8416, 现在的区块是: 8416, 提交的deadline是: 1721352
+15:04:02 [INFO]  助记词签名成功， public_key = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), account_id = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), 正在提交挖矿请求.........
+15:04:02 [INFO]  发送请求错误, 更改nonce值重新发送
+15:04:02 [INFO]  重新发送挖矿请求成功! hash是Some(0xeeefe8e5ac2732ce22d183ff60d1a63426c503a75b0548506f5a1f2cc5973f83)
+15:04:02 [INFO]  挖矿请求提交错误! 错误信息是: Err(Rpc(Request(Error { code: ServerError(1014), message: "Priority is too low: (52432432800815260 vs 52432432800815260)", data: Some(String("The transaction has too low priority to replace another transaction already in the pool.")) })))
+15:04:02 [INFO]  verify succeed!!!
+15:04:25 [INFO]  new block: height=8418, scoop=3098                                              
+Scavenging: 4.00 MB / 12.50 MB │████████░░░░░░░░░░░░░░░│ 32.00 % 264.63 MB/s 0sScavenging: 8.00 MB / 12.50 MB │███████████████░░░░░░░░│ 64.00 % 321.92 MB/s 0sScavenging: 12.00 MB / 12.50 MB │██████████████████████│ 96.00 % 325.57 MB/s 0sScavenging: 12.50 MB / 12.50 MB │████████████████████████│ 100.00 % 335.15 MB/s15:04:25 [INFO]  drive  10302 finished, speed=416 MiB/s                                          
+15:04:25 [INFO]  扫盘的次数为: 1, total_size: 13107200, deadline值是: 9981188
+15:04:25 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 52.630427ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:04:25 [INFO]  end_num: 4
+15:04:25 [INFO]  round finished: roundtime=52ms, speed=240.38MiB/s                               
+15:04:25 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+15:04:25 [INFO]  扫盘的次数为: 2, total_size: 13107200, deadline值是: 8762887
+15:04:25 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 84.332206ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:04:25 [INFO]  end_num: 4
+15:04:25 [INFO]  扫盘的次数为: 3, total_size: 13107200, deadline值是: 1483282
+15:04:25 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 86.09865ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:04:25 [INFO]  end_num: 4
+15:04:25 [INFO]  扫盘的次数为: 4, total_size: 13107200, deadline值是: 9961323
+15:04:25 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 89.277265ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:04:25 [INFO]  end_num: 4
+15:04:25 [INFO]  初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： 1483282, 允许提交的最大deadline值是: 18446744073709551615
+15:04:25 [INFO]  请求数据的区块是：8418, 现在的区块是: 8418, 提交的deadline是: 1483282
+15:04:26 [INFO]  助记词签名成功， public_key = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), account_id = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), 正在提交挖矿请求.........
+15:04:26 [INFO]  发送请求错误, 更改nonce值重新发送
+15:04:26 [INFO]  重新发送挖矿请求成功! hash是Some(0x48d3a7ceaaefc24d8eaddca3f1ec980f1178af08c6fad3d56f5f67cf0386af7c)
+15:04:26 [INFO]  挖矿请求提交错误! 错误信息是: Err(Rpc(Request(Error { code: ServerError(1014), message: "Priority is too low: (52432432800815260 vs 52432432800815260)", data: Some(String("The transaction has too low priority to replace another transaction already in the pool.")) })))
+15:04:26 [INFO]  verify succeed!!!
+15:04:49 [INFO]  new block: height=8420, scoop=586                                               
+Scavenging: 4.00 MB / 12.50 MB │████████░░░░░░░░░░░░░░░│ 32.00 % 834.11 MB/s 0sScavenging: 8.00 MB / 12.50 MB │███████████████░░░░░░░░│ 64.00 % 561.42 MB/s 0sScavenging: 12.00 MB / 12.50 MB │██████████████████████│ 96.00 % 756.06 MB/s 0sScavenging: 12.50 MB / 12.50 MB │████████████████████████│ 100.00 % 774.75 MB/s15:04:49 [INFO]  drive  10302 finished, speed=833 MiB/s                                          
+15:04:49 [INFO]  扫盘的次数为: 1, total_size: 13107200, deadline值是: 3654510
+15:04:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 25.611812ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:04:49 [INFO]  end_num: 4
+15:04:49 [INFO]  round finished: roundtime=25ms, speed=500.00MiB/s                               
+15:04:49 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+15:04:49 [INFO]  扫盘的次数为: 2, total_size: 13107200, deadline值是: 5278881
+15:04:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 69.181082ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:04:49 [INFO]  end_num: 4
+15:04:49 [INFO]  扫盘的次数为: 3, total_size: 13107200, deadline值是: 7326327
+15:04:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 79.506038ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:04:49 [INFO]  end_num: 4
+15:04:49 [INFO]  扫盘的次数为: 4, total_size: 13107200, deadline值是: 3254898
+15:04:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 82.189158ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:04:49 [INFO]  end_num: 4
+15:04:49 [INFO]  初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： 3254898, 允许提交的最大deadline值是: 18446744073709551615
+15:04:49 [INFO]  请求数据的区块是：8420, 现在的区块是: 8420, 提交的deadline是: 3254898
+15:04:49 [INFO]  助记词签名成功， public_key = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), account_id = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), 正在提交挖矿请求.........
+15:04:50 [INFO]  ***************************************** 挖矿请求提交成功, 区块是: 8420, deadline是: 3254898, hash是： 0xfb25fc33baf6e00f569a115033b14f16d0c720db9f1c53f90d3947182b0b92b6 **************************************
+15:04:50 [INFO]  verify succeed!!!
+15:05:12 [INFO]  new block: height=8422, scoop=2082                                              
+Scavenging: 4.00 MB / 12.50 MB │████████░░░░░░░░░░░░░░░│ 32.00 % 423.48 MB/s 0sScavenging: 8.00 MB / 12.50 MB │███████████████░░░░░░░░│ 64.00 % 388.31 MB/s 0sScavenging: 12.00 MB / 12.50 MB │██████████████████████│ 96.00 % 540.48 MB/s 0sScavenging: 12.50 MB / 12.50 MB │████████████████████████│ 100.00 % 557.05 MB/s15:05:12 [INFO]  drive  10302 finished, speed=568 MiB/s                                          
+15:05:12 [INFO]  扫盘的次数为: 1, total_size: 13107200, deadline值是: 70340508
+15:05:12 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 38.708855ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:05:12 [INFO]  end_num: 4
+15:05:12 [INFO]  round finished: roundtime=38ms, speed=328.95MiB/s                               
+15:05:12 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+15:05:12 [INFO]  扫盘的次数为: 2, total_size: 13107200, deadline值是: 1367105
+15:05:12 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 71.777391ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:05:12 [INFO]  end_num: 4
+15:05:12 [INFO]  扫盘的次数为: 3, total_size: 13107200, deadline值是: 429361
+15:05:12 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 74.523897ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:05:12 [INFO]  end_num: 4
+15:05:12 [INFO]  扫盘的次数为: 4, total_size: 13107200, deadline值是: 8891204
+15:05:12 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 78.39404ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:05:12 [INFO]  end_num: 4
+15:05:12 [INFO]  初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： 429361, 允许提交的最大deadline值是: 18446744073709551615
+15:05:13 [INFO]  请求数据的区块是：8422, 现在的区块是: 8422, 提交的deadline是: 429361
+15:05:13 [INFO]  助记词签名成功， public_key = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), account_id = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), 正在提交挖矿请求.........
+15:05:13 [INFO]  ***************************************** 挖矿请求提交成功, 区块是: 8422, deadline是: 429361, hash是： 0x240bb0f0c7f9a6696de79791b28998ccf3d1004bcc218cb55013a906d35fdbdd **************************************
+15:05:13 [INFO]  verify succeed!!!
+15:05:36 [INFO]  new block: height=8424, scoop=2352                                              
+Scavenging: 4.00 MB / 12.50 MB │████████░░░░░░░░░░░░░░░│ 32.00 % 435.65 MB/s 0sScavenging: 8.00 MB / 12.50 MB │███████████████░░░░░░░░│ 64.00 % 410.59 MB/s 0sScavenging: 12.00 MB / 12.50 MB │██████████████████████│ 96.00 % 570.55 MB/s 0sScavenging: 12.50 MB / 12.50 MB │████████████████████████│ 100.00 % 587.84 MB/s15:05:36 [INFO]  drive  10302 finished, speed=595 MiB/s                                          
+15:05:36 [INFO]  扫盘的次数为: 1, total_size: 13107200, deadline值是: 128443451
+15:05:36 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 35.934858ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:05:36 [INFO]  end_num: 4
+15:05:36 [INFO]  round finished: roundtime=35ms, speed=357.14MiB/s                               
+15:05:36 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+15:05:36 [INFO]  扫盘的次数为: 2, total_size: 13107200, deadline值是: 2517966
+15:05:36 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 71.482844ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:05:36 [INFO]  end_num: 4
+15:05:36 [INFO]  扫盘的次数为: 3, total_size: 13107200, deadline值是: 70246
+15:05:36 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 71.663329ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:05:36 [INFO]  end_num: 4
+15:05:36 [INFO]  扫盘的次数为: 4, total_size: 13107200, deadline值是: 2692089
+15:05:36 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 78.865273ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:05:36 [INFO]  end_num: 4
+15:05:36 [INFO]  初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： 70246, 允许提交的最大deadline值是: 18446744073709551615
+15:05:36 [INFO]  请求数据的区块是：8424, 现在的区块是: 8424, 提交的deadline是: 70246
+15:05:37 [INFO]  助记词签名成功， public_key = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), account_id = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), 正在提交挖矿请求.........
+15:05:37 [INFO]  ***************************************** 挖矿请求提交成功, 区块是: 8424, deadline是: 70246, hash是： 0x875a7450e443559d3fad33226049942300ba69b572705440c896f6660ce9e714 **************************************
+15:05:37 [INFO]  verify succeed!!!
+15:06:01 [INFO]  new block: height=8426, scoop=295                                               
+Scavenging: 4.00 MB / 12.50 MB │████████░░░░░░░░░░░░░░░│ 32.00 % 885.75 MB/s 0sScavenging: 8.00 MB / 12.50 MB │███████████████░░░░░░░░│ 64.00 % 591.80 MB/s 0sScavenging: 12.00 MB / 12.50 MB │██████████████████████│ 96.00 % 789.94 MB/s 0sScavenging: 12.50 MB / 12.50 MB │████████████████████████│ 100.00 % 794.50 MB/s15:06:01 [INFO]  drive  10302 finished, speed=833 MiB/s                                          
+15:06:01 [INFO]  扫盘的次数为: 1, total_size: 13107200, deadline值是: 5172451
+15:06:01 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 30.17164ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:06:01 [INFO]  end_num: 4
+15:06:01 [INFO]  round finished: roundtime=30ms, speed=416.67MiB/s                               
+15:06:01 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+15:06:01 [INFO]  扫盘的次数为: 2, total_size: 13107200, deadline值是: 1079194
+15:06:01 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 65.964105ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:06:01 [INFO]  end_num: 4
+15:06:01 [INFO]  扫盘的次数为: 3, total_size: 13107200, deadline值是: 945969
+15:06:01 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 70.198896ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:06:01 [INFO]  end_num: 4
+15:06:01 [INFO]  扫盘的次数为: 4, total_size: 13107200, deadline值是: 2209342
+15:06:01 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 73.138306ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:06:01 [INFO]  end_num: 4
+15:06:01 [INFO]  初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： 945969, 允许提交的最大deadline值是: 18446744073709551615
+15:06:01 [INFO]  请求数据的区块是：8426, 现在的区块是: 8426, 提交的deadline是: 945969
+15:06:02 [INFO]  助记词签名成功， public_key = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), account_id = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), 正在提交挖矿请求.........
+15:06:02 [INFO]  发送请求错误, 更改nonce值重新发送
+15:06:02 [INFO]  重新发送挖矿请求成功! hash是Some(0x2249f521c2c2b3ec2da702a643ec907650cf04dff4f98a6793dacbd4c639a57f)
+15:06:02 [INFO]  挖矿请求提交错误! 错误信息是: Err(Rpc(Request(Error { code: ServerError(1014), message: "Priority is too low: (52432432800815260 vs 52432432800815260)", data: Some(String("The transaction has too low priority to replace another transaction already in the pool.")) })))
+15:06:02 [INFO]  verify succeed!!!
+15:06:25 [INFO]  new block: height=8428, scoop=4033                                              
+Scavenging: 4.00 MB / 12.50 MB │████████░░░░░░░░░░░░░░░│ 32.00 % 862.95 MB/s 0sScavenging: 8.00 MB / 12.50 MB │███████████████░░░░░░░░│ 64.00 % 681.50 MB/s 0sScavenging: 12.00 MB / 12.50 MB │██████████████████████│ 96.00 % 899.76 MB/s 0sScavenging: 12.50 MB / 12.50 MB │████████████████████████│ 100.00 % 915.34 MB/s15:06:25 [INFO]  drive  10302 finished, speed=961 MiB/s                                          
+15:06:25 [INFO]  扫盘的次数为: 1, total_size: 13107200, deadline值是: 5122920
+15:06:25 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 28.196262ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:06:25 [INFO]  end_num: 4
+15:06:25 [INFO]  round finished: roundtime=28ms, speed=446.43MiB/s                               
+15:06:25 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+15:06:25 [INFO]  扫盘的次数为: 2, total_size: 13107200, deadline值是: 1233336
+15:06:25 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 62.665444ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:06:25 [INFO]  end_num: 4
+15:06:25 [INFO]  扫盘的次数为: 3, total_size: 13107200, deadline值是: 2655613
+15:06:25 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 75.028853ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:06:25 [INFO]  end_num: 4
+15:06:25 [INFO]  扫盘的次数为: 4, total_size: 13107200, deadline值是: 992743
+15:06:25 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 77.738974ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:06:25 [INFO]  end_num: 4
+15:06:25 [INFO]  初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： 992743, 允许提交的最大deadline值是: 18446744073709551615
+15:06:25 [INFO]  请求数据的区块是：8428, 现在的区块是: 8428, 提交的deadline是: 992743
+15:06:26 [INFO]  助记词签名成功， public_key = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), account_id = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), 正在提交挖矿请求.........
+15:06:26 [INFO]  发送请求错误, 更改nonce值重新发送
+15:06:26 [INFO]  重新发送挖矿请求成功! hash是Some(0x61efde8cdc50f7ca6de9a59d5bdfe72d30e3bd3cecf90973ec0bcea15f66bbb6)
+15:06:26 [INFO]  挖矿请求提交错误! 错误信息是: Err(Rpc(Request(Error { code: ServerError(1014), message: "Priority is too low: (52432432800815260 vs 52432432800815260)", data: Some(String("The transaction has too low priority to replace another transaction already in the pool.")) })))
+15:06:26 [INFO]  verify succeed!!!
+15:06:49 [INFO]  new block: height=8430, scoop=2947                                              
+Scavenging: 4.00 MB / 12.50 MB │████████░░░░░░░░░░░░░░░│ 32.00 % 458.99 MB/s 0sScavenging: 8.00 MB / 12.50 MB │███████████████░░░░░░░░│ 64.00 % 446.14 MB/s 0sScavenging: 12.00 MB / 12.50 MB │██████████████████████│ 96.00 % 616.93 MB/s 0sScavenging: 12.50 MB / 12.50 MB │████████████████████████│ 100.00 % 634.49 MB/s15:06:49 [INFO]  drive  10302 finished, speed=657 MiB/s                                          
+15:06:49 [INFO]  扫盘的次数为: 1, total_size: 13107200, deadline值是: 41593594
+15:06:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 32.704835ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:06:49 [INFO]  end_num: 4
+15:06:49 [INFO]  round finished: roundtime=32ms, speed=390.62MiB/s                               
+15:06:49 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+15:06:49 [INFO]  扫盘的次数为: 2, total_size: 13107200, deadline值是: 2980082
+15:06:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 67.858623ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:06:49 [INFO]  end_num: 4
+15:06:49 [INFO]  扫盘的次数为: 3, total_size: 13107200, deadline值是: 1048262
+15:06:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 69.308397ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:06:49 [INFO]  end_num: 4
+15:06:49 [INFO]  扫盘的次数为: 4, total_size: 13107200, deadline值是: 767888
+15:06:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  扫盘时间大小为: 75.620742ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+15:06:49 [INFO]  end_num: 4
+15:06:49 [INFO]  初次筛选通过,可以进行下一步挖矿流程。 本次提交的deadline值是： 767888, 允许提交的最大deadline值是: 18446744073709551615
+15:06:49 [INFO]  请求数据的区块是：8430, 现在的区块是: 8430, 提交的deadline是: 767888
+15:06:49 [INFO]  助记词签名成功， public_key = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), account_id = 8e87d1c0b7588c8038d83317ef95c2be5449f500af057a174f14b43010a61e69 (5FHb1AEe...), 正在提交挖矿请求.........
+15:06:49 [INFO]  ***************************************** 挖矿请求提交成功, 区块是: 8430, deadline是: 767888, hash是： 0x3c0154166f988fdb094bb74ea99f184ec38f2058197e193db1254f314b1160ba **************************************
+15:06:49 [INFO]  verify succeed!!!

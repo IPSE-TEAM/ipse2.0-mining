@@ -30,7 +30,11 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7f590a7-b194-4a73-8b5f-c7af3e5a05e5" name="Default Changelist" comment="" />
+    <list default="true" id="e7f590a7-b194-4a73-8b5f-c7af3e5a05e5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/miners_yaml.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/update_yaml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,6 +42,13 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -65,7 +76,7 @@
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="org.rust.disableDetachedFileInspection/Users/legotime/CLionProjects/ipse2.0-mining/src/com/client.rs" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.update_yaml">
     <configuration name="supervision" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ipse2.0-mining" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,8 +98,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="update_yaml" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ipse2.0-mining" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/update_yaml.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.update_yaml" />
         <item itemvalue="Python.supervision" />
       </list>
     </recent_temporary>
@@ -154,22 +187,22 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2663" y="297" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611214467496" />
-    <state width="1874" height="277" key="GridCell.Tab.0.bottom" timestamp="1611219248946">
+    <state width="1874" height="359" key="GridCell.Tab.0.bottom" timestamp="1611297519017">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="277" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611219248946" />
-    <state width="1874" height="277" key="GridCell.Tab.0.center" timestamp="1611219248946">
+    <state width="1874" height="359" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611297519017" />
+    <state width="1874" height="359" key="GridCell.Tab.0.center" timestamp="1611297519017">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="277" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611219248946" />
-    <state width="1874" height="277" key="GridCell.Tab.0.left" timestamp="1611219248946">
+    <state width="1874" height="359" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611297519017" />
+    <state width="1874" height="359" key="GridCell.Tab.0.left" timestamp="1611297519016">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="277" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611219248946" />
-    <state width="1874" height="277" key="GridCell.Tab.0.right" timestamp="1611219248946">
+    <state width="1874" height="359" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611297519016" />
+    <state width="1874" height="359" key="GridCell.Tab.0.right" timestamp="1611297519017">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="277" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611219248946" />
+    <state width="1874" height="359" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1611297519017" />
     <state x="2575" y="257" width="610" height="564" key="find.popup" timestamp="1611224741377">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>

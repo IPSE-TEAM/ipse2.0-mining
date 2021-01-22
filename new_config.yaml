@@ -1,0 +1,40 @@
+account_id: 10717349404514113857
+account_id_to_secret_phrase:
+  10717349404514113857: cash mixture tongue cry roof glare monkey island unfair brown
+    spirit inflict
+account_id_to_target_deadline:
+  10717349404514113857: 18446744073709551615
+benchmark_only: disabled
+block_duration: 12000
+console_log_level: info
+console_log_pattern: '{({d(%H:%M:%S)} [{l}]):16.16} {m}{n}'
+cpu_nonces_per_cache: 65536
+cpu_thread_pinning: true
+cpu_threads: 0
+cpu_worker_task_count: 4
+gpu_async: false
+gpu_device: 0
+gpu_mem_mapping: false
+gpu_nonces_per_cache: 262144
+gpu_platform: 0
+gpu_threads: 0
+gpu_worker_task_count: 0
+hdd_reader_thread_count: 0
+hdd_use_direct_io: true
+hdd_wakeup_after: 240
+logfile_log_level: warn
+logfile_log_pattern: '{({d(%Y-%m-%d %H:%M:%S)} [{l}]):26.26} {m}{n}'
+logfile_max_count: 10
+logfile_max_size: 20
+max_deadline_value: 18446744073709551615
+miner_proportion: 20
+miner_reward_dest: 5FHb1AEeNui5ANvyT368dECmNEJeouLeeZ6a9z8GTvxPLaVs
+plot_dirs:
+- /data/test_data
+plot_size: 50
+send_proxy_details: true
+show_drive_stats: true
+show_progress: true
+target_deadline: 18446744073709551615
+timeout: 5000
+url: ws://47.108.199.133:9948
