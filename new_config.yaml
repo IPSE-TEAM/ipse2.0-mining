@@ -1,9 +1,9 @@
-account_id: 10717349404514113857
+account_id: '10717349404514113857'
 account_id_to_secret_phrase:
-  10717349404514113857: cash mixture tongue cry roof glare monkey island unfair brown
-    spirit inflict
+  '10717349404514113857': cash mixture tongue cry roof glare monkey island unfair
+    brown spirit inflict
 account_id_to_target_deadline:
-  10717349404514113857: 18446744073709551615
+  '10717349404514113857': 18446744073709551615
 benchmark_only: disabled
 block_duration: 12000
 console_log_level: info
@@ -30,7 +30,7 @@ max_deadline_value: 18446744073709551615
 miner_proportion: 20
 miner_reward_dest: 5FHb1AEeNui5ANvyT368dECmNEJeouLeeZ6a9z8GTvxPLaVs
 plot_dirs:
-- /data/test_data
+- /data/test_data/10717349404514113857
 plot_size: 50
 send_proxy_details: true
 show_drive_stats: true
