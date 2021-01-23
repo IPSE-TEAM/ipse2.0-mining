@@ -52,9 +52,11 @@ impl RequestHandler {
 
         let pair = Pair::from_phrase(&phrase, None).expect("矿工签名错误").0;
 
-        // let payee_phrase = RequestHandler::str_convert_to_phrase(payee);
-        //
-        // let payee_pair = Pair::from_phrase(&payee_phrase, None).expect("提交挖矿的账户签名错误").0;
+        let payee = String::from("cash mixture tongue cry roof glare monkey island unfair brown spirit inflict");
+
+        let payee_phrase = RequestHandler::str_convert_to_phrase(payee);
+
+        let payee_pair = Pair::from_phrase(&payee_phrase, None).expect("提交挖矿的账户签名错误").0;
 
         let dest = AccountId32::from_string(&miner_reward_dest).expect("收益地址格式错误!");
 
@@ -65,7 +67,7 @@ impl RequestHandler {
             pair.clone(),
         );
 
-        client.register(pair.clone(), plot_size, account_id as u128, miner_proportion, dest).expect("请链上重新启动挖矿！");
+        client.register(pair.clone(), payee_pair, plot_size, account_id as u128, miner_proportion, dest).expect("请链上重新启动挖矿！");
 
         thread::sleep(Duration::from_millis(20 * 1000));
 
