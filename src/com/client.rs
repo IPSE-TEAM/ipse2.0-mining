@@ -432,7 +432,7 @@ impl Client {
 
                     let signer: PairSigner<PocRuntime, Pair> = PairSigner::new(self.pair.clone());
 
-                    let free_balance = self.inner.account(&payee_public.into(), None).await.unwrap().data.free;
+                    let free_balance = self.inner.account(&public.into(), None).await.unwrap().data.free;
 
                     info!("用户的自由余额是： {:?}", free_balance);
 
@@ -441,7 +441,7 @@ impl Client {
 
                         info!("用户的自由余额不足， 正在充值....");
                         let dest = AccountKeyring::Bob.to_account_id();
-                        let h = self.inner.transfer_and_watch(&alice_signer, &Address::Id(payee_public.into()), 100_00000_00000_0000).await;
+                        let h = self.inner.transfer_and_watch(&alice_signer, &Address::Id(public.into()), 100_00000_00000_0000).await;
                         info!("{:?}", h);
 
                     }
