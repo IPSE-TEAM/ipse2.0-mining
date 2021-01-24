@@ -444,7 +444,8 @@ impl Client {
                         let h = self.inner.transfer_and_watch(&alice_signer, &Address::Id(public.into()), 100_00000_00000_0000).await;
                         info!("{:?}", h);
 
-                    }
+                    }      else {  }
+
 
                     info!("注册的账号是：{:?}, p盘id是: {:?}, p盘空间大小为: {:?} GiB, 矿工分润占比是: {:?} %, 收益地址是: {:?}", signer.clone().account_id(), numeric_id, plot_size, miner_proportion, dest);
 

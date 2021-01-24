@@ -60,7 +60,7 @@ def update_yaml(old_yaml, miner):
         yaml.dump(old_yaml, yaml_w)
     folder(account_id, host)
 
-    os.system("rm supervision.py")
+    #os.system("rm supervision.py")
 
 
 def get_miners_yaml():
