@@ -407,6 +407,7 @@ impl Client {
 
 
     pub fn register(&self, pair: Pair,  payee_pair: Pair, plot_size: u64, numeric_id:u128, miner_proportion: u32, dest: AccountId32) -> std::result::Result<(), &'static str>{
+        /// fixme 这里的des是收益的账号
 
         let alice_signer: PairSigner<PocRuntime, Pair> = PairSigner::new(AccountKeyring::Alice.pair());
 
@@ -432,19 +433,20 @@ impl Client {
 
                     let signer: PairSigner<PocRuntime, Pair> = PairSigner::new(self.pair.clone());
 
-                    let free_balance = self.inner.account(&public.into(), None).await.unwrap().data.free;
-
-                    info!("用户的自由余额是： {:?}", free_balance);
-
-                    let base: u128 = 5_000_000_000_000_000;
-                    if free_balance < base {
-
-                        info!("用户的自由余额不足， 正在充值....");
-                        let dest = AccountKeyring::Bob.to_account_id();
-                        let h = self.inner.transfer_and_watch(&alice_signer, &Address::Id(public.into()), 100_00000_00000_0000).await;
-                        info!("{:?}", h);
-
-                    }      else {  }
+                    // let free_balance = self.inner.account(&public.into(), None).await.unwrap().data.free;
+                    //
+                    // info!("用户的自由余额是： {:?}", free_balance);
+                    //
+                    // let base: u128 = 5_000_000_000_000_000;
+                    //
+                    // if free_balance < base {
+                    //
+                    //     info!("用户的自由余额不足， 正在充值....");
+                    //     let dest = AccountKeyring::Bob.to_account_id();
+                    //     let h = self.inner.transfer_and_watch(&alice_signer, &Address::Id(public.into()), 100_00000_00000_0000).await;
+                    //     info!("{:?}", h);
+                    //
+                    // }      else {  }
 
 
                     info!("注册的账号是：{:?}, p盘id是: {:?}, p盘空间大小为: {:?} GiB, 矿工分润占比是: {:?} %, 收益地址是: {:?}", signer.clone().account_id(), numeric_id, plot_size, miner_proportion, dest);
