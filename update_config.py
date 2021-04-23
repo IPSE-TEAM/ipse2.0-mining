@@ -75,8 +75,8 @@ def main():
 
     result = os.system("wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.2/config.yaml && "
                        "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.2/supervision.py && "
-                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.2/miners_config.yaml && "
-                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.2/engraver-2.4.0-x86_64-unknown-linux-gnu-cpu-gpu.tar.xz")
+                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.2.2/miners_config.yaml"
+                       )
 
     print(result)
     if result != 0:
