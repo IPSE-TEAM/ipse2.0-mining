@@ -1,10 +1,16 @@
 # Init (suppose you have finished plot)
-* `mkdir ipse-mining && cd ipse-mining`
+> The following two steps are the same, and you can choose one or the other.
+## Step One
+* `mkdir ipse-mining && cd ipse-mining && wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.3.1/update_config.py`
 
-* `wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.3.1/update_config.py`
-* `python3 update_config.py`
+## Step Two
+* `git clone https://github.com/IPSE-TEAM/ipse2.0-mining.git && cd ipse2.0-mining`
 
 # Update Config
+```buildoutcfg
+# command
+* python3 update_config.py
+```
 After the above steps have been completed， and you can find `miners_config.yaml` in the current folder. Please modify it next. （tip: the following is the default configuration, and you should use own configuration. )
 ```buildoutcfg
 - {host: localhost, # remote server id
