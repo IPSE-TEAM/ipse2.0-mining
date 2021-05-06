@@ -10,8 +10,8 @@ After the above steps have been completed， and you can find `miners_config.yam
 - {host: localhost, # remote server id
      account_id: 10717349404514113857, # plot id
      phase: cash mixture tongue cry roof glare monkey island unfair brown spirit inflict, # your secret key
-     miner_proportion: 20,  # how much that the miner should get in a rewad.
-     url: 'ws://47.108.199.133:9948',  # synchronization node 
+     miner_proportion: 20,  # how much proportion that the miner should get in a rewad.
+     url: 'ws://localhost:9944',  # synchronization node 
      plot_size: 50, # plot size (The unit is Gib).
      miner_reward_dest: 5FHb1AEeNui5ANvyT368dECmNEJeouLeeZ6a9z8GTvxPLaVs, # Miner income address
      plot_path: '/data/test_data',  # where is the plot file on your computer.
