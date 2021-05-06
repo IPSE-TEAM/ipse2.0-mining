@@ -1,10 +1,12 @@
 # Init (suppose you have finished plot)
 > The following two steps are the same, and you can choose one or the other.
 ## Step One
-* `mkdir ipse-mining && cd ipse-mining && wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.3.1/update_config.py`
+* `mkdir ipse2.0-mining && cd ipse2.0-mining && wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.3.1/update_config.py`
+> If you're not a developer，you can choose this step
 
 ## Step Two
-* `git clone https://github.com/IPSE-TEAM/ipse2.0-mining.git && cd ipse2.0-mining`
+* `git clone https://github.com/IPSE-TEAM/ipse2.0-mining.git && cd ipse2.0-mining && cargo build --release && mv ./taget/release/poc-mining ./`
+> If you're a developer，you can choose this step. 
 
 # Update Config
 ```buildoutcfg
