@@ -33,10 +33,6 @@ cpu_worker_task_count: 4              # default 4 (0=GPU only)
 cpu_nonces_per_cache: 65536           # default 65536
 cpu_thread_pinning: true         # default false
 
-
-# 请注意，进度条中显示的可视化结果不会显示出绘图文件的完整物理尺寸，而是一轮中实际读取的尺寸：总尺寸[TiB] =每轮扫描的尺寸[GiB] * 4
-
-
 gpu_threads: 0                        # default 0 (=GPU off)
 gpu_platform: 0                       # default 0
 gpu_device: 0                         # default 0
@@ -49,7 +45,7 @@ target_deadline: 18446744073709551615 # default u32::MAX
 account_id_to_target_deadline:        # target dls for multi-id (optional)
  *numeric_id: 18446744073709551615
 
-block_duration: 12000                 # 主网一个区块所需的时间(不要修改)
+block_duration: 12000                 #
 timeout: 5000                         # default 5000ms
 send_proxy_details: true              # default false
 
