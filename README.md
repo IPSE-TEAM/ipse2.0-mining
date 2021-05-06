@@ -36,7 +36,7 @@ cat command.txt
 ```
 And there are two command lines.
 
-* satrt mining
+* start mining
 ```buildoutcfg
 python3 /home/wjy/desktop/ipse-mining/localhost/10717349404514113857/supervision-10717349404514113857.py --mining /home/wjy/桌面/ipse-mining/localhost/10717349404514113857/poc-mining-10717349404514113857 --log-max-size 10 
 ```
