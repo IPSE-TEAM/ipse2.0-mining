@@ -27,20 +27,20 @@ python3 update_config.py
 in the folder `localhost`, you find the another folder that named with the plot id, and into it.
 ***
 
-# Start Mining
+# Start Mine
 
 Now, you can find the file `command.txt` in current folder. 
 ```buildoutcfg
 # command
 cat command.txt
 ```
-And there are two command lines.
+There are two command lines, and you can use them to stop or start mine.
 
-* start mining
+* start mine
 ```buildoutcfg
 python3 /home/wjy/desktop/ipse-mining/localhost/10717349404514113857/supervision-10717349404514113857.py --mining /home/wjy/桌面/ipse-mining/localhost/10717349404514113857/poc-mining-10717349404514113857 --log-max-size 10 
 ```
-* stop mining.
+* stop mine.
 ```buildoutcfg
 mining /home/wjy/desktop/ipse-mining/localhost/10717349404514113857/poc-mining-10717349404514113857 --log-max-size 10 --stop
 ```
