@@ -5,7 +5,7 @@
 > If you're not a developer，you can choose this step
 
 ## Step Two
-* `git clone https://github.com/IPSE-TEAM/ipse2.0-mining.git && cd ipse2.0-mining && cargo build --release && mv ./taget/release/poc-mining ./`
+* `git clone https://github.com/IPSE-TEAM/ipse2.0-mining.git && cd ipse2.0-mining && cargo build --release && mv ./target/release/poc-mining ./`
 > If you're a developer，you can choose this step. 
 
 # Update Config
