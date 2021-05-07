@@ -50,7 +50,7 @@ python3 /home/wjy/Desktop/ipse-mining/localhost/10717349404514113857/supervision
 ```
 * stop mine.
 ```buildoutcfg
-mining /home/wjy/Desktop/ipse-mining/localhost/10717349404514113857/poc-mining-10717349404514113857 --log-max-size 10 --stop
+python3 /home/wjy/Desktop/test/ipse2.0-mining/localhost/10717349404514113857/supervision-10717349404514113857.py --mining /home/wjy/Desktop/test/ipse2.0-mining/localhost/10717349404514113857/poc-mining-10717349404514113857 --log-max-size 10 --stop
 ```
 
 
