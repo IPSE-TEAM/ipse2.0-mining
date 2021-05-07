@@ -76,10 +76,10 @@ def get_miners_yaml():
 
 def main():
 
-    result = os.system("wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.3.1/config.yaml && "
-                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.3.1/supervision.py && "
-                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.3.1/miners_config.yaml &&"
-                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.3.1/poc-mining"
+    result = os.system("wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.4.0/config.yaml && "
+                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.4.0/supervision.py && "
+                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.4.0/miners_config.yaml &&"
+                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.4.0/poc-mining"
                        )
 
     print(result)
