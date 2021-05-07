@@ -52,7 +52,7 @@ def update_yaml(old_yaml, miner):
     old_yaml["miner_proportion"] = miner_proportion
     old_yaml["account_id_to_secret_phrase"] = []
     old_yaml["account_id_to_secret_phrase"] = {account_id: phase}
-    old_yaml["plot_dirs"] = [plot_path+str(account_id)]
+    old_yaml["plot_dirs"] = [plot_path]
     old_yaml["url"] = url
     old_yaml["miner_reward_dest"] = reward_dest
     old_yaml["account_id_to_target_deadline"] = []
