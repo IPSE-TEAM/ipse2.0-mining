@@ -268,6 +268,10 @@ fn scan_plots(
         global_capacity as f64 / 4.0 / 1024.0 / 1024.0
     );
 
+    if drive_id_to_plots.len() == 0 {
+            panic!("err: you do not have any plots, or plot path is wrong! please check your config.");
+        }
+
     (drive_id_to_plots, global_capacity * 64)
 }
 
@@ -276,7 +280,9 @@ impl Miner {
         let (drive_id_to_plots, total_size) =
             scan_plots(&cfg.plot_dirs, cfg.hdd_use_direct_io, cfg.benchmark_cpu());
 
-
+        if drive_id_to_plots.len() == 0 {
+            panic!("err: you do not have any plots, or plot path is wrong! please check your config.");
+        }
         let cpu_threads = cfg.cpu_threads;
         let cpu_worker_task_count = cfg.cpu_worker_task_count;
 
