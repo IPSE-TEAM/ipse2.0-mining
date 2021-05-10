@@ -51,9 +51,9 @@ async-std = "1.2.0"
 
 substrate-subxt = { git = "https://github.com/transxask/mysubxt.git", package = "substrate-subxt", version = "0.13.0", branch = "main"}
 
-sub-runtime = { git = "https://github.com/IPSE-TEAM/ipse-core.git", package = "node-runtime", version = "2.0.0", branch = "ipse"}
+sub-runtime = { git = "https://github.com/IPSE-TEAM/ipse-core.git", package = "node-runtime", version = "2.0.0", barch="master", rev="0488da47e43de7426111058e75facca035955ac7"}
 
-node-primitives = {git = "https://github.com/IPSE-TEAM/ipse-core.git", package = "node-primitives", version = "2.0.0", branch = "ipse"}
+node-primitives = {git = "https://github.com/IPSE-TEAM/ipse-core.git", package = "node-primitives", version = "2.0.0", barch="master", rev="0488da47e43de7426111058e75facca035955ac7"}
 
 codec = { package = "parity-scale-codec", version = "1.3.5", default-features = false, features = ["derive", "full"] }
 sp-keyring = { version = "2.0.0", package = "sp-keyring" }
