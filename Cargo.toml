@@ -1,14 +1,8 @@
 [package]
 name = "poc-mining"
 version = "3.4.0"
-license = "GPL-3.0"
-authors = ["PoC Consortium <bots@cryptoguru.org>"]
-description = """
-Scavenger - a PoC miner written in Rust
-"""
+authors = ["transxask <orwx71@163.com>"]
 build = "build.rs"
-repository = "https://github.com/PoC-Consortium/scavenger"
-documentation = "https://github.com/PoC-Consortium/scavenger"
 keywords = ["poc", "miner", "rust","cryptocurrency"]
 readme = "README.md"
 edition = "2018"
