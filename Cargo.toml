@@ -25,7 +25,6 @@ core_affinity = "0.5.9"
 crossbeam-channel = "0.3"
 filetime = "0.2"
 futures = "0.1"
-hex = "0.3"
 hostname = "0.1.5"
 libc = "0.2"
 log = "0.4"
@@ -37,11 +36,13 @@ rand = "0.6"
 rayon = "1.0"
 serde = "1.0"
 serde_derive = "1.0"
-serde_json = "1.0"
+serde_json = "=1.0.64"
 serde_yaml = "0.8"
 stopwatch = "0.0.7"
 tokio = "0.1"
+syn = "=1.0.57"
 url = "1.7"
+hex = '=0.4.2'
 page_size = "0.4.1"
 aligned_alloc = "0.1"
 reqwest = { version = "0.9.9", default-features = false, features = ["rustls-tls"] }
@@ -66,7 +67,6 @@ sp-runtime = { version = "2.0.0", package = "sp-runtime" }
 pallet-indices = { version = "2.0.0", package = "pallet-indices" }
 frame-support = { version = "2.0.0", package = "frame-support" }
 substrate-subxt-proc-macro = "0.13.0"
-
 
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3", features = ["fileapi"] }
