@@ -649,7 +649,7 @@ dependencies = [
 [[package]]
 name = "conjugate-poc"
 version = "0.1.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "sp-std 2.0.0",
 ]
@@ -1180,10 +1180,10 @@ dependencies = [
 [[package]]
 name = "frame-benchmarking"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "linregress",
  "parity-scale-codec",
  "paste",
@@ -1217,10 +1217,10 @@ dependencies = [
 [[package]]
 name = "frame-executive"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-core 2.0.0",
@@ -1233,7 +1233,7 @@ dependencies = [
 [[package]]
 name = "frame-metadata"
 version = "12.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "serde",
@@ -1282,11 +1282,11 @@ dependencies = [
 [[package]]
 name = "frame-support"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "bitmask",
  "frame-metadata 12.0.0",
- "frame-support-procedural 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support-procedural 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "impl-trait-for-tuples",
  "log",
  "once_cell",
@@ -1319,7 +1319,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "frame-support-procedural-tools 2.0.0",
  "proc-macro2",
@@ -1330,7 +1330,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural-tools"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "frame-support-procedural-tools-derive 2.0.0",
  "proc-macro-crate",
@@ -1355,7 +1355,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural-tools-derive"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1393,9 +1393,9 @@ dependencies = [
 [[package]]
 name = "frame-system"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "impl-trait-for-tuples",
  "parity-scale-codec",
  "serde",
@@ -1409,7 +1409,7 @@ dependencies = [
 [[package]]
 name = "frame-system-rpc-runtime-api"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "sp-api 2.0.0",
@@ -2539,9 +2539,9 @@ dependencies = [
 [[package]]
 name = "node-primitives"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "sp-application-crypto 2.0.0",
  "sp-core 2.0.0",
@@ -2551,14 +2551,14 @@ dependencies = [
 [[package]]
 name = "node-runtime"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "alt_serde",
  "conjugate-poc",
  "frame-benchmarking 2.0.0",
  "frame-executive",
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "frame-system-rpc-runtime-api",
  "hex",
  "integer-sqrt",
@@ -2831,10 +2831,10 @@ dependencies = [
 [[package]]
 name = "pallet-authority-discovery"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "pallet-session 2.0.0",
  "parity-scale-codec",
  "serde",
@@ -2847,10 +2847,10 @@ dependencies = [
 [[package]]
 name = "pallet-authorship"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "impl-trait-for-tuples",
  "parity-scale-codec",
  "sp-authorship 2.0.0",
@@ -2878,11 +2878,11 @@ dependencies = [
 [[package]]
 name = "pallet-babe"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "frame-benchmarking 2.0.0",
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "pallet-authorship 2.0.0",
  "pallet-session 2.0.0",
  "pallet-timestamp 2.0.0",
@@ -2903,11 +2903,11 @@ dependencies = [
 [[package]]
 name = "pallet-balances"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "frame-benchmarking 2.0.0",
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-runtime 2.0.0",
@@ -2917,10 +2917,10 @@ dependencies = [
 [[package]]
 name = "pallet-collective"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-core 2.0.0",
@@ -2932,11 +2932,11 @@ dependencies = [
 [[package]]
 name = "pallet-contracts"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "bitflags",
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "pallet-contracts-primitives",
  "parity-scale-codec",
  "parity-wasm",
@@ -2953,7 +2953,7 @@ dependencies = [
 [[package]]
 name = "pallet-contracts-primitives"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "sp-runtime 2.0.0",
@@ -2963,7 +2963,7 @@ dependencies = [
 [[package]]
 name = "pallet-contracts-rpc-runtime-api"
 version = "0.8.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "pallet-contracts-primitives",
  "parity-scale-codec",
@@ -2975,11 +2975,11 @@ dependencies = [
 [[package]]
 name = "pallet-democracy"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "frame-benchmarking 2.0.0",
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-io 2.0.0",
@@ -2990,10 +2990,10 @@ dependencies = [
 [[package]]
 name = "pallet-elections-phragmen"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-npos-elections 2.0.0",
@@ -3004,10 +3004,10 @@ dependencies = [
 [[package]]
 name = "pallet-finality-tracker"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "impl-trait-for-tuples",
  "parity-scale-codec",
  "serde",
@@ -3020,11 +3020,11 @@ dependencies = [
 [[package]]
 name = "pallet-grandpa"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "frame-benchmarking 2.0.0",
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "pallet-authorship 2.0.0",
  "pallet-finality-tracker",
  "pallet-session 2.0.0",
@@ -3042,12 +3042,12 @@ dependencies = [
 [[package]]
 name = "pallet-identity"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "enumflags2",
  "frame-benchmarking 2.0.0",
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-io 2.0.0",
@@ -3058,10 +3058,10 @@ dependencies = [
 [[package]]
 name = "pallet-im-online"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "pallet-authorship 2.0.0",
  "pallet-session 2.0.0",
  "parity-scale-codec",
@@ -3077,10 +3077,10 @@ dependencies = [
 [[package]]
 name = "pallet-indices"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-core 2.0.0",
@@ -3110,10 +3110,10 @@ dependencies = [
 [[package]]
 name = "pallet-membership"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-io 2.0.0",
@@ -3124,10 +3124,10 @@ dependencies = [
 [[package]]
 name = "pallet-multisig"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-core 2.0.0",
@@ -3139,10 +3139,10 @@ dependencies = [
 [[package]]
 name = "pallet-offences"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "pallet-balances",
  "parity-scale-codec",
  "serde",
@@ -3154,10 +3154,10 @@ dependencies = [
 [[package]]
 name = "pallet-proxy"
 version = "2.0.1"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-core 2.0.0",
@@ -3169,10 +3169,10 @@ dependencies = [
 [[package]]
 name = "pallet-randomness-collective-flip"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "safe-mix",
  "sp-runtime 2.0.0",
@@ -3182,11 +3182,11 @@ dependencies = [
 [[package]]
 name = "pallet-recovery"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "enumflags2",
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-io 2.0.0",
@@ -3197,11 +3197,11 @@ dependencies = [
 [[package]]
 name = "pallet-scheduler"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "frame-benchmarking 2.0.0",
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-io 2.0.0",
@@ -3212,10 +3212,10 @@ dependencies = [
 [[package]]
 name = "pallet-session"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "impl-trait-for-tuples",
  "pallet-timestamp 2.0.0",
  "parity-scale-codec",
@@ -3253,10 +3253,10 @@ dependencies = [
 [[package]]
 name = "pallet-society"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "rand_chacha 0.2.2",
  "serde",
@@ -3267,10 +3267,10 @@ dependencies = [
 [[package]]
 name = "pallet-staking"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "pallet-authorship 2.0.0",
  "pallet-session 2.0.0",
  "parity-scale-codec",
@@ -3308,7 +3308,7 @@ dependencies = [
 [[package]]
 name = "pallet-staking-reward-curve"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
@@ -3319,10 +3319,10 @@ dependencies = [
 [[package]]
 name = "pallet-sudo"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-io 2.0.0",
@@ -3333,11 +3333,11 @@ dependencies = [
 [[package]]
 name = "pallet-timestamp"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "frame-benchmarking 2.0.0",
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "impl-trait-for-tuples",
  "parity-scale-codec",
  "serde",
@@ -3368,10 +3368,10 @@ dependencies = [
 [[package]]
 name = "pallet-transaction-payment"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "pallet-transaction-payment-rpc-runtime-api",
  "parity-scale-codec",
  "serde",
@@ -3385,9 +3385,9 @@ dependencies = [
 [[package]]
 name = "pallet-transaction-payment-rpc-runtime-api"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-api 2.0.0",
@@ -3398,10 +3398,10 @@ dependencies = [
 [[package]]
 name = "pallet-treasury"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "pallet-balances",
  "parity-scale-codec",
  "serde",
@@ -3412,10 +3412,10 @@ dependencies = [
 [[package]]
 name = "pallet-utility"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-core 2.0.0",
@@ -3427,11 +3427,11 @@ dependencies = [
 [[package]]
 name = "pallet-vesting"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "enumflags2",
- "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
- "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7)",
+ "frame-support 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
+ "frame-system 2.0.0 (git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master)",
  "parity-scale-codec",
  "serde",
  "sp-runtime 2.0.0",
@@ -4714,7 +4714,7 @@ dependencies = [
 [[package]]
 name = "sp-api"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "hash-db",
  "parity-scale-codec",
@@ -4745,7 +4745,7 @@ dependencies = [
 [[package]]
 name = "sp-api-proc-macro"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "blake2-rfc",
  "proc-macro-crate",
@@ -4770,7 +4770,7 @@ dependencies = [
 [[package]]
 name = "sp-application-crypto"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "serde",
@@ -4795,7 +4795,7 @@ dependencies = [
 [[package]]
 name = "sp-arithmetic"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "integer-sqrt",
  "num-traits 0.2.14",
@@ -4822,7 +4822,7 @@ dependencies = [
 [[package]]
 name = "sp-authority-discovery"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "sp-api 2.0.0",
@@ -4834,7 +4834,7 @@ dependencies = [
 [[package]]
 name = "sp-authorship"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "sp-inherents 2.0.0",
@@ -4857,7 +4857,7 @@ dependencies = [
 [[package]]
 name = "sp-block-builder"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "sp-api 2.0.0",
@@ -4869,7 +4869,7 @@ dependencies = [
 [[package]]
 name = "sp-blockchain"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "derive_more",
  "log",
@@ -4886,7 +4886,7 @@ dependencies = [
 [[package]]
 name = "sp-consensus"
 version = "0.8.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "derive_more",
  "futures 0.3.14",
@@ -4912,7 +4912,7 @@ dependencies = [
 [[package]]
 name = "sp-consensus-babe"
 version = "0.8.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "merlin",
  "parity-scale-codec",
@@ -4931,7 +4931,7 @@ dependencies = [
 [[package]]
 name = "sp-consensus-slots"
 version = "0.8.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "sp-runtime 2.0.0",
@@ -4940,7 +4940,7 @@ dependencies = [
 [[package]]
 name = "sp-consensus-vrf"
 version = "0.8.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "schnorrkel",
@@ -4952,7 +4952,7 @@ dependencies = [
 [[package]]
 name = "sp-core"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "base58",
  "blake2-rfc",
@@ -5041,7 +5041,7 @@ dependencies = [
 [[package]]
 name = "sp-database"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "kvdb",
  "parking_lot 0.10.2",
@@ -5050,7 +5050,7 @@ dependencies = [
 [[package]]
 name = "sp-debug-derive"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -5071,7 +5071,7 @@ dependencies = [
 [[package]]
 name = "sp-externalities"
 version = "0.8.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "environmental",
  "parity-scale-codec",
@@ -5094,7 +5094,7 @@ dependencies = [
 [[package]]
 name = "sp-finality-grandpa"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "finality-grandpa",
  "log",
@@ -5110,7 +5110,7 @@ dependencies = [
 [[package]]
 name = "sp-finality-tracker"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "sp-inherents 2.0.0",
@@ -5120,7 +5120,7 @@ dependencies = [
 [[package]]
 name = "sp-inherents"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "derive_more",
  "parity-scale-codec",
@@ -5145,7 +5145,7 @@ dependencies = [
 [[package]]
 name = "sp-io"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "futures 0.3.14",
  "hash-db",
@@ -5192,7 +5192,7 @@ dependencies = [
 [[package]]
 name = "sp-keyring"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "lazy_static",
  "sp-core 2.0.0",
@@ -5215,7 +5215,7 @@ dependencies = [
 [[package]]
 name = "sp-npos-elections"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "serde",
@@ -5240,7 +5240,7 @@ dependencies = [
 [[package]]
 name = "sp-npos-elections-compact"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
@@ -5263,7 +5263,7 @@ dependencies = [
 [[package]]
 name = "sp-offchain"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "sp-api 2.0.0",
  "sp-core 2.0.0",
@@ -5273,7 +5273,7 @@ dependencies = [
 [[package]]
 name = "sp-panic-handler"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "backtrace",
  "log",
@@ -5302,7 +5302,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "either",
  "hash256-std-hasher",
@@ -5347,7 +5347,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime-interface"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "primitive-types",
@@ -5380,7 +5380,7 @@ dependencies = [
 [[package]]
 name = "sp-runtime-interface-proc-macro"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "Inflector",
  "proc-macro-crate",
@@ -5405,7 +5405,7 @@ dependencies = [
 [[package]]
 name = "sp-sandbox"
 version = "0.8.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "sp-core 2.0.0",
@@ -5418,7 +5418,7 @@ dependencies = [
 [[package]]
 name = "sp-session"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "sp-api 2.0.0",
@@ -5445,7 +5445,7 @@ dependencies = [
 [[package]]
 name = "sp-staking"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "parity-scale-codec",
  "sp-runtime 2.0.0",
@@ -5466,7 +5466,7 @@ dependencies = [
 [[package]]
 name = "sp-state-machine"
 version = "0.8.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "hash-db",
  "log",
@@ -5509,7 +5509,7 @@ dependencies = [
 [[package]]
 name = "sp-std"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 
 [[package]]
 name = "sp-std"
@@ -5520,7 +5520,7 @@ checksum = "2585fb8f5f4fde53c2f9ccebac4517da4dc435373a8fcaf5db7f54b798da66c2"
 [[package]]
 name = "sp-storage"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "impl-serde",
  "parity-scale-codec",
@@ -5547,7 +5547,7 @@ dependencies = [
 [[package]]
 name = "sp-timestamp"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "impl-trait-for-tuples",
  "parity-scale-codec",
@@ -5576,7 +5576,7 @@ dependencies = [
 [[package]]
 name = "sp-tracing"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "log",
  "parity-scale-codec",
@@ -5603,7 +5603,7 @@ dependencies = [
 [[package]]
 name = "sp-transaction-pool"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "derive_more",
  "futures 0.3.14",
@@ -5618,7 +5618,7 @@ dependencies = [
 [[package]]
 name = "sp-trie"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "hash-db",
  "memory-db",
@@ -5647,7 +5647,7 @@ dependencies = [
 [[package]]
 name = "sp-utils"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "futures 0.3.14",
  "futures-core",
@@ -5659,7 +5659,7 @@ dependencies = [
 [[package]]
 name = "sp-version"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "impl-serde",
  "parity-scale-codec",
@@ -5684,7 +5684,7 @@ dependencies = [
 [[package]]
 name = "sp-wasm-interface"
 version = "2.0.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "impl-trait-for-tuples",
  "parity-scale-codec",
@@ -5786,7 +5786,7 @@ dependencies = [
 [[package]]
 name = "substrate-prometheus-endpoint"
 version = "0.8.0"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 dependencies = [
  "async-std",
  "derive_more",
@@ -5857,7 +5857,7 @@ dependencies = [
 [[package]]
 name = "substrate-wasm-builder-runner"
 version = "1.0.6"
-source = "git+https://github.com/IPSE-TEAM/ipse-core.git?rev=0488da47e43de7426111058e75facca035955ac7#0488da47e43de7426111058e75facca035955ac7"
+source = "git+https://github.com/IPSE-TEAM/ipse-core.git?branch=master#0488da47e43de7426111058e75facca035955ac7"
 
 [[package]]
 name = "subtle"
