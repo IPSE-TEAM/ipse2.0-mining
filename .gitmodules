@@ -1,0 +1,3 @@
+[submodule "ipse-core"]
+	path = ipse-core
+	url = https://github.com/IPSE-TEAM/ipse-core
