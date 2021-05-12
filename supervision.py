@@ -26,7 +26,7 @@ def check_log_file(LogFileName):
 	log_file_size = os.path.getsize(LogFileName)
 	print("log file size is: {0}".format(log_file_size))
 	if log_file_size > LogFileMaxSize * GIB:
-		os.system("rm -rf {0}".format(log_file_size))
+		os.system("rm -rf {0}".format(LogFileName))
 
 
 def job():
