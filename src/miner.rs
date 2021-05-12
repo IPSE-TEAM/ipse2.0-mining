@@ -650,14 +650,14 @@ impl Miner {
 
                             state.deadline = deadline;
                             state.nonce_data = nonce_data;
+                            info!("deadline:{:?}", state.deadline);
 
                         }
 
                         state.mining_num += 1;
                         state.processed_reader_tasks += 1;
 
-                        info!("%%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: {:?} %%%%%%%%%%%%%%%%%%%%%%%%%%",
-                          (end - state.start_time) + Duration::from_millis(len * 12000));
+
 
                     }
 
@@ -671,7 +671,11 @@ impl Miner {
                         end_num = total_size * 4 / 16 / 1024 / 1024 + 1;
                     }
 
-                    info!("end_num: {:?}, deadline: {:?}", end_num, state.deadline);
+                    if state.mining_num == (end_num as u32) && state.height / MiningExpire == state.nonce_data.height / MiningExpire {
+                        info!("%%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: {:?} %%%%%%%%%%%%%%%%%%%%%%%%%%",
+                          (end - state.start_time) + Duration::from_millis(len * 12000));
+                    }
+                    // info!("end_num: {:?}, deadline: {:?}", end_num, state.deadline);
 
                     if state.height / MiningExpire == state.nonce_data.height / MiningExpire &&
                         state.deadline <= state.max_deadline_value && state.mining_num == (end_num as u32) {
@@ -707,19 +711,19 @@ impl Miner {
                     if state.nonce_data.reader_task_processed {
 
                         if state.processed_reader_tasks == reader_task_count {
-                            info!(
-                                "{: <80}",
-                                format!(
-                                    "round finished: roundtime={}ms, speed={:.2}MiB/s",
-                                    state.sw.elapsed_ms(),
-                                    total_size as f64 * 1000.0
-                                        / 1024.0
-                                        / 1024.0
-                                        / state.sw.elapsed_ms() as f64
-                                )
-                            );
+                            // info!(
+                            //     "{: <80}",
+                            //     format!(
+                            //         "round finished: roundtime={}ms, speed={:.2}MiB/s",
+                            //         state.sw.elapsed_ms(),
+                            //         total_size as f64 * 1000.0
+                            //             / 1024.0
+                            //             / 1024.0
+                            //             / state.sw.elapsed_ms() as f64
+                            //     )
+                            // );
                             state.sw.restart();
-                            info!("%%%%%%%%%%% finished sw.restart %%%%%%%%%%%");
+                            // info!("%%%%%%%%%%% finished sw.restart %%%%%%%%%%%");
                             state.scanning = false;
 
 

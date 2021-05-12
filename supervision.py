@@ -48,14 +48,23 @@ def job():
 	# 上一条日志的信息
 	last_log = None
 	same_count = 0
+	stop_loop = False
 
 	# 循环检查10次数据
 	for i in range(10):
 		try:
 			with open(log_file, "r") as f:
 				#  获取u最后一条日志数据
-				log_info = f.readlines()[-1]
+				file = f.readlines()
+				log_info = file[-1]
 				print("log info: {0}".format(log_info))
+				start_logs = file[:100]
+				log_infos = file[-50:]
+
+				# # 启动时候就没有手续费 可以直接退出
+				# for start_log in start_logs:
+				# 	if "fees" in start_log:
+				# 		exit("Inability to pay some fees.")
 
 				# 日志不同 说明正常 反之需要处理
 				if log_info != last_log:
@@ -65,16 +74,26 @@ def job():
 					same_count += 1
 
 				# 如果有异常 那么就重新启动
-				if (same_count >= 5) or ("Error" in log_info) or ("error" in log_info):
+				if (same_count >= 5):
+
 					print("warn: mining abnormal. Now restart mining, and please wait a moment.")
 					start(FileName, SupervisionFileName)
 					break
-				if "Inability to pay some fees" in log_info:
-					exit("Inability to pay some fees")
+
+				# 如果日志中有报错信息或是手续费不足 那么退出
+				for log in log_infos:
+					if ("fees" in log) or ("Err" in log) or( "err" in log):
+						print("Inability to pay some fees or some error occur.")
+						start(FileName, SupervisionFileName)
+						stop_loop = True
+						break
 
 		except Exception as e:
-			print("warn: log file does not exists. Now restart mining, and please wait a moment.")
+			print("warn: log file does not exists. Now restart mining, and please wait a moment.", e)
 			start(FileName, SupervisionFileName)
+			break
+
+		if stop_loop:
 			break
 
 		# 每5秒钟去检查一次日志
@@ -82,6 +101,11 @@ def job():
 
 
 def start(FileName, SupervisionFileName):
+
+	# 改变当前路径
+	new_dir = os.path.dirname(FileName)
+	os.chdir(new_dir)
+
 	kill_process(SupervisionFileName, FileName)
 	print("stop mining success!")
 	time.sleep(5)
@@ -115,7 +139,7 @@ def first_start():
 
 	# 检查是否有文件参数
 	for opt, arg in opts:
-		if opt == "--mining" and len(arg) != 0:
+		if opt == "--mining" and len(arg) != 0 and "--" not in arg:
 			FileName = arg
 			break
 	else:
@@ -155,7 +179,8 @@ if __name__ == "__main__":
 
 	if not StopMining:
 		# 每十分钟去执行一次
-		schedule.every(10).minutes.do(job)
+		schedule.every(2).minutes.do(job)
+		# schedule.every().seconds.do(job)
 
 		while True:
 			schedule.run_pending()
