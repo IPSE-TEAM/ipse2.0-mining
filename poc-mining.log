@@ -1,0 +1,4 @@
+17:13:16 [INFO]  Scavenger v.3.4.0
+17:13:16 [INFO]  plot files loaded: total drives=0, total capacity=0.0000 TiB
+thread 'main' panicked at 'err: you do not have any plots, or plot path is wrong! please check your config.', src/miner.rs:272:13
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

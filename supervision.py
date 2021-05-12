@@ -4,8 +4,10 @@ import getopt
 import sys
 import os
 from pathlib import Path
+import schedule
 
 GIB = 1024 * 1024 * 1024
+
 
 def kill_process(SupervisionFileName, FileName):
 	info = os.popen("ps -ef | grep {0}".format(FileName)).readlines()
@@ -15,76 +17,75 @@ def kill_process(SupervisionFileName, FileName):
 				try:
 					j = i.split()[1].strip()
 					os.system("kill -9 " + j)
-					print("杀掉进程! {0}".format(i))
+					print("kill process! {0}".format(i))
 				except Exception as e:
-					print("删除进程错误! e = {0}, info = {1}".format(e, i))
+					print("Err occur when kill process! e = {0}, info = {1}".format(e, i))
 
 
-def run(SupervisionFileName, FileName, LogMaxSize):
-	# 检查5分钟 如果有5条日志以上相同 那么判定挖矿异常
+def check_log_file(LogFileName):
+	log_file_size = os.path.getsize(LogFileName)
+	print("log file size is: {0}".format(log_file_size))
+	if log_file_size > LogFileMaxSize * GIB:
+		os.system("rm -rf {0}".format(log_file_size))
 
-	info = None
-	start = None
-	count = 0
-	config_dir = os.path.dirname(FileName)
-	# os.system("cd {0}".format(config_dir))
-	os.chdir(config_dir)
-	dir_url = r'{0}.log'.format(FileName)
-	print("122", config_dir)
-	print("222", os.path.abspath("./"))
 
-	while True:
+def job():
+
+	# 跳转到新的文件夹
+	new_dir = os.path.dirname(FileName)
+	try:
+		os.chdir(new_dir)
+	except Exception as e:
+		exit("the poc mining software does not exists. please check it!")
+
+	log_file = r'{0}.log'.format(FileName)
+
+	# 检查日志文件 如果太大 那就删除日志文件
+	check_log_file(log_file)
+
+	# 日志信息（日志文件最后一条数据)
+	log_info = None
+	# 上一条日志的信息
+	last_log = None
+	same_count = 0
+
+	# 循环检查10次数据
+	for i in range(10):
 		try:
+			with open(log_file, "r") as f:
+				#  获取u最后一条日志数据
+				log_info = f.readlines()[-1]
+				print("log info: {0}".format(log_info))
 
-			log_file_size = os.path.getsize(dir_url)
-			print("日志文件的大小为: {0}".format(log_file_size))
-			# 如果日志文件大于20Gib 那么重启
-			if log_file_size > LogMaxSize * GIB:
-				print("日志文件太大， 重启...........")
-				kill_process(SupervisionFileName, FileName)
-				print("关闭挖矿软件!")
-				time.sleep(5)
-
-				os.system(r'./{0} > {1}.log 2>&1 &'.format(FileName, FileName))
-				print("启动挖矿软件!")
-				count = 0
-				continue
-
-			with open(dir_url, "r") as f:
-
-				info = f.readlines()[-1]  # .split()
-				print(info)
-
-				if info != start:
-					count = 0
-					start = info
-
+				# 日志不同 说明正常 反之需要处理
+				if log_info != last_log:
+					last_log = log_info
+					same_count = 0
 				else:
-					count += 1
-					print(count)
+					same_count += 1
 
-				# 卡住5次以上或是出现Error 马上重启
-				if (count >= 5) or ("Error" in info) or ("error" in info):
-					kill_process(SupervisionFileName, FileName)
-					print("关闭挖矿软件!")
-					time.sleep(5)
+				# 如果有异常 那么就重新启动
+				if (same_count >= 5) or ("Error" in log_info) or ("error" in log_info):
+					print("warn: mining abnormal. Now restart mining, and please wait a moment.")
+					start(FileName, SupervisionFileName)
+					break
 
-					os.system(r'{0} > {1}.log 2>&1 &'.format(FileName, FileName))
-					print("启动挖矿软件!")
-
-					count = 0
-
-
-		# 没有日志记录或是没有日志文件 说明没有启动软件
 		except Exception as e:
-			print("没有启动挖矿软件！", e)
-			kill_process(SupervisionFileName, FileName)
-			print("关闭挖矿软件!")
-			result = os.system(r'{0} > {1}.log 2>&1 &'.format(FileName, FileName))
-			print("启动挖矿软件!")
-			count = 0
+			print("warn: log file does not exists. Now restart mining, and please wait a moment.")
+			start(FileName, SupervisionFileName)
+			break
 
-		time.sleep(10)
+		# 每5秒钟去检查一次日志
+		time.sleep(5)
+
+
+def start(FileName, SupervisionFileName):
+	kill_process(SupervisionFileName, FileName)
+	print("stop mining success!")
+	time.sleep(5)
+	# os.system(r'./{0} > {1}.log 2>&1 &'.format(FileName, FileName))
+	os.system(r'{0} > {1}.log 2>&1 &'.format(FileName, FileName))
+	print("start mining success!")
 
 
 def stop(FileName, SupervisionFileName):
@@ -97,23 +98,16 @@ def stop(FileName, SupervisionFileName):
 			try:
 				j = i.split()[1].strip()
 				os.system("kill -9 " + j)
-				print("杀掉进程! {0}".format(i))
+				print("kill process! {0}".format(i))
 			except Exception as e:
-				print("删除进程错误! e = {0}, info = {1}".format(e, i))
+				print("Err occur when kill process! e = {0}, info = {1}".format(e, i))
 
 
-if __name__ == "__main__":
-	# 监控节点 放在与挖矿软件相同的文件夹中
+def first_start():
 
-	# 使用方法：
-		# 开启挖矿： python3 supervision.py --mining 挖矿软件名称 [--log-max-size 数值(默认值是20)] (Gib为基本单位， 比如数值为1， 代表log文件最大空间允许值是1Gib)
-		# 结束挖矿： python3 supervision.py --mining 挖矿软件名称 --stop
-
-
-	FileName = ""          	# 挖矿软件名称
-	LogFileMaxSize = 20                 # 日志文件大小最大允许值(多少Gib)
-
-	SupervisionFileName = Path(__file__).name.split(".")[0]
+	global FileName
+	global LogFileMaxSize
+	global StopMining
 	opts, args = getopt.getopt(sys.argv[1:], "", ["stop", "mining=", "log-max-size="])
 	print(opts)
 
@@ -123,24 +117,48 @@ if __name__ == "__main__":
 			FileName = arg
 			break
 	else:
-		exit("请添加mining参数， 并且值不能为空!")
+		exit("please add '--mining' in your command line, and the value can not empty!")
 
 	# 检查是否有log文件大小限制值 如果输入零则使用默认值
 	for opt, arg in opts:
 		if opt == "--log-max-size" and int(arg) != 0:
 			LogFileMaxSize = int(arg)
-
 			break
-
 
 	# 检查是否有停止命令 有的话直接停止
 	for opt, arg in opts:
 		if opt == "--stop":
 			stop(FileName, SupervisionFileName)
-			exit("停止挖矿")
+			StopMining = True
+			exit("stop mining!")
 			break
 	else:
-		run(SupervisionFileName, FileName, LogFileMaxSize)
+		start(FileName, SupervisionFileName)
+
+
+if __name__ == "__main__":
+	# 监控节点 放在与挖矿软件相同的文件夹中
+
+	# 使用方法：
+		# 开启挖矿： python3 supervision.py --mining 挖矿软件名称 [--log-max-size 数值(默认值是20)] (Gib为基本单位， 比如数值为1， 代表log文件最大空间允许值是1Gib)
+		# 结束挖矿： python3 supervision.py --mining 挖矿软件名称 --stop
+
+	FileName = ""  # 挖矿软件名称
+	LogFileMaxSize = 20  # 日志文件大小最大允许值(多少Gib)
+	SupervisionFileName = Path(__file__).name.split(".")[0]
+	StopMining = False
+
+	# 检查命令行参数， 并启动挖矿
+	first_start()
+
+	if not StopMining:
+		# 每十分钟去执行一次
+		schedule.every(10).minutes.do(job)
+
+		while True:
+			schedule.run_pending()
+
+
 
 
 
