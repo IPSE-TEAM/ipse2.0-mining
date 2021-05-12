@@ -69,6 +69,8 @@ def job():
 					print("warn: mining abnormal. Now restart mining, and please wait a moment.")
 					start(FileName, SupervisionFileName)
 					break
+				if "Inability to pay some fees" in log_info:
+					exit("Inability to pay some fees")
 
 		except Exception as e:
 			print("warn: log file does not exists. Now restart mining, and please wait a moment.")

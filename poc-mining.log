@@ -1,0 +1,81 @@
+17:36:53 [INFO]  Scavenger v.3.4.0
+17:36:53 [INFO]  path=../plot, files=1, size=0.0195 TiB
+17:36:53 [INFO]  plot files loaded: total drives=1, total capacity=0.0195 TiB
+17:36:53 [INFO]  reader-threads=1 CPU-threads=8
+17:36:53 [INFO]  CPU-buffer=4(+8)
+17:36:54 [INFO]  you are not register, and help you register now. wait......
+17:36:54 [INFO]  registere account is ：7c4dba0a4f365cc1b80b67def063fbc456df9cd4ea13cb3ba68ca527c3d53d7a (5EsgtFnb...), plot id is : 2021051200000020, plot size is: 20 GiB, proportion of the miner is: 20 %, rewad dest is: 942b48158d635dd0f7924031f5823cb4142d449533df32c0a5330b0842d7fc4e (5FQyoSCb...)
+17:36:54 [INFO]  register info:Err(Rpc(Request(Error { code: ServerError(1010), message: "Invalid Transaction", data: Some(String("Inability to pay some fees (e.g. account balance too low)")) })))
+17:37:14 [INFO]  ************************************* start mining **************************************************
+17:37:14 [INFO]  new block: height=147546, scoop=3683                                            
+Scavenging: 4.00 MB / 5.00 MB │████████████████████░░░░│ 80.00 % 407.20 MB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 247.76 MB/s17:37:14 [INFO]  drive  10302 finished, speed=250 MiB/s                                          
+17:37:14 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 39.781701ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:37:14 [INFO]  end_num: 2, deadline: 153533196
+17:37:14 [INFO]  round finished: roundtime=39ms, speed=128.21MiB/s                               
+17:37:14 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+17:37:14 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 70.708026ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:37:14 [INFO]  end_num: 2, deadline: 1383667
+17:37:37 [INFO]  new block: height=147548, scoop=643                                             
+Scavenging: 4.00 MB / 5.00 MB │████████████████████░░░░│ 80.00 % 359.02 MB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 329.94 MB/s17:37:37 [INFO]  drive  10302 finished, speed=312 MiB/s                                          
+17:37:37 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 38.348882ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:37:37 [INFO]  end_num: 2, deadline: 9317326
+17:37:37 [INFO]  round finished: roundtime=38ms, speed=131.58MiB/s                               
+17:37:37 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+17:37:37 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 74.860409ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:37:37 [INFO]  end_num: 2, deadline: 9317326
+17:38:02 [INFO]  new block: height=147550, scoop=3342                                            
+Scavenging: 4.00 MB / 5.00 MB │████████████████████░░░░│ 80.00 % 408.05 MB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 365.39 MB/s17:38:02 [INFO]  drive  10302 finished, speed=384 MiB/s                                          
+17:38:02 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 36.206718ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:38:02 [INFO]  end_num: 2, deadline: 81947282
+17:38:02 [INFO]  round finished: roundtime=36ms, speed=138.89MiB/s                               
+17:38:02 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+17:38:02 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 70.70255ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:38:02 [INFO]  end_num: 2, deadline: 11128964
+17:38:25 [INFO]  new block: height=147552, scoop=2528                                            
+Scavenging: 4.00 MB / 5.00 MB │████████████████████░░░░│ 80.00 % 525.70 MB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 159.73 MB/s17:38:25 [INFO]  drive  10302 finished, speed=250 MiB/s                                          
+17:38:25 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 165.059562ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:38:25 [INFO]  end_num: 2, deadline: 126823452
+17:38:25 [INFO]  round finished: roundtime=165ms, speed=30.30MiB/s                               
+17:38:25 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+17:38:30 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 5.107369485s %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:38:30 [INFO]  end_num: 2, deadline: 29211758
+17:38:49 [INFO]  new block: height=147554, scoop=1821                                            
+Scavenging: 4.00 MB / 5.00 MB │████████████████████░░░░│ 80.00 % 395.25 MB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 324.06 MB/s17:38:49 [INFO]  drive  10302 finished, speed=333 MiB/s                                          
+17:38:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 38.680615ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:38:49 [INFO]  end_num: 2, deadline: 113039438
+17:38:49 [INFO]  round finished: roundtime=38ms, speed=131.58MiB/s                               
+17:38:49 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+17:38:49 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 72.248888ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:38:49 [INFO]  end_num: 2, deadline: 1971796
+17:39:14 [INFO]  new block: height=147556, scoop=2929                                            
+Scavenging: 4.00 MB / 5.00 MB │████████████████████░░░░│ 80.00 % 399.39 MB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 359.98 MB/s17:39:14 [INFO]  drive  10302 finished, speed=384 MiB/s                                          
+17:39:14 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 36.732456ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:39:14 [INFO]  end_num: 2, deadline: 6836067
+17:39:14 [INFO]  round finished: roundtime=36ms, speed=138.89MiB/s                               
+17:39:14 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+17:39:14 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 71.917212ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:39:14 [INFO]  end_num: 2, deadline: 6836067
+17:39:36 [INFO]  new block: height=147558, scoop=1209                                            
+Scavenging: 4.00 MB / 5.00 MB │████████████████████░░░░│ 80.00 % 417.38 MB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 352.58 MB/s17:39:36 [INFO]  drive  10302 finished, speed=357 MiB/s                                          
+17:39:36 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 34.731255ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:39:36 [INFO]  end_num: 2, deadline: 90471649
+17:39:36 [INFO]  round finished: roundtime=34ms, speed=147.06MiB/s                               
+17:39:36 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+17:39:36 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 65.043672ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:39:36 [INFO]  end_num: 2, deadline: 421807
+17:40:01 [INFO]  new block: height=147560, scoop=524                                             
+Scavenging: 4.00 MB / 5.00 MB │████████████████████░░░░│ 80.00 % 424.49 MB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 370.02 MB/s17:40:01 [INFO]  drive  10302 finished, speed=357 MiB/s                                          
+17:40:01 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 35.302402ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:40:01 [INFO]  end_num: 2, deadline: 134519335
+17:40:01 [INFO]  round finished: roundtime=35ms, speed=142.86MiB/s                               
+17:40:01 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+17:40:01 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 68.628748ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:40:01 [INFO]  end_num: 2, deadline: 31603577
+17:40:24 [INFO]  new block: height=147562, scoop=937                                             
+Scavenging: 4.00 MB / 5.00 MB │████████████████████░░░░│ 80.00 % 373.75 MB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 155.43 MB/s17:40:24 [INFO]  drive  10302 finished, speed=263 MiB/s                                          
+17:40:25 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 165.499213ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:40:25 [INFO]  end_num: 2, deadline: 132391203
+17:40:25 [INFO]  round finished: roundtime=165ms, speed=30.30MiB/s                               
+17:40:25 [INFO]  %%%%%%%%%%% finished sw.restart %%%%%%%%%%%
+17:40:30 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 5.109021681s %%%%%%%%%%%%%%%%%%%%%%%%%%
+17:40:30 [INFO]  end_num: 2, deadline: 1542928

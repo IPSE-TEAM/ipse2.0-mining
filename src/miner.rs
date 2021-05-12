@@ -671,7 +671,7 @@ impl Miner {
                         end_num = total_size * 4 / 16 / 1024 / 1024 + 1;
                     }
 
-                    info!("end_num: {:?}", end_num);
+                    info!("end_num: {:?}, deadline: {:?}", end_num, state.deadline);
 
                     if state.height / MiningExpire == state.nonce_data.height / MiningExpire &&
                         state.deadline <= state.max_deadline_value && state.mining_num == (end_num as u32) {
