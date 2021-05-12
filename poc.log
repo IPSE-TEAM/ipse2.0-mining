@@ -1,0 +1,31 @@
+21:31:01 [INFO]  Scavenger v.3.4.0
+21:31:01 [INFO]  path=../plot, files=1, size=0.0195 TiB
+21:31:01 [INFO]  plot files loaded: total drives=1, total capacity=0.0195 TiB
+21:31:01 [INFO]  reader-threads=1 CPU-threads=8
+21:31:01 [INFO]  CPU-buffer=4(+8)
+21:31:02 [INFO]  you are rergister, and now start mining.
+21:31:22 [INFO]  ************************************* start mining **************************************************
+21:31:23 [INFO]  new block: height=148716, scoop=495                                             
+Scavenging: 4.00 MB / 5.00 MB │████████████████████░░░░│ 80.00 % 933.59 MB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 350.60 MB/s21:31:23 [INFO]  drive  10302 finished, speed=384 MiB/s                                          
+21:31:23 [INFO]  deadline:178012736
+21:31:23 [INFO]  deadline:25622976
+21:31:23 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 85.481258ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+21:31:38 [INFO]  new block: height=148718, scoop=1318                                            
+Scavenging: 4.00 MB / 5.00 MB │████████████████████░░░░│ 80.00 % 477.83 MB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 163.36 MB/s21:31:38 [INFO]  drive  10302 finished, speed=294 MiB/s                                          
+21:31:38 [INFO]  deadline:50857840
+21:31:44 [INFO]  deadline:692390
+21:31:44 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 5.324066486s %%%%%%%%%%%%%%%%%%%%%%%%%%
+21:32:02 [INFO]  new block: height=148720, scoop=142                                             
+Scavenging: 4.00 MB / 5.00 MB │█████████████████████░░░░░│ 80.00 % 1.02 GB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 484.51 MB/s21:32:02 [INFO]  drive  10302 finished, speed=500 MiB/s                                          
+21:32:02 [INFO]  deadline:123858585
+21:32:02 [INFO]  deadline:2245536
+21:32:02 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 76.139495ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+21:32:25 [INFO]  new block: height=148722, scoop=3293                                            
+Scavenging: 4.00 MB / 5.00 MB │█████████████████████░░░░░│ 80.00 % 1.00 GB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 455.70 MB/s21:32:25 [INFO]  drive  10302 finished, speed=454 MiB/s                                          
+21:32:25 [INFO]  deadline:227117562
+21:32:25 [INFO]  deadline:28973142
+21:32:25 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 83.212732ms %%%%%%%%%%%%%%%%%%%%%%%%%%
+21:32:50 [INFO]  new block: height=148724, scoop=2288                                            
+Scavenging: 4.00 MB / 5.00 MB │████████████████████░░░░│ 80.00 % 385.96 MB/s 0sScavenging: 5.00 MB / 5.00 MB │██████████████████████████│ 100.00 % 310.56 MB/s21:32:50 [INFO]  drive  10302 finished, speed=312 MiB/s                                          
+21:32:50 [INFO]  deadline:47647904
+21:32:50 [INFO]  %%%%%%%%%%%%%%%%%%%%%%%%%  scan plot spend time: 79.081473ms %%%%%%%%%%%%%%%%%%%%%%%%%%

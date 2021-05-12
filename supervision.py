@@ -33,10 +33,8 @@ def job():
 
 	# 跳转到新的文件夹
 	new_dir = os.path.dirname(FileName)
-	try:
+	if len(new_dir) != 0:
 		os.chdir(new_dir)
-	except Exception as e:
-		exit("the poc mining software does not exists. please check it!")
 
 	log_file = r'{0}.log'.format(FileName)
 
@@ -60,6 +58,7 @@ def job():
 				print("log info: {0}".format(log_info))
 				start_logs = file[:100]
 				log_infos = file[-50:]
+				file.clear()
 
 				# # 启动时候就没有手续费 可以直接退出
 				# for start_log in start_logs:
@@ -82,6 +81,7 @@ def job():
 
 				# 如果日志中有报错信息或是手续费不足 那么退出
 				for log in log_infos:
+					# print("log:", log)
 					if ("fees" in log) or ("Err" in log) or( "err" in log):
 						print("Inability to pay some fees or some error occur.")
 						start(FileName, SupervisionFileName)
@@ -101,10 +101,10 @@ def job():
 
 
 def start(FileName, SupervisionFileName):
-
 	# 改变当前路径
 	new_dir = os.path.dirname(FileName)
-	os.chdir(new_dir)
+	if len(new_dir) != 0:
+		os.chdir(new_dir)
 
 	kill_process(SupervisionFileName, FileName)
 	print("stop mining success!")
@@ -141,6 +141,8 @@ def first_start():
 	for opt, arg in opts:
 		if opt == "--mining" and len(arg) != 0 and "--" not in arg:
 			FileName = arg
+			if not os.path.dirname(FileName):
+				FileName = "./" + FileName
 			break
 	else:
 		exit("please add '--mining' in your command line, and the value can not empty!")
