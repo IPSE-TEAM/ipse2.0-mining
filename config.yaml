@@ -7,16 +7,16 @@
 
 # ********************* You may need to modify these parameters ***********************#
 
-account_id: &numeric_id 10717349404514113857    # plot id
-plot_size: 50                                   # plot size (The unit is Gib).
+account_id: &numeric_id 2021051200000020    # plot id
+plot_size: 20                                   # plot size (The unit is Gib).
 miner_proportion: 20                            # how much proportion that the miner should get in a rewad(0 ~ 100).
 account_id_to_secret_phrase:                    # your secret key
-  *numeric_id: 'cash mixture tongue cry roof glare monkey island unfair brown spirit inflict'
+  *numeric_id: 'decrease mango feature upgrade deputy fortune cupboard spot again perfect assist album'
 plot_dirs:                                      # where is the plot file on your computer.
-   - '/data/test_data'
-url: 'ws://localhost:9944'                      # synchronization node
-max_deadline_value: 5000                        # he maximum number of the deadline allowed.
-miner_reward_dest: '5FHb1AEeNui5ANvyT368dECmNEJeouLeeZ6a9z8GTvxPLaVs'    # Miner income address
+   - '../plot'
+url: 'ws://47.108.199.133:9948'                      # synchronization node
+max_deadline_value: 10000                        # he maximum number of the deadline allowed.
+miner_reward_dest: '5FQyoSCbcnodfunhcC7ZpwKkad8JSFxLaZ54aoZyb7HXoX3h'    # Miner income address
 
 # ********************* You may need to modify these parameters ***********************#
 
