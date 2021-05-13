@@ -2,6 +2,7 @@ import os
 import time
 import getopt
 import sys
+from sys import exit
 import os
 from pathlib import Path
 import schedule
