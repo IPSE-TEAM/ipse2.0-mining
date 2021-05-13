@@ -11,7 +11,8 @@
 # Update Config
 ```buildoutcfg
 # command
-* ./update_config.py
+chmod 777 update_config
+./update_config
 ```
 After the above steps have been completed， and you can find `miners_config.yaml` in the current folder. Please modify it next. （tip: the following is the default configuration, and you should use own configuration. )
 ```buildoutcfg
@@ -28,7 +29,7 @@ After the above steps have been completed， and you can find `miners_config.yam
 ```
 ```buildoutcfg
 # command
-./update_config.py
+./update_config
 ``` 
 
 
