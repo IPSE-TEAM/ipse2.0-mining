@@ -47,11 +47,11 @@ There are two command lines, and you can use them to stop or start mine.
 
 * start mine
 ```buildoutcfg
-python3 /home/wjy/Desktop/ipse-mining/localhost/10717349404514113857/supervision-10717349404514113857.py --mining /home/wjy/Desktop/ipse-mining/localhost/10717349404514113857/poc-mining-10717349404514113857 --log-max-size 10 
+/home/wjy/Desktop/ipse2.0-mining/localhost/2021051200000020/supervision-2021051200000020 --mining /home/wjy/Desktop/ipse2.0-mining/localhost/2021051200000020/poc-mining-2021051200000020 --log-max-size 10
 ```
 * stop mine.
 ```buildoutcfg
-python3 /home/wjy/Desktop/test/ipse2.0-mining/localhost/10717349404514113857/supervision-10717349404514113857.py --mining /home/wjy/Desktop/test/ipse2.0-mining/localhost/10717349404514113857/poc-mining-10717349404514113857 --log-max-size 10 --stop
+/home/wjy/Desktop/ipse2.0-mining/localhost/2021051200000020/supervision-2021051200000020 --mining /home/wjy/Desktop/ipse2.0-mining/localhost/2021051200000020/poc-mining-2021051200000020 --log-max-size 10 --stop
 ```
 
 
