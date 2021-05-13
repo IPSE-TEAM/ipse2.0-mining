@@ -2,6 +2,7 @@ import os
 import time
 import getopt
 import sys
+from sys import exit
 import os
 from pathlib import Path
 import schedule
@@ -10,23 +11,26 @@ GIB = 1024 * 1024 * 1024
 
 
 def kill_process(SupervisionFileName, FileName):
-	info = os.popen("ps -ef | grep {0}".format(FileName)).readlines()
-	if info:
-		for i in info:
+
+	process = os.popen("tasklist | findstr {0}".format(FileName)).readlines()
+	if process:
+		for i in process:
 			if SupervisionFileName not in i:
 				try:
-					j = i.split()[1].strip()
-					os.system("kill -9 " + j)
-					print("kill process! {0}".format(i))
+					info = i.split()
+					j = info[1].strip()
+					os.system("taskkill /F /PID {0}".format(j))
+					print("杀掉程序: {0}".format(info[0].strip()))
 				except Exception as e:
-					print("Err occur when kill process! e = {0}, info = {1}".format(e, i))
+					print("杀进程失败:",e)
 
 
 def check_log_file(LogFileName):
 	log_file_size = os.path.getsize(LogFileName)
 	print("log file size is: {0}".format(log_file_size))
 	if log_file_size > LogFileMaxSize * GIB:
-		os.system("rm -rf {0}".format(LogFileName))
+
+		os.system("del /f/s/q {0}".format(LogFileName))
 
 
 def job():
@@ -101,11 +105,8 @@ def job():
 
 
 def start(FileName, SupervisionFileName):
-
 	# 改变当前路径
-	print("filename:", FileName)
 	new_dir = os.path.dirname(FileName)
-	print("new_dir:", new_dir, len(new_dir))
 	if len(new_dir) != 0:
 		os.chdir(new_dir)
 
@@ -118,18 +119,20 @@ def start(FileName, SupervisionFileName):
 
 
 def stop(FileName, SupervisionFileName):
-	info = os.popen("ps -ef | grep {0}".format(FileName)).readlines()#.extend(os.popen("ps -ef | grep supervision.py").readlines())
-	info1 = os.popen("ps -ef | grep {0}\.py".format(SupervisionFileName)).readlines()
-	info.extend(info1)
-	if info:
-		for i in info:
-			print(i)
+	process = os.popen("tasklist | findstr {0}".format(FileName)).readlines()
+	process1 = os.popen("tasklist | findstr {0}".format(SupervisionFileName)).readlines()
+	process2 = process.extend(process1)
+	if process2:
+		for i in process2:
+
 			try:
-				j = i.split()[1].strip()
-				os.system("kill -9 " + j)
-				print("kill process! {0}".format(i))
+				info = i.split()
+				j = info[1].strip()
+				os.system("taskkill /F /PID {0}".format(j))
+				print("杀掉程序: {0}".format(info[0].strip()))
 			except Exception as e:
-				print("Err occur when kill process! e = {0}, info = {1}".format(e, i))
+				print("杀进程失败:", e)
+	exit("挖矿软件关闭!")
 
 
 def first_start():
@@ -144,6 +147,8 @@ def first_start():
 	for opt, arg in opts:
 		if opt == "--mining" and len(arg) != 0 and "--" not in arg:
 			FileName = arg
+			if not os.path.dirname(FileName):
+				FileName = "./" + FileName
 			break
 	else:
 		exit("please add '--mining' in your command line, and the value can not empty!")
@@ -181,8 +186,8 @@ if __name__ == "__main__":
 	first_start()
 
 	if not StopMining:
-		# 每十分钟去执行一次
-		schedule.every(2).minutes.do(job)
+		# 每5分钟去执行一次
+		schedule.every(5).minutes.do(job)
 		# schedule.every().seconds.do(job)
 
 		while True:
