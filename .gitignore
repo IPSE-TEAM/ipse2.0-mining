@@ -9,7 +9,7 @@
 /config.yaml
 /build
 /dist
-/*.log
+/*log
 /test.py
 
 
