@@ -19,7 +19,7 @@ def folder(account_id, host):
     # 把挖矿软件复制到文件夹中
     os.system("cp ./poc-mining ./{0}/{1}/poc-mining-{2} && chmod 777 ./{0}/{1}/poc-mining-{2}".format(host, account_id, account_id))
     # 把监控脚本复制到文件夹中
-    os.system("cp supervision.py ./{0}/{1}/supervision-{2}.py".format(host, account_id, account_id))
+    os.system("cp supervision ./{0}/{1}/supervision-{2}".format(host, account_id, account_id))
     # 把配置文件复制到文件夹中
     os.system("cp new_config.yaml ./{0}/{1}/config.yaml".format(host, account_id))
     # python3 supervision.py --mining poc-mining --log-max-size 10
@@ -31,8 +31,8 @@ def folder(account_id, host):
     abs = os.path.abspath(r"./")
 
     with open("./{0}/{1}/command.txt".format(host, account_id), "w", encoding="utf-8") as f:
-        f.write("python3 {1}/{2}/{0}/supervision-{0}.py --mining {1}/{2}/{0}/poc-mining-{0} --log-max-size 10 \n".format(account_id, abs, host))
-        f.write("python3 {1}/{2}/{0}/supervision-{0}.py --mining {1}/{2}/{0}/poc-mining-{0} --log-max-size 10 --stop\n".format(account_id, abs, host))
+        f.write("{1}/{2}/{0}/supervision-{0} --mining {1}/{2}/{0}/poc-mining-{0} --log-max-size 10 \n".format(account_id, abs, host))
+        f.write("{1}/{2}/{0}/supervision-{0} --mining {1}/{2}/{0}/poc-mining-{0} --log-max-size 10 --stop\n".format(account_id, abs, host))
 
 
 def update_yaml(old_yaml, miner):
@@ -77,7 +77,7 @@ def get_miners_yaml():
 def main():
 
     result = os.system("wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.4.0/config.yaml && "
-                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.4.0/supervision.py && "
+                       "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.4.0/supervision && "
                        "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.4.0/miners_config.yaml &&"
                        "wget -nc https://github.com/IPSE-TEAM/ipse2.0-mining/releases/download/v3.4.0/poc-mining"
                        )
