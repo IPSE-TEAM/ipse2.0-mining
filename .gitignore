@@ -7,6 +7,10 @@
 /localhost.tar
 /poc-mining
 /config.yaml
+/build
+/dist
+/*.log
+/test.py
 
 
 
