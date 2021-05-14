@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 import schedule
 
-GIB = 1024 * 1024 * 1024
+Mib = 1024 * 1024
 
 
 def kill_process(SupervisionFileName, FileName):
@@ -28,9 +28,11 @@ def kill_process(SupervisionFileName, FileName):
 def check_log_file(LogFileName):
 	log_file_size = os.path.getsize(LogFileName)
 	print("log file size is: {0}".format(log_file_size))
-	if log_file_size > LogFileMaxSize * GIB:
+	if log_file_size > LogFileMaxSize * Mib:
 
 		os.system("del /f/s/q {0}".format(LogFileName))
+		# 这里要重启的原因是：可能会因为断网而日志急剧增大
+		start(FileName, SupervisionFileName)
 
 
 def job():
@@ -62,7 +64,7 @@ def job():
 				print("log info: {0}".format(log_info))
 				start_logs = file[:100]
 				log_infos = file[-50:]
-				file.clear()
+				del file
 
 				# # 启动时候就没有手续费 可以直接退出
 				# for start_log in start_logs:
@@ -174,11 +176,11 @@ if __name__ == "__main__":
 	# 监控节点 放在与挖矿软件相同的文件夹中
 
 	# 使用方法：
-		# 开启挖矿： python3 supervision.py --mining 挖矿软件名称 [--log-max-size 数值(默认值是20)] (Gib为基本单位， 比如数值为1， 代表log文件最大空间允许值是1Gib)
+		# 开启挖矿： python3 supervision.py --mining 挖矿软件名称 [--log-max-size 数值(默认值是20)] (Mib为基本单位， 比如数值为1， 代表log文件最大空间允许值是1Mib)
 		# 结束挖矿： python3 supervision.py --mining 挖矿软件名称 --stop
 
 	FileName = ""  # 挖矿软件名称
-	LogFileMaxSize = 20  # 日志文件大小最大允许值(多少Gib)
+	LogFileMaxSize = 100  # 日志文件大小最大允许值(多少Mib)
 	SupervisionFileName = Path(__file__).name.split(".")[0]
 	StopMining = False
 
