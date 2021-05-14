@@ -149,8 +149,6 @@ def first_start():
 	for opt, arg in opts:
 		if opt == "--mining" and len(arg) != 0 and "--" not in arg:
 			FileName = arg
-			if not os.path.dirname(FileName):
-				FileName = "./" + FileName
 			break
 	else:
 		exit("please add '--mining' in your command line, and the value can not empty!")
