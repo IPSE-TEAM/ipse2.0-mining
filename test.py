@@ -1,19 +1,32 @@
-#
+import time
+import getopt
+import sys
+from sys import exit
 import os
+from pathlib import Path
+import yaml
+import schedule
+import smtplib
+from email.mime.text import  MIMEText
+from email.header import Header
+from substrateinterface import SubstrateInterface, Keypair
+from substrateinterface.exceptions import SubstrateRequestException
 
-process = os.popen("tasklist | findstr exe").readlines()
-for i in process:
-    print(i)
-    try:
-        info = i.split()
-        if "chrome" in info[0]:
-            j = info[1].strip()
-            os.system("taskkill /F /PID {0}".format(j))
+def get_config():
+    with open("config.yaml", "r", encoding="utf-8") as yaml_r:
+        result = yaml_r.read()
+        x = yaml.load(result)
+        return x
 
-        print(j)
-    except Exception as e:
-        print(e)
-print(type(process))
-a = os.system("./poc-mining.exe > poc.log 2>&1")
 
-print(a)
+def check_on_chain():
+	config = get_config()
+	url = config["url"]
+	substrate = SubstrateInterface(
+		url=url,
+		ss58_format=42,
+		type_registry_preset='substrate-node-template'
+	)
+
+
+check_on_chain()

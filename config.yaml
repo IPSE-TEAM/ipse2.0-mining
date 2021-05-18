@@ -7,21 +7,27 @@
 
 # ********************* You may need to modify these parameters ***********************#
 
-account_id: &numeric_id 20210513000050    # plot id
+account_id: &numeric_id 5527301994060835160    # plot id
 plot_size: 50                                   # plot size (The unit is Gib).
 miner_proportion: 20                            # how much proportion that the miner should get in a rewad(0 ~ 100).
 account_id_to_secret_phrase:                    # your secret key
-  *numeric_id: 'decrease mango feature upgrade deputy fortune cupboard spot again perfect assist album'
+  *numeric_id: 'giraffe swear deputy faith pretty sure nurse tennis heavy soda detail captain' #'decrease mango feature upgrade deputy fortune cupboard spot again perfect assist album'
 plot_dirs:                                      # where is the plot file on your computer.
    - 'D:\plot\data'
 url: 'ws://47.108.199.133:9948'                      # synchronization node
 max_deadline_value: 10000                        # he maximum number of the deadline allowed.
 miner_reward_dest: '5FQyoSCbcnodfunhcC7ZpwKkad8JSFxLaZ54aoZyb7HXoX3h'    # Miner income address
 
+# Email Service
+is_open_email_service: true
+
+mail_host: 'smtp.qq.com'
+mail_user: '1051891279@qq.com'
+mail_pass: 'mjemuikqwvbmbdea'
+subject: '矿工WJY(公司矿机)' # 你矿机的识别信息 用于邮件中辨别是哪里发来的消息
+official_url: 'ws://47.108.199.133:9948' # 你信任的官方节点(用来检查你的节点是否跟全网同步)
+
 # ********************* You may need to modify these parameters ***********************#
-
-
-
 
 
 hdd_reader_thread_count: 0         # default 0 (=auto: number of disks)
