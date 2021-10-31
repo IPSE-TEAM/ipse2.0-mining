@@ -1,0 +1,6 @@
+[submodule "ipse-core"]
+	path = ipse-core
+	url = https://github.com/IPSE-TEAM/ipse-core.git
+[submodule "subxt"]
+	path = subxt
+	url = https://github.com/transxask/mysubxt.git

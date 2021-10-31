@@ -1,0 +1,29 @@
+name: Rust
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: setup
+      run: |
+          rustup install nightly-2020-10-01 --profile default
+          rustup target add wasm32-unknown-unknown --toolchain nightly-2020-10-01
+
+    - name: fmt
+      run: cargo +nightly-2020-10-01 fmt --all -- --check
+
+    - name: build
+      run: cargo +nightly-2020-10-01 build --workspace --verbose
+
+    - name: test
+      run: cargo +nightly-2020-10-01 test --workspace --verbose -- --test-threads=1

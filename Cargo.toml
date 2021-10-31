@@ -1,0 +1,66 @@
+[package]
+name = "poc-mining"
+version = "3.4.0"
+authors = ["transxask <orwx71@163.com>"]
+build = "build.rs"
+keywords = ["poc", "miner", "rust","cryptocurrency"]
+readme = "README.md"
+edition = "2018"
+
+[features]
+simd = []
+neon = []
+opencl = ["ocl-core"]
+
+[dependencies]
+cfg-if = "0.1"
+clap = "~2.30"
+core_affinity = "0.5.9"
+crossbeam-channel = "0.3"
+filetime = "0.2"
+futures = "0.1"
+hostname = "0.1.5"
+libc = "0.2"
+log = "0.4"
+log4rs = { version = "0.8", features = ["rolling_file_appender", "compound_policy", "size_trigger", "fixed_window_roller"] }
+num_cpus = "1.9"
+ocl-core = { version = "0.11.1", optional = true } 
+pbr = "1.0.1"
+rand = "0.6"
+rayon = "1.0"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "=1.0.64"
+serde_yaml = "0.8"
+stopwatch = "0.0.7"
+tokio = "0.1"
+syn = "=1.0.57"
+url = "1.7"
+hex = '=0.4.2'
+page_size = "0.4.1"
+aligned_alloc = "0.1"
+reqwest = { version = "0.9.9", default-features = false, features = ["rustls-tls"] }
+bytes = "0.4.11"
+url_serde = "0.2"
+async-std = "1.2.0"
+
+codec = { package = "parity-scale-codec", version = "1.3.5", default-features = false, features = ["derive", "full"] }
+
+substrate-subxt = {path = "./subxt", package = "substrate-subxt", version = "0.13.0" }
+substrate-subxt-proc-macro = { path = "./subxt/proc-macro", version = "0.13.0"}
+
+sub-runtime = { path = "./ipse-core/bin/node/runtime", version = "2.0.0", package = "node-runtime"}
+node-primitives = { path = "./ipse-core/bin/node/primitives", version = "2.0.0"}
+pallet-indices = { path = "./ipse-core/frame/indices", version = "2.0.0" }
+frame-support = { path = "./ipse-core/frame/support", version = "2.0.0" }
+
+sp-keyring = { version = "2.0.0", package = "sp-keyring" }
+sp-core = { version = "2.0.0", package = "sp-core" }
+sp-runtime = { version = "2.0.0", package = "sp-runtime" }
+
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["fileapi"] }
+
+[build-dependencies]
+cc = "1.0"
+cfg-if = "0.1"

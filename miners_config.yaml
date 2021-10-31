@@ -1,0 +1,16 @@
+
+miners: # miners's config
+
+  - {host: localhost, # remote server id
+     account_id: 2021051200000020, # plot id
+     phase: decrease mango feature upgrade deputy fortune cupboard spot again perfect assist album, # your secret key
+     miner_proportion: 20,  # how much proportion that the miner should get in a rewad.
+     url: 'ws://47.108.199.133:9948',  # synchronization node
+     plot_size: 20, # plot size (The unit is Gib).
+     miner_reward_dest: 5FQyoSCbcnodfunhcC7ZpwKkad8JSFxLaZ54aoZyb7HXoX3h, # Miner income address
+     plot_path: '/home/wjy/plot',  # where is the plot file on your computer.
+     max_deadline_value: 10000,  # The maximum number of the deadline allowed.
+  }
+
+
+#  - {account_id: 2, phase: hhh, miner_proportion: 20, url: bbb, plot_size: 20,  miner_reward_dest: "sss", plot_path: "/root/data"}
