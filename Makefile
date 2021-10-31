@@ -8,5 +8,3 @@ release:
 	cargo build --release
 release-gpu:
 	cargo build --release --features=opencl
-init:
-	 git submodule update --init --recursive
